@@ -1,0 +1,2 @@
+topic_code,grade,level,question_vi,question_en,type,option_a,option_b,option_c,option_d,correct,explanation_vi,explanation_en,geo_config
+RECTANGLE,8,recognize,Hình chữ nhật có mấy góc vuông?,How many right angles?,single,1,2,3,4,D,Có bốn góc vuông.,Four right angles.,

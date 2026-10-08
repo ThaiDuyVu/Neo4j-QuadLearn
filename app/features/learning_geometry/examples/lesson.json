@@ -1,0 +1,25 @@
+{
+  "topic_code": "PARALLELOGRAM",
+  "grade": 8,
+  "prerequisites": [
+    "lesson:7:parallel"
+  ],
+  "title": {
+    "vi": "Hình bình hành",
+    "en": "Parallelogram"
+  },
+  "content": {
+    "vi": "Tứ giác có các cặp cạnh đối song song.",
+    "en": "A quadrilateral with two pairs of parallel opposite sides."
+  },
+  "geo_config": {
+    "type": "parallelogram",
+    "points": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  "order": 1
+}
