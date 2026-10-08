@@ -1,0 +1,30 @@
+{
+  "questions": [
+    {
+      "grade": 8,
+      "status": "draft",
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hình chữ nhật có bao nhiêu góc vuông?",
+      "explanation_vi": "Cả bốn góc đều vuông.",
+      "options": [
+        {"text_vi": "4", "correct": true},
+        {"text_vi": "2", "correct": false}
+      ]
+    }
+  ],
+  "essays": [
+    {
+      "grade": 8,
+      "status": "draft",
+      "kind": "calculation",
+      "prompt_vi": "Tính diện tích hình chữ nhật dài 4 cm, rộng 3 cm.",
+      "assumptions_vi": "a = 4 cm, b = 3 cm",
+      "conclusion_vi": "Tính S",
+      "solution_vi": "S = a × b = 12 cm²",
+      "hints": [
+        {"text_vi": "Dùng công thức diện tích hình chữ nhật."}
+      ]
+    }
+  ]
+}

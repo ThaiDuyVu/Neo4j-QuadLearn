@@ -8,6 +8,8 @@ class AIRequest:
     grade: int
     language: str
     context: tuple[LessonSummary, ...]
+    lesson_id: str | None = None
+    purpose: str = "tutor"
 
 class AIProvider(Protocol):
     def respond(self, request: AIRequest) -> str: ...
