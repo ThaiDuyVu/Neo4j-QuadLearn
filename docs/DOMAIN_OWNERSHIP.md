@@ -11,3 +11,5 @@ FR đầy đủ và trách nhiệm phối hợp: SRS_TRACEABILITY.md. Bảng tr�
 **Level do Sơn quản lý catalog 6–9**, Vũ chỉ chọn/đổi liên kết User→Level. **Tiên quyết do Sơn ghi**, Vũ đọc để unlock/gợi ý. **Chi tiết Attempt do Đạt ghi**, Vũ tính/ghi Progress theo kết quả. LRN-05 UI của Sơn yêu cầu Vũ ghi COMPLETED qua contract TODO. AD-11 tách quota AI của Đạt và timeout session của Vũ. I18 UI do Sơn định nghĩa từ điển, mỗi owner dịch page mình, Vũ ghi preference user.
 
 Không import repository/service feature khác. `core/bootstrap.py` nối implementation qua ports là ngoại lệ tích hợp được quy định, không circular imports. Một domain có thể tạo cạnh tham chiếu User/Topic theo bảng schema, nhưng không sửa node thuộc owner khác. Xóa user cần quy trình phối hợp để Đạt xóa history rồi Vũ xóa identity, không tự DETACH DELETE toàn dữ liệu domain khác. Chưa triển khai xóa tài khoản.
+
+Cập nhật Vũ: sở hữu thêm AuthToken/AuthSession và HAS_AUTH_TOKEN/HAS_AUTH_SESSION; User activation/session/progress thực hiện local. Xóa tài khoản vẫn TODO cho đến khi chốt contract xóa dữ liệu với Đạt. Shared read adapter `core/catalog.py` cung cấp LearningCatalogReader, không ghi nội dung của Sơn.

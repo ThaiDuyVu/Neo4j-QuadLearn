@@ -38,3 +38,11 @@ CREATE CONSTRAINT level_grade IF NOT EXISTS FOR (l:Level) REQUIRE l.grade IS UNI
 ;
 CREATE CONSTRAINT progress_pair IF NOT EXISTS FOR (p:Progress) REQUIRE (p.user_id, p.level_id) IS UNIQUE
 ;
+CREATE CONSTRAINT auth_session_id IF NOT EXISTS FOR (s:AuthSession) REQUIRE s.id IS UNIQUE
+;
+CREATE CONSTRAINT auth_session_hash IF NOT EXISTS FOR (s:AuthSession) REQUIRE s.hash IS UNIQUE
+;
+CREATE CONSTRAINT auth_token_id IF NOT EXISTS FOR (t:AuthToken) REQUIRE t.id IS UNIQUE
+;
+CREATE CONSTRAINT auth_token_hash IF NOT EXISTS FOR (t:AuthToken) REQUIRE t.hash IS UNIQUE
+;

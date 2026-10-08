@@ -1,9 +1,11 @@
-# ==================================================
-# DOMAIN OWNER: VU
-# FEATURE: identity_learning_path
-# Thành viên thêm page của domain vào PAGES tại đây.
-# Không triển khai logic của các domain khác.
-# ==================================================
+# DOMAIN OWNER: VU. Thêm page chỉ sửa registry này, không sửa main/navigation.
 from app.shared.contracts.navigation import PageSpec
-from .pages.overview import render
-PAGES = [PageSpec("Identity & Learning Path", "identity", render)]
+from .pages import overview, account, path, profile, admin
+
+PAGES = [
+    PageSpec("Identity & Learning Path", "identity", overview.render),
+    PageSpec("Tài khoản · Vũ", "identity-account", account.render),
+    PageSpec("Lộ trình học · Vũ", "identity-path", path.render),
+    PageSpec("Hồ sơ và cấp độ · Vũ", "identity-profile", profile.render),
+    PageSpec("Quản lý người dùng · Vũ", "identity-admin", admin.render),
+]

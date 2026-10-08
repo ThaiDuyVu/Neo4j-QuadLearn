@@ -76,3 +76,7 @@ RETURN DISTINCT l.id, l.content_vi LIMIT 8;
 ```
 
 Các đường đi biến độ dài tận dụng graph để tìm nền tảng nhiều cấp và taxonomy đa cha; không chỉ CRUD như bảng SQL. AI context là truy vấn nguồn nội dung có kiểm soát, chưa là RAG production. Admin cần bảo vệ việc đọc properties đáp án trong workflow thật.
+
+## Mở rộng domain Vũ sau skeleton
+
+AuthSession (id/hash unique, last_seen, auth_version) và AuthToken (id/hash unique, kind, expires_at, used_at) do Vũ ghi, User-HAS_AUTH_SESSION/HAS_AUTH_TOKEN trỏ đến các node này. User thêm password_hash Argon2id, starting_grade, email_verified, guardian_required/consent/email, status, auth_version, failed_logins/locked_until, activation_channel. AuthToken/session không có raw token/password. Counter auth_lock/progress_lock chỉ để lấy write lock, không là thống kê học tập. Dữ liệu tài khoản local mới không có demo=true nên reset demo không xóa chúng. Ownership các node/cạnh cũ giữ nguyên.

@@ -22,3 +22,12 @@
 | Thư viện geometry/giấy phép và embed có mobile 30fps? | GEO/R3/R6 | Sơn | Slider/SVG không đạt canvas đầy đủ |
 
 Khi chốt: cập nhật tài liệu, contract/schema liên quan và test rồi mở PR shared. Không xem quyết định tạm thời là sửa nghiệp vụ đã được phê duyệt. Chính sách dữ liệu trẻ em và yêu cầu pháp lý sản phẩm cần đánh giá khi mở rộng, skeleton chưa là xác nhận tuân thủ.
+
+## Quyết định tạm thời khi phát triển Vũ
+
+- Unlock dùng 70% và 6/10 theo A7, cấu hình qua VU_UNLOCK_COMPLETION/VU_UNLOCK_SCORE; Q4 vẫn chưa được duyệt, không ghi là yêu cầu mới đã chốt.
+- Average mặc định `all`, có `latest` theo thứ tự newest-first của AssessmentReader; điểm chỉ từ completed của topic có published lessons trong level. VU_AVERAGE_POLICY có thể đổi.
+- Tuổi do người dùng khai báo, guardian token dev không xác minh phụ huynh thực tế. Verify/guardian token local TTL 24 giờ là chọn triển khai tạm thời, reset TTL 30 phút giữ SRS.
+- Auth session idle backend 7 ngày, raw token trong Streamlit state; remember-me/cookie persistence chưa triển khai.
+- Hoàn thành bằng nút xác nhận tại lộ trình; không suy ra tự luận/geometry completion chưa chốt.
+- Timestamps/detail answers, placement và contract xóa dữ liệu cá nhân vẫn thiếu ở Đạt; không truy vấn repository nội bộ domain Đạt để bỏ qua contract.

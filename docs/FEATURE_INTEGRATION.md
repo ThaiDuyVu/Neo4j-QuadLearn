@@ -51,3 +51,7 @@ Sơn giữ workflow preview/validate/report/ImportLog. Đạt cung cấp validat
 4. Service/repository mới ở feature mình, dependency chỉ shared/core + nội bộ. Muốn thêm port hoặc context thì báo nhóm/review.
 
 Không dùng `st.session_state` như database history; chỉ trạng thái UI. Mỗi lần Streamlit rerun có thể đọc dữ liệu mới. Không tạo shared contract “generic write(query)” cho pages vì sẽ phá quyền sở hữu.
+
+## Cập nhật tích hợp Vũ
+
+`ctx.auth` và `ctx.progress` có implementation local; `ctx.identity` lấy session_state riêng browser, default guest, demo explicit chỉ đọc. ProgressWriter.start_lesson/complete_lesson/resume_lesson chạy và kiểm quyền. AuthSession/AuthToken mới thuộc Vũ. GraphLearningCatalog shared adapter chỉ đọc metadata chapter/topic; không sửa feature Sơn. Không thay signature readers cũ; AppContext fields mới optional. Xem tài liệu giải thích Vũ để biết status/TODO hiện tại; đề xuất TODO ở phần baseline phía trên được thay bởi implementation local này. Timestamps/detail answers/deletion/placement vẫn cần Đạt mở rộng contract.

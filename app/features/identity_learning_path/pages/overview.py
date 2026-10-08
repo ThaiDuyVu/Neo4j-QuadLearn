@@ -1,21 +1,74 @@
-# DOMAIN OWNER: VU · identity_learning_path
-# Bổ sung chức năng trong domain này; dữ liệu domain khác đi qua shared contracts.
-# TODO: xem checklist và FR-ID trong README.md của feature trước khi mở rộng.
+# DOMAIN OWNER: VU. Dashboard chỉ gọi contracts, không ghi dữ liệu assessment/content.
 import streamlit as st
-from app.shared.components.status import skeleton_notice
-from app.core.context import AppContext
+from .common import action
 
-def render(ctx: AppContext):
+
+def render(ctx):
     st.title("Identity & Learning Path · Vũ")
-    skeleton_notice("Vũ")
     user = ctx.identity.current_user()
     if user is None:
-        st.warning("Chưa có tài khoản demo. Chạy python -m scripts.db init.")
+        st.info("Vào Tài khoản · Vũ để đăng nhập hoặc bật demo chỉ đọc.")
         return
-    st.write(f"Học sinh demo: {user.name} · Lớp {user.grade} · {user.role}")
-    grade = st.selectbox("Xem lộ trình mẫu theo lớp (chưa kiểm soát mở khóa)", [6, 7, 8, 9], index=user.grade-6)
-    lessons = ctx.content.lessons(grade)
-    st.table([{"Bài": item.title, "ID": item.id} for item in lessons])
-    st.subheader("Lịch sử từ contract AssessmentReader")
-    st.table([{"Lần làm": a.id, "Chủ đề": a.topic_id, "Điểm": a.score} for a in ctx.assessment.attempts(user.id)])
-    st.caption("TODO: AUTH, hồ sơ, progress thực tế, tiếp tục học và mở khóa theo ngưỡng.")
+    st.write(
+        f"{user.name} · Lớp {user.grade} · {user.role}"
+        + (" · DEMO chỉ đọc" if user.demo else "")
+    )
+    if ctx.progress:
+        levels = ctx.progress.levels(user.id)
+        st.table(
+            [
+                {
+                    "Lớp": x.grade,
+                    "Bài đã xong": x.completed,
+                    "Bài published": x.total,
+                    "% hoàn thành": round(x.completion, 2),
+                    "Điểm TB": x.average_score,
+                    "Đã mở": x.unlocked,
+                }
+                for x in levels
+            ]
+        )
+        resume = ctx.progress.resume_lesson(user.id)
+        if resume:
+            st.info(
+                f"Tiếp tục: {resume.title} ({resume.id}). Vào Lộ trình học để mở bài này."
+            )
+        if not user.demo and st.button("Tính lại và lưu tiến độ"):
+            action(lambda: ctx.progress.refresh(user.id))
+        grade = st.selectbox(
+            "Chi tiết chương/chủ đề", [6, 7, 8, 9], index=user.grade - 6
+        )
+        if ctx.progress.access(user.id, grade):
+            st.table(ctx.progress.breakdown(user.id, grade))
+        else:
+            st.warning(
+                "Lớp này đang khóa. Vào Hồ sơ và cấp độ để xem điều kiện/học vượt."
+            )
+        st.subheader("Điểm mạnh/yếu theo chủ đề")
+        st.table(ctx.progress.topic_statistics(user.id))
+        st.subheader("Bài nền nên ôn")
+        st.table(
+            [
+                {"Bài": x.title, "Lớp": x.grade, "ID": x.id}
+                for x in ctx.progress.review_lessons(user.id)
+            ]
+        )
+    else:
+        st.table(
+            [{"Bài": x.title, "ID": x.id} for x in ctx.content.lessons(user.grade)]
+        )
+    st.subheader("Lịch sử từ AssessmentReader của Đạt")
+    st.table(
+        [
+            {
+                "Lần làm": a.id,
+                "Chủ đề": a.topic_id,
+                "Điểm": a.score,
+                "Trạng thái": a.status,
+            }
+            for a in ctx.assessment.attempts(user.id)
+        ]
+    )
+    st.caption(
+        "TODO: timestamps/thời lượng/đáp án chi tiết chưa có trong contract Đạt; chưa dựng biểu đồ thời gian bằng dữ liệu giả."
+    )

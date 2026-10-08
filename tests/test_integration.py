@@ -25,7 +25,7 @@ def test_seed_idempotent_nodes_and_relationships(db):
     assert counts(db) == before
 
 def test_domain_contracts_and_multihop(db):
-    ctx = build_context(db)
+    ctx = build_context(db, demo=True)
     user = ctx.identity.current_user()
     assert user.grade == 8
     assert len(ctx.content.lessons(8)) == 2
