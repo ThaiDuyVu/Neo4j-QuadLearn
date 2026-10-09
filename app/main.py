@@ -41,7 +41,7 @@ def home():
 
 def render_feature(spec):
     try:
-        spec.render(build_context(get_database()))
+        spec.render(build_context(get_database(), session_state=st.session_state))
     except (ValueError, Neo4jError, DriverError, OSError):
         st.error("Không đọc được dữ liệu Neo4j. Khởi động database và chạy seed; xem docs/RUN_PROJECT.md.")
 

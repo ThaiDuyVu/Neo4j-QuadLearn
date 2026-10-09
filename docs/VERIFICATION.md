@@ -1,5 +1,7 @@
 # Báo cáo kiểm chứng skeleton
 
+> Cập nhật domain Vũ: nghiệp vụ local đã phát triển sau baseline skeleton. Trạng thái mới, shared changes, tests và TODO nằm trong [VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md](VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md). Các kết quả/TODO skeleton bên dưới là mốc nghiệm thu ban đầu, không dùng để kết luận trạng thái hiện tại của Vũ.
+
 Ngày kiểm tra: 08/10/2026 (Asia/Ho_Chi_Minh). Workspace được tạo trực tiếp tại QuadLearn, không có source cũ bị ghi đè. Đã đọc toàn bộ SRS Word v1.1 mục 1–11 trước khi dựng source. Môi trường thực tế: macOS Apple Silicon, Python 3.14.6, Docker Engine 24.0.6, Neo4j 5.26.0 Community linux/arm64, Streamlit 1.46.1.
 
 | Hạng mục | Kết quả | Bằng chứng / giới hạn |

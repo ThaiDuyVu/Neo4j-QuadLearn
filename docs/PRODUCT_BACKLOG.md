@@ -1,5 +1,7 @@
 # Product Backlog theo SRS
 
+> Cập nhật domain Vũ: nghiệp vụ local đã phát triển sau baseline skeleton. Trạng thái mới, shared changes, tests và TODO nằm trong [VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md](VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md). Các kết quả/TODO skeleton bên dưới là mốc nghiệm thu ban đầu, không dùng để kết luận trạng thái hiện tại của Vũ.
+
 56 story giữ ưu tiên và tiêu chí SRS. Sprint/SP là ước lượng BA của sản phẩm, không kế hoạch skeleton. Tất cả còn TODO ở mức story đầy đủ; PB-01 chỉ hoàn thành khung local, không CI/CD hay staging.
 
 | ID | Epic | Story | Tiêu chí SRS | M/S/C | SP | Sprint SRS | Owner |

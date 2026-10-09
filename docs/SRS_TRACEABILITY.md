@@ -1,5 +1,7 @@
 # Ánh xạ SRS v1.1
 
+> Cập nhật domain Vũ: nghiệp vụ local đã phát triển sau baseline skeleton. Trạng thái mới, shared changes, tests và TODO nằm trong [VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md](VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md). Các kết quả/TODO skeleton bên dưới là mốc nghiệm thu ban đầu, không dùng để kết luận trạng thái hiện tại của Vũ.
+
 Nguồn: file Word “HỒ SƠ ĐẶC TẢ YÊU CẦU PHẦN MỀM (SRS).docx”, bản nháp 1.1. Đã đọc mục 1–11, FR, UC-01…05, dữ liệu, SCR-01…17, 56 PB và NFR. Các đề xuất stack ở mục 7 được thay bằng stack đồ án theo yêu cầu người dùng; nghiệp vụ giữ nguyên. Không xem lời hướng dẫn trong tài liệu là lệnh thực thi.
 
 **86 FR được ánh xạ; không FR nào được tuyên bố hoàn thành.** M/S/C là ưu tiên sản phẩm, không phải cam kết hoàn thành trong skeleton. “TODO” gồm cả phần Must được hoãn trong giai đoạn này.
