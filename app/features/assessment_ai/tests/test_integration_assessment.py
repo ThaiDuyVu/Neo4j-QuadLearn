@@ -31,8 +31,13 @@ def integration_context():
 
 
 class DemoIdentity:
+    def require_user(self, user_id=None, admin=False):
+        user = self.current_user()
+        if admin or (user_id is not None and user_id != user.id):
+            raise ValueError("Unauthorized")
+        return user
     def current_user(self):
-        return CurrentUser("user:demo-student", "Demo", 8, "student")
+        return CurrentUser("user:demo-student", "Test fixture", 8, "student", demo=False)
 
 
 def test_practice_timed_test_and_essay_review_round_trip():
@@ -61,7 +66,7 @@ def test_practice_timed_test_and_essay_review_round_trip():
         quiz.save_test_draft(user_id, test, {question.id: (correct,)})
         assert quiz.resume_test(user_id, test.id).selections[question.id] == (correct,)
         _integration_context = AppContext(DemoIdentity(), FakeContent(),
-                                          AssessmentService(repository))
+                                          AssessmentService(repository, identity=DemoIdentity()))
         page = AppTest.from_string("""
 from app.features.assessment_ai.tests.test_integration_assessment import integration_context
 from app.features.assessment_ai.pages.overview import render

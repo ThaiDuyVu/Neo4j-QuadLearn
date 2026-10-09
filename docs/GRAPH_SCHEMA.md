@@ -80,3 +80,10 @@ Các đường đi biến độ dài tận dụng graph để tìm nền tảng 
 ## Mở rộng domain Vũ sau skeleton
 
 AuthSession (id/hash unique, last_seen, auth_version) và AuthToken (id/hash unique, kind, expires_at, used_at) do Vũ ghi, User-HAS_AUTH_SESSION/HAS_AUTH_TOKEN trỏ đến các node này. User thêm password_hash Argon2id, starting_grade, email_verified, guardian_required/consent/email, status, auth_version, failed_logins/locked_until, activation_channel. AuthToken/session không có raw token/password. Counter auth_lock/progress_lock chỉ để lấy write lock, không là thống kê học tập. Dữ liệu tài khoản local mới không có demo=true nên reset demo không xóa chúng. Ownership các node/cạnh cũ giữ nguyên.
+
+## Node do Đạt bổ sung sau merge
+
+- `EssayReview`: id unique, rating, hints_used, answer_text, created_at. `(User)-[:REVIEWED_ESSAY]->(EssayReview)-[:FOR_ESSAY]->(EssayProblem)`; Đạt sở hữu ghi, mỗi lần review node mới.
+- `AIQuotaDay`: id unique theo `ai-quota:{user_id}:{YYYY-MM-DD}`, user_id/day/used/pending/lock. Chủ sở hữu Đạt; property user_id phục vụ lookup quota, không ghi property của User. Ngày UTC+7 theo implementation hiện tại.
+
+Hai constraints nay nằm trong constraints.cypher; runtime lazy IF NOT EXISTS còn giữ để tương thích database đã setup. Không thay schema User/Progress của Vũ. Xóa toàn bộ dữ liệu cá nhân cần cleanup thêm hai loại node này qua owner contract.

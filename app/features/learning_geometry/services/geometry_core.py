@@ -18,6 +18,10 @@ class GeometryCoreEngine:
         updated = {k: GeometryPoint(x=v.x, y=v.y) for k, v in vertices.items()}
         updated[dragged_vertex] = GeometryPoint(x=new_x, y=new_y)
 
+        # Đỉnh D đang kéo phải được giữ, giải C = B + D - A.
+        if dragged_vertex == 'D':
+            A, B, D = updated['A'], updated['B'], updated['D']
+            updated['C'] = GeometryPoint(x=B.x + D.x - A.x, y=B.y + D.y - A.y)
         A, B, C = updated['A'], updated['B'], updated['C']
 
         # D = C + A - B

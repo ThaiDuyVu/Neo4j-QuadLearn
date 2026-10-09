@@ -14,7 +14,8 @@ class GraphLearningCatalog:
         rows = self.db.read(
             """
             MATCH (:Level {grade:$grade})-[:HAS_CHAPTER]->(c:Chapter)-[:HAS_TOPIC]->(t:Topic)-[:HAS_LESSON]->(l:Lesson)
-            WHERE l.status='published'
+            WHERE l.status='published' AND t.status='published'
+              AND coalesce(c.status,'published')='published' AND l.grade=$grade AND t.grade=$grade
             RETURN l.id AS id,l.title_vi AS title,l.grade AS grade,l.content_vi AS content,
               t.id AS topic_id,c.id AS chapter_id,c.name_vi AS chapter_title,t.name_vi AS topic_title,
               coalesce(t.cognitive_level,'') AS cognitive_level

@@ -1,5 +1,7 @@
 # Câu hỏi mở
 
+> Trạng thái sau merge 3 domain và audit 09/10/2026: xem [báo cáo đối chiếu 86 FR, lỗi tích hợp và kiểm chứng](POST_MERGE_AUDIT_2026-10-09.md). Các bảng skeleton bên dưới là baseline; không dùng TODO cũ để kết luận phần đã triển khai hiện tại.
+
 Đồ án và Neo4j local đã được người dùng chốt; các đề xuất thương mại trong SRS không được triển khai mặc định. Chưa chốt những điểm dưới đây:
 
 | Điểm | Nguồn | Owner cần chốt | Tạm thời trong skeleton |

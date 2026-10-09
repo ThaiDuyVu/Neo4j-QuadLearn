@@ -1,5 +1,7 @@
 # Kiến trúc skeleton
 
+> Trạng thái sau merge 3 domain và audit 09/10/2026: xem [báo cáo đối chiếu 86 FR, lỗi tích hợp và kiểm chứng](POST_MERGE_AUDIT_2026-10-09.md). Các bảng skeleton bên dưới là baseline; không dùng TODO cũ để kết luận phần đã triển khai hiện tại.
+
 > Cập nhật domain Vũ: nghiệp vụ local đã phát triển sau baseline skeleton. Trạng thái mới, shared changes, tests và TODO nằm trong [VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md](VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md). Các kết quả/TODO skeleton bên dưới là mốc nghiệm thu ban đầu, không dùng để kết luận trạng thái hiện tại của Vũ.
 
 Một tiến trình Streamlit chạy trên host, gọi Python service → repository → Neo4j driver → Neo4j Community trong Docker. Không REST server, microservice, Redis, SQL, queue hay event bus.

@@ -1,5 +1,7 @@
 # Sơn – learning_geometry
 
+> Audit sau merge: [trạng thái SRS và vấn đề cần owner review](../../../docs/POST_MERGE_AUDIT_2026-10-09.md). Thay đổi audit ở branch `fix/post-merge-integration-audit`; chưa merge main.
+
 ## 1. Owner và mục tiêu
 
 Sơn sở hữu `app/features/learning_geometry/`. Learning Content & Geometry: catalog, nội dung, taxonomy và hình minh họa. Đây là skeleton, **không FR nào hoàn tất toàn bộ**. Service/repository/page demo hoạt động với Neo4j seed; các chức năng bên dưới TODO.

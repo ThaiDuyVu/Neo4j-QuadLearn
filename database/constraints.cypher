@@ -46,3 +46,7 @@ CREATE CONSTRAINT auth_token_id IF NOT EXISTS FOR (t:AuthToken) REQUIRE t.id IS 
 ;
 CREATE CONSTRAINT auth_token_hash IF NOT EXISTS FOR (t:AuthToken) REQUIRE t.hash IS UNIQUE
 ;
+CREATE CONSTRAINT aiquotaday_id IF NOT EXISTS FOR (q:AIQuotaDay) REQUIRE q.id IS UNIQUE
+;
+CREATE CONSTRAINT essayreview_id IF NOT EXISTS FOR (r:EssayReview) REQUIRE r.id IS UNIQUE
+;

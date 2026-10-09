@@ -18,6 +18,9 @@ def render(ctx: AppContext):
     st.title("Assessment & AI · Đạt")
     st.caption("Trắc nghiệm, tự luận và trợ lý mock cho đồ án hiện tại.")
     user = ctx.identity.current_user()
+    readonly = bool(user and user.demo)
+    if readonly:
+        st.info("Demo chỉ đọc: không lưu bài làm, chat, đánh giá hoặc thay đổi dữ liệu.")
     drafts = (ctx.assessment.test_drafts(user.id)
               if user and hasattr(ctx.assessment, "test_drafts") else [])
     if user:
@@ -42,7 +45,7 @@ def render(ctx: AppContext):
                 format_func=lambda item: "Phiên mới" if item is None else item["id"])
         if user and hasattr(ctx.assessment, "remaining_ai_questions"):
             st.caption(f"Lượt hỏi mock còn lại hôm nay: {ctx.assessment.remaining_ai_questions(user.id)}")
-        if st.button("Gọi mock", disabled=bool(drafts)):
+        if st.button("Gọi mock", disabled=bool(drafts) or readonly):
             context = tuple(ctx.content.ai_context(lesson.id))
             try:
                 request = AIRequest(question, user.grade if user else 8, language, context,
@@ -82,7 +85,7 @@ def render(ctx: AppContext):
                                           key=f"feedback:{message['id']}")
                     report = st.checkbox("Báo lỗi", value=bool(message.get("report")),
                                          key=f"report:{message['id']}")
-                    if st.button("Lưu đánh giá", key=f"save-feedback:{message['id']}"):
+                    if st.button("Lưu đánh giá", key=f"save-feedback:{message['id']}", disabled=readonly):
                         if rating == "Chưa chọn":
                             st.error("Chọn mức đánh giá trước khi lưu.")
                         else:
@@ -90,7 +93,7 @@ def render(ctx: AppContext):
                                 user.id, message["id"],
                                 "helpful" if rating == "Hữu ích" else "unhelpful", report)
                             st.success("Đã lưu đánh giá.")
-            if st.button("Xóa phiên chat"):
+            if st.button("Xóa phiên chat", disabled=readonly):
                 ctx.assessment.delete_chat(user.id, session["id"])
                 st.rerun()
     if user and hasattr(ctx.assessment, "questions"):
@@ -121,7 +124,7 @@ def render(ctx: AppContext):
                     selections[question.id] = (chosen,) if chosen else ()
                 feedback_key = f"feedback:{user.id}:{question.id}"
                 if st.button("Kiểm tra câu", key=f"check:{question.id}",
-                             disabled=bool(drafts)):
+                             disabled=bool(drafts) or readonly):
                     from ..services.quiz import grade_answer
 
                     try:
@@ -137,7 +140,7 @@ def render(ctx: AppContext):
                     st.write("Đáp án đúng:", ", ".join(labels[key] for key in answer.correct_ids))
                     st.markdown(answer.explanation)
                 if st.button("Hỏi AI về câu này", key=f"ask:{question.id}",
-                             disabled=bool(drafts)):
+                             disabled=bool(drafts) or readonly):
                     lesson_for_question = next(
                         (item for item in lessons if item.topic_id == question.topic_id), None)
                     if lesson_for_question is None:
@@ -156,7 +159,7 @@ def render(ctx: AppContext):
                             source_links = _source_links(response.source_ids)
                             if source_links:
                                 st.markdown("Nguồn: " + source_links)
-            if st.button("Nộp bài luyện tập", disabled=bool(drafts)):
+            if st.button("Nộp bài luyện tập", disabled=bool(drafts) or readonly):
                 try:
                     result = ctx.assessment.submit(user.id, topic_id, selections)
                 except ValueError as exc:
@@ -190,7 +193,7 @@ def render(ctx: AppContext):
         if questions:
             test_topic = st.selectbox("Chủ đề kiểm tra", topic_ids)
             duration = st.selectbox("Thời lượng (phút)", [5, 10, 15, 30])
-            if st.button("Bắt đầu bài kiểm tra", disabled=bool(drafts)):
+            if st.button("Bắt đầu bài kiểm tra", disabled=bool(drafts) or readonly):
                 try:
                     new_session = ctx.assessment.start_test(
                         user.id, user.grade, test_topic, duration * 60)
@@ -225,7 +228,7 @@ def render(ctx: AppContext):
                                       format_func=lambda key: labels.get(key, "Chưa chọn"),
                                       key=f"test:{session.id}:{test_question.id}")
                     test_selections[test_question.id] = (chosen,) if chosen else ()
-                if st.button("Gợi mở AI", key=f"test-hint:{session.id}:{test_question.id}"):
+                if st.button("Gợi mở AI", key=f"test-hint:{session.id}:{test_question.id}", disabled=readonly):
                     request = AIRequest(
                         f"Gợi mở cách nghĩ về {test_question.text} trong hình học tứ giác",
                         user.grade, "vi", (), purpose="assessment_hint")
@@ -235,14 +238,14 @@ def render(ctx: AppContext):
                         st.error(str(exc))
                     else:
                         st.markdown(hint.text)
-            if st.button("Lưu nháp", disabled=remaining == 0):
+            if st.button("Lưu nháp", disabled=remaining == 0 or readonly):
                 try:
                     ctx.assessment.save_test_draft(user.id, session, test_selections)
                 except ValueError as exc:
                     st.error(str(exc))
                 else:
                     st.success("Đã lưu bài đang làm.")
-            if st.button("Nộp bài kiểm tra"):
+            if st.button("Nộp bài kiểm tra", disabled=readonly):
                 try:
                     if remaining > 0:
                         ctx.assessment.save_test_draft(user.id, session, test_selections)
@@ -291,7 +294,7 @@ def render(ctx: AppContext):
                 st.markdown(essay.solution)
             rating = st.radio("Tự đánh giá", ["Chưa chọn", "Đã hiểu", "Cần xem lại"],
                               key=f"essay:review:{user.id}:{essay.id}")
-            if st.button("Lưu tự đánh giá"):
+            if st.button("Lưu tự đánh giá", disabled=readonly):
                 if rating == "Chưa chọn":
                     st.error("Chọn mức tự đánh giá trước khi lưu.")
                 else:

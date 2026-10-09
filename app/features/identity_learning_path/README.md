@@ -1,5 +1,7 @@
 # Vũ – identity_learning_path
 
+> Audit sau merge: [trạng thái SRS và vấn đề cần owner review](../../../docs/POST_MERGE_AUDIT_2026-10-09.md). Thay đổi audit ở branch `fix/post-merge-integration-audit`; chưa merge main.
+
 ## 1. Owner và mục tiêu
 
 Vũ sở hữu `app/features/identity_learning_path/`. Identity & Learning Path: danh tính, cấp độ và projection tiến độ. Đã phát triển nghiệp vụ local trên branch Vũ: AUTH cơ bản, hồ sơ, cấp độ/progress, review và admin user management. Email/OAuth/xóa dữ liệu/thống kê liên domain còn TODO. Xem [bản giải thích code](../../../docs/VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md) để hiểu luồng và trạng thái từng FR. Bảng trạng thái trong tài liệu giải thích cập nhật nghiệm thu local, không chứng nhận toàn bộ SRS.
