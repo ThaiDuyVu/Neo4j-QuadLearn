@@ -3,6 +3,7 @@
 from typing import Any, Callable, List, Optional
 from app.shared.models.dto import PageSpec as SharedPageSpec
 from app.features.learning_geometry.pages.overview import render_overview_page
+from app.features.learning_geometry.pages.knowledge_graph import render as render_knowledge_graph
 
 
 class NavigationPageAdapter:
@@ -58,6 +59,11 @@ PAGE_SPECS = [
         page_id="learning",
         title="Nội dung & Hình học",
         render_fn=render_overview_page,
+    ),
+    NavigationPageAdapter(
+        page_id="geometry-knowledge",
+        title="Sơ đồ tri thức hình học",
+        render_fn=render_knowledge_graph,
     ),
 ]
 

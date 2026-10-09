@@ -4,7 +4,7 @@ from streamlit.testing.v1 import AppTest
 
 def test_registry_discovers_all_domains_unique_paths():
     pages = discover_pages()
-    assert {p.path for p in pages} == {"identity", "identity-account", "identity-path", "identity-profile", "identity-admin", "learning", "assessment"}
+    assert {p.path for p in pages} == {"identity", "identity-account", "identity-path", "identity-profile", "identity-admin", "learning", "geometry-knowledge", "assessment"}
     assert all(callable(p.render) for p in pages)
 
 @pytest.mark.parametrize("path", ["identity", "learning", "assessment"])

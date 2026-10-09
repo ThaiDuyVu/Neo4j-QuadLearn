@@ -123,3 +123,11 @@ Chọn lớp 8, đọc hình chữ nhật và REQUIRES qua lớp 7/6; mở tab T
 `pages/overview.py` giữ bộ chọn lớp/bài và ba tab Lý thuyết, Kiến thức nền, Thực hành hình học. `pages/interactive_board.py` chứa component HTML/SVG/JS: hình vẽ, thông số, nhận diện và kết quả. File `pages/geometry_board.py` cũ được giữ nguyên cho điểm tích hợp riêng. Khi chỉnh bố cục component responsive, chuyển tọa độ chuột qua SVG screen matrix để kéo đỉnh đúng vị trí. Mô phỏng hiện chưa giữ ràng buộc hình khi kéo tự do, chưa hỗ trợ đầy đủ touch/chống suy biến.
 
 Kiểm chứng bố cục ngày 09/10/2026: 184 unit/UI tests PASS; trang render bằng AppTest với Neo4j thật; JavaScript chạy năm cấu hình hình mẫu với kết quả S/P đúng. Chưa kiểm chứng trực quan bằng trình duyệt trong lần này do công cụ browser gặp lỗi. Kéo đỉnh sau khi đổi kích thước hiển thị dùng SVG screen matrix; nhận diện là mô phỏng gần đúng, chưa nghiệm thu đầy đủ GEO.
+
+### Trang Sơ đồ tri thức hình học
+
+Mở `/geometry-knowledge` từ menu. `pages/knowledge_graph.py` tổ chức giao diện và gọi `ctx.content.geometry_graph()` qua contract ContentReader. `services/content.py` nối repository taxonomy, `repositories/taxonomy.py` đọc node Quadrilateral cùng cạnh IS_A trong một Cypher query. `services/knowledge_graph.py` lọc phạm vi/số bước trên graph đã đọc và tạo DOT an toàn. Không hardcode danh sách hình, không tạo quan hệ bắc cầu hoặc ghi DB từ page.
+
+Chế độ toàn bộ giữ cả node cô lập. Chế độ một hình có hướng lên loại tổng quát, xuống các hình cụ thể hoặc cả hai. Một số bước theo cả hai hướng có thể đưa vào các hình cùng chung loại tổng quát; đây là vùng liên quan, không khẳng định tất cả đều là cha/con của hình đang chọn. Mũi tên luôn giữ hướng nguồn → đích của DB. Có thể tải DOT hoặc đối chiếu bằng Cypher trong expander. Streamlit dựng sơ đồ từ chuỗi DOT; không thêm dependency hoặc cần cài Graphviz binary trên host.
+
+Test riêng: `python -m pytest -q app/features/learning_geometry/tests/test_knowledge_graph.py`.

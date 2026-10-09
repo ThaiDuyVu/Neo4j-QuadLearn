@@ -171,9 +171,13 @@ Hoàn thành bài và điểm quiz độc lập: trả lời đúng không tự 
 
 Mock không thực sự phân tích câu hỏi, có thể dùng nội dung nguồn đầu tiên được trả về thay vì bài đang chọn. Hai câu khác nhau cùng ngữ cảnh có thể cho phản hồi giống nhau. Đừng dùng phản hồi mock để khẳng định một chứng minh mới là đúng. Quota mặc định 10 lượt/ngày; không cần API key.
 
-### Bước 8 — Neo4j Browser
+### Bước 8 — Sơ đồ tri thức và Neo4j Browser
 
-Chạy các query mục 5, dùng chế độ **Graph** cho đường đi và **Table** cho thống kê.
+1. Mở **Sơ đồ tri thức hình học** trong menu: toàn bộ graph hiện có 8 loại hình và 9 quan hệ.
+2. Chọn **Tập trung một hình → Hình vuông → Loại tổng quát hơn**; tăng số bước từ 1 lên 3.
+3. Giải thích hình vuông có hai cha trực tiếp là hình chữ nhật và hình thoi; các loại tiếp theo xuất hiện theo đường đi, không được nối thêm bằng cạnh suy diễn.
+4. Mở **Xem danh sách quan hệ đang hiển thị** để đối chiếu nhãn và hướng; có thể tải file DOT.
+5. Sau đó mở Neo4j Browser, chạy các query mục 5, dùng chế độ **Graph** cho đường đi và **Table** cho thống kê.
 
 Ở query người học, đặt parameter:
 

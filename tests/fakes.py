@@ -9,6 +9,7 @@ class FakeIdentity:
         return user
     def current_user(self): return CurrentUser("user:test", "Test student", 8, "student", demo=False)
 class FakeContent:
+    def geometry_graph(self): return {"nodes":[], "edges":[]}
     def lessons(self, grade): return [LessonSummary("lesson:test", "Rectangle", grade, "topic:test", "Demo content")]
     def prerequisites(self, lesson_id): return [LessonSummary("lesson:base", "Parallel", 7, "topic:base")]
     def ai_context(self, lesson_id): return self.lessons(8)

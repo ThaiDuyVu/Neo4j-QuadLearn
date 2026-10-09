@@ -42,6 +42,14 @@ class ContentService:
             return []
         return [self._map_to_summary(lesson)]
 
+    def geometry_graph(self) -> Dict[str, List[dict]]:
+        """Cung cấp taxonomy thật qua contract; lỗi DB phải được báo, không thay bằng mock."""
+        from ..repositories.taxonomy import TaxonomyRepository
+        executor = getattr(self.repo, "db", None)
+        if executor is None:
+            raise ValueError("Chưa cấu hình Neo4j để đọc sơ đồ tri thức.")
+        return TaxonomyRepository().geometry_graph(executor)
+
     def get_lesson(self, lesson_id: str) -> Optional[LessonSummary]:
         """Helper method to fetch single lesson as LessonSummary."""
         data = self.repo.get_lesson_by_id(lesson_id)
