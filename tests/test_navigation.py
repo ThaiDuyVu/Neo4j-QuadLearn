@@ -19,10 +19,10 @@ page.render(context())
     assert not at.exception
     assert len(at.title) == 1
     if path == "learning":
-        at.slider[0].set_value(8).run()
+        at.radio[0].set_value("Hình thoi").run()
         assert not at.exception
-        assert next(m for m in at.metric if m.label == "Diện tích (S)").value == "24 unit²"
-        assert next(m for m in at.metric if m.label == "Chu vi (P)").value == "22 unit"
+        assert at.radio[0].value == "Hình thoi"
+        assert 'const mode = "Hình thoi";' in at.get("iframe")[0].proto.srcdoc
     if path == "assessment":
         at.text_input[0].set_value("Giải thích hình chữ nhật")
         at.button[0].click().run()

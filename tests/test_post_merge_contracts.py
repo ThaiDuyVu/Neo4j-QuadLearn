@@ -118,18 +118,37 @@ render_lesson_view_page(AppContext(FakeIdentity(),FakeContent(),FakeAssessment()
     assert any('Đã ghi nhận' in x.value for x in page.success)
 
 
-def test_trapezoid_slider_accepts_largest_small_base():
-    source = '''
+@pytest.mark.parametrize('shape', ['Hình chữ nhật','Hình vuông','Hình bình hành','Hình thoi','Hình thang cân'])
+def test_geometry_practice_renders_interactive_canvas_for_each_shape(shape):
+    source = """
 from tests.fakes import context
 from app.features.learning_geometry.pages.overview import render
 render(context())
-'''
+"""
     page = AppTest.from_string(source).run()
-    page.radio[0].set_value('Hình thang cân').run()
+    page.radio[0].set_value(shape).run()
     assert not page.exception
-    page.slider[0].set_value(8).run()
+    assert [tab.label for tab in page.tabs] == ['📖 Lý thuyết','🔗 Kiến thức nền','📐 Thực hành hình học']
+    html = page.get('iframe')[0].proto.srcdoc
+    assert f'const mode = "{shape}";' in html
+    assert 'Hình vẽ tương tác' in html and 'Thông số hình' in html
+
+
+def test_locked_learning_grade_does_not_render_content_or_board():
+    source = """
+from tests.fakes import FakeIdentity,FakeAssessment
+from app.core.context import AppContext
+from app.features.learning_geometry.pages.overview import render
+class Content:
+    def lessons(self, grade): raise AssertionError('Locked grade must not fetch content')
+class Progress:
+    def access(self, user_id, grade): return False
+render(AppContext(FakeIdentity(),Content(),FakeAssessment(),progress=Progress()))
+"""
+    page = AppTest.from_string(source).run()
     assert not page.exception
-    assert page.slider[1].value > 8
+    assert any('Cấp độ đang khóa' in warning.value for warning in page.warning)
+    assert not page.get('iframe')
 
 
 def test_parallelogram_dragging_d_keeps_requested_position():

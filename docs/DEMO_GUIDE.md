@@ -103,13 +103,14 @@ Bảng tiên quyết hiện dùng để hướng dẫn và truy xuất kiến th
 ### Bước 3 — Xem nội dung và điều chỉnh hình
 
 1. Mở **Nội dung & Hình học**, chọn lớp 8 và bài **Hình thoi và đường chéo**.
-2. Chọn mô phỏng **Hình thoi**; đặt `d1 = 6`, `d2 = 4` → diện tích **12 unit²**.
-3. Giải thích `S = d1 × d2 / 2`, hai đường chéo hình thoi vuông góc và không nhất thiết bằng nhau.
-4. Chọn **Hình chữ nhật**, đặt `a = 4`, `b = 3` → diện tích **12**, chu vi **14**.
+2. Tab **Lý thuyết** hiển thị nội dung; tab **Kiến thức nền** hiển thị các bài tiên quyết.
+3. Mở tab **Thực hành hình học**, chọn **Hình chữ nhật**. Trong bảng thông số bên cạnh hình, đặt `a = 4`, `b = 3` → diện tích **12**, chu vi **14**.
+4. Đổi sang **Hình thoi**: nhập cạnh `a = 4`, góc `α = 60°` → diện tích gần **13,9**, chu vi **16**. Công thức theo cạnh và góc là `S = a² × sin(α)`; công thức theo đường chéo trong bài học là `S = d1 × d2 / 2`.
+5. Kéo một đỉnh để xem cạnh, góc và kết quả thay đổi. Nhập lại thông số để dựng lại hình ban đầu.
 
-> “Cùng diện tích 12 nhưng hai hình có dữ kiện và công thức khác nhau. Hình minh họa thay đổi theo slider để người học thấy quan hệ giữa kích thước và kết quả.”
+> “Mỗi hình có dữ kiện và công thức riêng. Người học có thể thay kích thước hoặc kéo đỉnh để quan sát các đại lượng và tính chất thay đổi.”
 
-Giao diện hiện là SVG với slider cho năm loại hình, chưa phải công cụ dựng hình đầy đủ hoặc kéo thả đỉnh tự do. Đơn vị là `unit`, không tự coi là cm nếu bài không quy định.
+Bảng vẽ hiện có năm loại hình khởi đầu, nhập thông số và kéo thả đỉnh tự do. Đây là mô phỏng minh họa, chưa phải công cụ dựng hình đầy đủ. Đơn vị là `unit`, không tự coi là cm nếu bài không quy định.
 
 ### Bước 4 — Làm hai câu hình chữ nhật và lưu kết quả
 
@@ -366,7 +367,8 @@ Luồng chung: **page → service/contract → repository → Database → Neo4j
 | `identity_learning_path/services/auth.py` | Đăng ký, đăng nhập và luồng xác thực local | Logic tài khoản khác với UI nhập form |
 | `identity_learning_path/services/learning_path.py` | `levels`, `access`, `change_level`, `complete_lesson`, `refresh`, `review_lessons` | Các hàm core cho tính tiến độ, chuyển cấp và gợi ý ôn tập |
 | `identity_learning_path/repositories/` | Ghi/đọc người dùng và tiến độ | Module này sở hữu ghi tiến độ; không sở hữu chi tiết bài làm |
-| `learning_geometry/pages/overview.py` | Lý thuyết và mô phỏng đang nhìn thấy | Năm hình điều chỉnh bằng slider trên trang hiện tại |
+| `learning_geometry/pages/overview.py` | Tổ chức khu vực học tập | Chọn bài và ba tab; giữ kiểm tra cấp độ và link bài nguồn |
+| `learning_geometry/pages/interactive_board.py` | Component mô phỏng HTML/SVG/JS | Hình vẽ, bảng thông số, kết quả và kéo đỉnh |
 | `learning_geometry/repositories/` | Truy vấn nội dung và quan hệ kiến thức | Cung cấp bài học, tiên quyết và ngữ cảnh cho domain khác |
 | `assessment_ai/pages/overview.py` | Trắc nghiệm, tự luận, chat và kiểm tra tính giờ | Các section khác nhau cùng thuộc trang bài tập hiện tại |
 | `assessment_ai/services/quiz.py` | Chấm đáp án trắc nghiệm | Tính điểm dựa trên câu hỏi và option, không dựa trên trạng thái nút UI |

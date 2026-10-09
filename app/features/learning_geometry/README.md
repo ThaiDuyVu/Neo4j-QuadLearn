@@ -59,7 +59,7 @@ Không ghi node/cạnh owner khác. Các cạnh tham chiếu User/Topic chỉ đ
 
 ContentService/rectangle demo đang có; ImportValidationService/ContentImportService/TranslationService/GeometryAdapter (TODO).
 
-Mở các file: `registry.py; pages/overview.py; services/content.py; services/geometry.py; repositories/content.py; examples/; tests/test_content.py` (tương đối trong folder này). Thêm page/service/repository/model/test trong thư mục tương ứng; thêm PageSpec ở `registry.py`. Không phải sửa `app/main.py`. Tests/fakes đọc ports chung; không dùng query database thật trong unit.
+Mở các file: `registry.py; pages/overview.py; pages/interactive_board.py; services/content.py; services/geometry.py; repositories/content.py; examples/; tests/test_content.py` (tương đối trong folder này). Thêm page/service/repository/model/test trong thư mục tương ứng; thêm PageSpec ở `registry.py`. Không phải sửa `app/main.py`. Tests/fakes đọc ports chung; không dùng query database thật trong unit.
 
 ## 6. Input/output contracts và dependencies
 
@@ -78,7 +78,7 @@ DTO ở `app/shared/models/dto.py`, ports ở `app/shared/contracts/ports.py`. E
 - [ ] Hiển thị định nghĩa/tính chất/công thức bằng LaTeX và điều hướng bài trước/sau.
 - [ ] Thêm validated JSON importer: topic tồn tại, grade hợp lệ, tiên quyết cùng/lớp dưới và không vòng.
 - [ ] Tạo preview/báo lỗi theo dòng, ghi draft transaction và ImportLog.
-- [ ] Dựng geometry spike giữ ràng buộc hình và chống suy biến; phân biệt slider demo với canvas thật.
+- [ ] Dựng geometry spike giữ ràng buộc hình và chống suy biến; phân biệt mô phỏng hiện tại với công cụ dựng hình đầy đủ.
 - [ ] Thêm fallback Anh→Việt có thông báo, UI labels song ngữ qua shared convention.
 - [ ] Gọi ProgressWriter khi đánh dấu đã học; không tự ghi COMPLETED.
 - [ ] Viết test grade sai, content unpublished bị loại, import thiếu Việt/prerequisite sai, geometry suy biến.
@@ -97,7 +97,7 @@ DTO ở `app/shared/models/dto.py`, ports ở `app/shared/contracts/ports.py`. E
 
 ## 8. Tiêu chí hoàn thành
 
-Content: cây đúng metadata/trạng thái, công thức Việt/Anh và fallback có test. Import: lỗi không ghi, preview→draft→publish có permission và log, không ghi assessment. Geometry: ràng buộc đúng khi kéo và không suy biến, demo cảm ứng; slider hiện chưa đủ nghiệm thu GEO. Không công bố full content lớp 6–9 với 5 bài seed.
+Content: cây đúng metadata/trạng thái, công thức Việt/Anh và fallback có test. Import: lỗi không ghi, preview→draft→publish có permission và log, không ghi assessment. Geometry: ràng buộc đúng khi kéo và không suy biến, demo cảm ứng; canvas hiện chưa đủ nghiệm thu GEO. Không công bố full content lớp 6–9 với bộ bài demo.
 
 Mỗi nhóm chức năng cần PR review, tests happy/error/boundary và demo đúng tiêu chí FR/PB liên quan. Ghi TODO phần chưa làm. DoD staging/70% coverage/UAT của SRS là mục tiêu sản phẩm, chưa được skeleton chứng nhận; đừng ghi “PASS SRS” chỉ vì unit tests nền pass.
 
@@ -112,8 +112,14 @@ Test domain không cần Neo4j. Khi DB demo sẵn, bật `QUADLEARN_INTEGRATION=
 
 ## 10. Demo
 
-Chọn lớp 8, đọc hình chữ nhật và REQUIRES qua lớp 7/6; đổi slider tính S/P; Browser xem square IS_A rectangle/rhombus. Hướng dẫn demo chung: `docs/DEMO_GUIDE.md`. Nếu DB chưa chạy, page báo lỗi hướng dẫn; không báo kết nối PASS giả.
+Chọn lớp 8, đọc hình chữ nhật và REQUIRES qua lớp 7/6; mở tab Thực hành hình học, nhập thông số hoặc kéo đỉnh để xem S/P; Browser xem square IS_A rectangle/rhombus. Hướng dẫn demo chung: `docs/DEMO_GUIDE.md`. Nếu DB chưa chạy, page báo lỗi hướng dẫn; không báo kết nối PASS giả.
 
 ## 11. Giới hạn sửa file
 
 Được sửa folder mình và các file mới trong đó. Không sửa folder hai bạn khác, không trực tiếp query/ghi nội bộ họ. `app/core`, `app/shared`, `database`, `.env.example`, `compose.yaml`, dependencies và docs kiến trúc là vùng chung: thông báo cả nhóm, giải thích tương thích, review trước merge. File `.env` local không commit. Registry path không trùng; không hardcode secret/data HS thật. Git cá nhân: GIT_WORKFLOW.md.
+
+### Tổ chức giao diện Nội dung & Hình học
+
+`pages/overview.py` giữ bộ chọn lớp/bài và ba tab Lý thuyết, Kiến thức nền, Thực hành hình học. `pages/interactive_board.py` chứa component HTML/SVG/JS: hình vẽ, thông số, nhận diện và kết quả. File `pages/geometry_board.py` cũ được giữ nguyên cho điểm tích hợp riêng. Khi chỉnh bố cục component responsive, chuyển tọa độ chuột qua SVG screen matrix để kéo đỉnh đúng vị trí. Mô phỏng hiện chưa giữ ràng buộc hình khi kéo tự do, chưa hỗ trợ đầy đủ touch/chống suy biến.
+
+Kiểm chứng bố cục ngày 09/10/2026: 184 unit/UI tests PASS; trang render bằng AppTest với Neo4j thật; JavaScript chạy năm cấu hình hình mẫu với kết quả S/P đúng. Chưa kiểm chứng trực quan bằng trình duyệt trong lần này do công cụ browser gặp lỗi. Kéo đỉnh sau khi đổi kích thước hiển thị dùng SVG screen matrix; nhận diện là mô phỏng gần đúng, chưa nghiệm thu đầy đủ GEO.
