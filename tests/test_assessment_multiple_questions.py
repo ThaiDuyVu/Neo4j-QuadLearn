@@ -26,13 +26,16 @@ from app.features.assessment_ai.pages.overview import render
 render(context())
 ''').run(timeout=20)
     assert not app.exception
-    first=next(item for item in app.radio if item.key=='q:question:1')
-    second=next(item for item in app.radio if item.key=='q:question:area')
-    assert first.options==['Chưa chọn','4','2']
-    assert second.options==['Chưa chọn','12','7']
-    first.set_value('option:4')
-    second.set_value('option:12')
-    app.run()
+    next(item for item in app.button if item.label == 'Bắt đầu luyện tập').click().run()
+    first=next(item for item in app.radio if item.label == 'Chọn một đáp án')
+    assert first.options==['4','2']
+    first.set_value('option:4').run()
+    next(item for item in app.button if item.label == 'Câu tiếp →').click().run()
+    second=next(item for item in app.radio if item.label == 'Chọn một đáp án')
+    assert second.options==['12','7']
+    second.set_value('option:12').run()
+    next(item for item in app.button if item.label == '← Câu trước').click().run()
     assert not app.exception
-    assert next(item for item in app.radio if item.key=='q:question:1').value=='option:4'
-    assert next(item for item in app.radio if item.key=='q:question:area').value=='option:12'
+    assert next(item for item in app.radio if item.label == 'Chọn một đáp án').value=='option:4'
+    next(item for item in app.button if item.label == 'Câu tiếp →').click().run()
+    assert next(item for item in app.radio if item.label == 'Chọn một đáp án').value=='option:12'

@@ -114,14 +114,15 @@ Bảng vẽ hiện có năm loại hình khởi đầu, nhập thông số và k
 
 ### Bước 4 — Làm hai câu hình chữ nhật và lưu kết quả
 
-1. Mở **Bài tập và trợ lý học tập**, kéo đến **Luyện tập trắc nghiệm**.
-2. Chọn **Chủ đề = topic:8:rectangle**.
-3. Chọn **4** cho câu “Hình chữ nhật có bao nhiêu góc vuông?”.
-4. Chọn **Bằng nhau và cắt nhau tại trung điểm** cho câu về hai đường chéo.
-5. Nhấn **Kiểm tra câu** nếu muốn xem giải thích từng câu.
-6. Nhấn **Nộp bài luyện tập** → **10/10**; mở lại trang để xem lịch sử và chi tiết lần làm.
+1. Mở **Bài tập và trợ lý học tập**, chọn **Trắc nghiệm → Luyện tập**.
+2. Chọn bài **Hình chữ nhật**, nhấn **Bắt đầu luyện tập**.
+3. Câu góc vuông: chọn **4**, nhấn **Câu tiếp →**.
+4. Câu đường chéo: chọn **Bằng nhau và cắt nhau tại trung điểm**.
+5. Có thể quay lại bằng **← Câu trước**; lựa chọn vẫn được giữ. Muốn kiểm tra riêng câu đang làm, mở **Hỗ trợ câu đang làm** rồi nhấn **Kiểm tra câu**.
+6. Nhấn **Nộp bài luyện tập** → **10/10**; xem điểm và mở lời giải từng câu ngay trên màn hình kết quả.
+7. Chọn mục **Lịch sử** để xem lại bài đã nộp; **Chọn bài khác / Làm lại** mở bước chọn bài mới.
 
-> “Kiểm tra câu là phản hồi tức thời; nộp bài mới lưu lần làm. Mỗi lần làm có các câu trả lời và option đã chọn. Hai câu đúng đều được tính điểm; với bộ này đúng một câu sẽ được 5/10.”
+> “Mỗi lần nộp lưu một bài làm với các đáp án đã chọn. Chuyển câu chỉ giữ lựa chọn trong phiên, không tạo lần làm. Với hai câu, đúng một câu được 5/10; cần trả lời đủ trước khi nộp bài luyện tập.”
 
 Tài khoản path đã có một lần làm 10 điểm; lần mới 10 điểm giữ trung bình ở 10. Không chọn đáp án sai trong flow chính. Để minh họa điểm yếu, dùng tài khoản review riêng.
 
@@ -143,7 +144,7 @@ Hoàn thành bài và điểm quiz độc lập: trả lời đúng không tự 
 
 1. Vào **Nội dung & Hình học**, chọn lớp 9 → **Tứ giác nội tiếp**.
 2. Giải thích bốn đỉnh cùng nằm trên một đường tròn; hai góc đối có tổng 180°.
-3. Mở **Bài tập và trợ lý học tập**, chọn `topic:9:cyclic`.
+3. Mở **Bài tập và trợ lý học tập → Trắc nghiệm → Luyện tập**, chọn bài **Tứ giác nội tiếp**, nhấn **Bắt đầu luyện tập**.
 4. Câu góc A = 70° → chọn **110°** cho góc C.
 5. Câu số đỉnh trên cùng đường tròn → chọn **4**.
 6. Nộp bài → **10/10** lớp 9. Mở Tiến độ và tính lại nếu muốn xem điểm cấp mới.
@@ -154,7 +155,7 @@ Hoàn thành bài và điểm quiz độc lập: trả lời đúng không tự 
 
 **Tự luận lớp 9:**
 
-1. Ở **Bài tự luận**, chọn đề ABCD nội tiếp, A = 70°, B = 100°.
+1. Chọn mục **Tự luận**, chọn đề ABCD nội tiếp, A = 70°, B = 100°.
 2. Nhấn **Mở gợi ý tiếp** lần lượt để xem: cặp góc đối → công thức → thay số.
 3. Nhập `C = 180° − 70° = 110°; D = 180° − 100° = 80°`.
 4. Nhấn **Xem lời giải đầy đủ**, chọn **Đã hiểu**, nhấn **Lưu tự đánh giá**.
@@ -163,7 +164,7 @@ Hoàn thành bài và điểm quiz độc lập: trả lời đúng không tự 
 
 **Trợ lý:**
 
-1. Chọn ngữ cảnh **Tứ giác nội tiếp**, ngôn ngữ `vi`.
+1. Chọn mục **Trợ lý học tập**, ngữ cảnh **Tứ giác nội tiếp**, ngôn ngữ **Tiếng Việt**.
 2. Hỏi **“Tứ giác nội tiếp có những kiến thức tiên quyết nào?”** rồi nhấn **Gửi câu hỏi**.
 3. Chỉ phản hồi, **Mở nguồn …**, lịch sử và lượt hỏi còn lại.
 
@@ -206,7 +207,7 @@ Thực hiện theo mục 1.2 ngay trên màn hình. Sau đăng ký, thử đăng
 ### B. Bài kiểm tra tính giờ — thêm 2 phút
 
 1. Đảm bảo người dùng hiện ở lớp 8.
-2. Vào **Kiểm tra tính giờ**, chọn chủ đề hình chữ nhật, thời lượng **5 phút**.
+2. Chọn **Trắc nghiệm → Kiểm tra tính giờ**, chọn bài hình chữ nhật, thời lượng **5 phút**.
 3. Nhấn **Bắt đầu bài kiểm tra**, chọn đáp án 4 rồi nhấn **Lưu nháp**.
 4. Chuyển sang trang khác, quay lại, chọn **Tiếp tục bài đang làm**.
 5. Nhấn **Nộp bài kiểm tra**, xem điểm và lời giải; mở lại trang nếu cần để trở về trạng thái không có bài đang làm.

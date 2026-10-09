@@ -24,6 +24,7 @@ page.render(context())
         assert at.radio[0].value == "Hình thoi"
         assert 'const mode = "Hình thoi";' in at.get("iframe")[0].proto.srcdoc
     if path == "assessment":
+        next(item for item in at.radio if item.label == "Bạn muốn làm gì?").set_value("Trợ lý học tập").run()
         at.text_input[0].set_value("Giải thích hình chữ nhật")
         at.button[0].click().run()
         assert not at.exception

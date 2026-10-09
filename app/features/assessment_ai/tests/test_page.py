@@ -102,6 +102,8 @@ render(context())
     app = AppTest.from_string(source).run(timeout=20)
     assert not app.exception
     assert any("Luyện tập trắc nghiệm" in item.value for item in app.subheader)
+    assert not app.text_area
+    next(item for item in app.radio if item.label == "Bạn muốn làm gì?").set_value("Tự luận").run()
     assert any("Bài tự luận" in item.value for item in app.subheader)
     assert len(app.text_area) == 1
 
@@ -119,6 +121,7 @@ from app.features.assessment_ai.pages.overview import render
 render(context())
 """
     app = AppTest.from_string(source).run(timeout=20)
+    next(item for item in app.radio if item.label == "Bạn muốn làm gì?").set_value("Tự luận").run()
     app.text_area[0].set_value("$S=4\\times2=8$").run()
     review_button = next(button for button in app.button if button.label == "Lưu tự đánh giá")
     app.radio[-1].set_value("Đã hiểu").run()
@@ -137,14 +140,9 @@ render(draft_context())
 """
     app = AppTest.from_string(source).run(timeout=20)
     assert not app.exception
-    assert next(button for button in app.button
-                if button.label == "Kiểm tra câu").disabled
-    assert next(button for button in app.button
-                if button.label == "Nộp bài luyện tập").disabled
-    assert next(button for button in app.button
-                if button.label == "Gửi câu hỏi").disabled
-    assert next(button for button in app.button
-                if button.label == "Bắt đầu bài kiểm tra").disabled
+    assert not any(button.label in {"Kiểm tra câu", "Nộp bài luyện tập", "Gửi câu hỏi", "Bắt đầu bài kiểm tra"}
+                   for button in app.button)
+    assert any(button.label == "Nộp bài kiểm tra" for button in app.button)
     assert not any(box.label == "Xem lại lần làm" for box in app.selectbox)
     assert not any("Bài tự luận" in item.value for item in app.subheader)
     assert not any("Đáp án đúng" in item.value for item in app.markdown)
@@ -157,6 +155,7 @@ from app.features.assessment_ai.pages.overview import render
 render(chat_context())
 """
     app = AppTest.from_string(source).run(timeout=20)
+    next(item for item in app.radio if item.label == "Bạn muốn làm gì?").set_value("Trợ lý học tập").run()
     feedback = next(box for box in app.selectbox if box.label == "Đánh giá câu trả lời")
     assert feedback.value == "Hữu ích"
     assert next(box for box in app.checkbox if box.label == "Báo lỗi").value

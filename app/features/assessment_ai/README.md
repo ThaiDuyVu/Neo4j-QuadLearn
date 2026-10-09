@@ -138,3 +138,17 @@ Khi có Neo4j demo, mở trang Đạt để thử luyện tập, kiểm tra, t�
 ## 11. Giới hạn sửa file
 
 Được sửa folder mình và các file mới trong đó. Không sửa folder hai bạn khác, không trực tiếp query/ghi nội bộ họ. `app/core`, `app/shared`, `database`, `.env.example`, `compose.yaml`, dependencies và docs kiến trúc là vùng chung: thông báo cả nhóm, giải thích tương thích, review trước merge. File `.env` local không commit. Registry path không trùng; không hardcode secret/data HS thật. Git cá nhân: GIT_WORKFLOW.md.
+
+## Giao diện học sinh sau khi tổ chức lại
+
+Trang `/assessment` có bốn mục: **Trắc nghiệm**, **Tự luận**, **Trợ lý học tập**, **Lịch sử**. Chỉ mục đang chọn được render; không tải và xếp toàn bộ chức năng thành một cột dài.
+
+- `pages/overview.py`: entry point, kiểm tra người dùng, điều hướng hoạt động; khi có bài kiểm tra nháp thì ưu tiên tiếp tục bài, khóa xem lời giải cũ.
+- `pages/quiz.py`: chọn bài theo tên, luyện tập từng câu, giữ lựa chọn trước/sau, kiểm tra riêng câu trong vùng hỗ trợ tùy chọn, nộp bài và màn hình kết quả; kiểm tra tính giờ có form lưu nháp/nộp bài. Callback nộp luyện tập chuyển trạng thái trước render để tránh nộp lặp khi rerun.
+- `pages/history.py`: danh sách bài đã nộp với tên bài, điểm và thời điểm; xem chi tiết đáp án/lời giải, không đưa ID kỹ thuật vào bộ chọn.
+- `pages/essay.py`: đề tự luận, gợi ý theo bước, lời giải mẫu và tự đánh giá.
+- `pages/support.py`: hỏi bài, nguồn kiến thức, hội thoại và đánh giá; ghi rõ provider mô phỏng.
+
+Chấm điểm/lưu Neo4j vẫn qua `ctx.assessment` → `services/assessment.py` → `services/quiz.py` → repository. Giao diện không tự ghi Cypher hoặc đổi schema. Bài luyện tập chưa nộp giữ trong Streamlit session, có thể mất nếu tải lại trình duyệt. Bài kiểm tra cần **Lưu nháp** để giữ trong Neo4j; thời gian vẫn chạy sau khi rời trang. Khi hết giờ chỉ chấm đáp án đã lưu. Nên lưu nháp trước khi mở gợi mở cách nghĩ.
+
+Test luồng người dùng: `python -m pytest app/features/assessment_ai/tests/test_page.py app/features/assessment_ai/tests/test_quiz_flow.py tests/test_assessment_multiple_questions.py`. Bao gồm giữ lựa chọn từng câu, không tự chọn đáp án, không nộp thiếu câu, lưu form kiểm tra trước khi chấm, giới hạn hết giờ và xem lại kết quả không tạo thêm bài làm.
