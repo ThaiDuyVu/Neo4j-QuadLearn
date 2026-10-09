@@ -56,7 +56,7 @@ class NavigationPageAdapter:
 PAGE_SPECS = [
     NavigationPageAdapter(
         page_id="learning",
-        title="Tổng quan Nội dung & Hình học",
+        title="Nội dung & Hình học",
         render_fn=render_overview_page,
     ),
 ]

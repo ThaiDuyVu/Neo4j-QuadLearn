@@ -72,8 +72,10 @@ class ProgressRepository:
                 tx.run(
                     """
                     MATCH (u:User {id:$id}) UNWIND $rows AS row MATCH (l:Level {grade:row.grade})
-                    OPTIONAL MATCH (l)-[:HAS_CHAPTER]->(:Chapter)-[:HAS_TOPIC]->(:Topic)-[:HAS_LESSON]->(lesson:Lesson)
-                    WHERE lesson.status='published'
+                    OPTIONAL MATCH (l)-[:HAS_CHAPTER]->(chapter:Chapter)-[:HAS_TOPIC]->(topic:Topic)-[:HAS_LESSON]->(lesson:Lesson)
+                    WHERE lesson.status='published' AND topic.status='published'
+                      AND coalesce(chapter.status,'published')='published'
+                      AND lesson.grade=row.grade AND topic.grade=row.grade
                     WITH u,l,row,collect(DISTINCT lesson) AS lessons
                     WITH u,l,row,size(lessons) AS total,
                       size([lesson IN lessons WHERE EXISTS { MATCH (u)-[:COMPLETED]->(lesson) }]) AS done

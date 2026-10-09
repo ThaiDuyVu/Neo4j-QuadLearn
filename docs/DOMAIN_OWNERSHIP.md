@@ -13,3 +13,5 @@ FR đầy đủ và trách nhiệm phối hợp: SRS_TRACEABILITY.md. Bảng tr�
 Không import repository/service feature khác. `core/bootstrap.py` nối implementation qua ports là ngoại lệ tích hợp được quy định, không circular imports. Một domain có thể tạo cạnh tham chiếu User/Topic theo bảng schema, nhưng không sửa node thuộc owner khác. Xóa user cần quy trình phối hợp để Đạt xóa history rồi Vũ xóa identity, không tự DETACH DELETE toàn dữ liệu domain khác. Chưa triển khai xóa tài khoản.
 
 Cập nhật Vũ: sở hữu thêm AuthToken/AuthSession và HAS_AUTH_TOKEN/HAS_AUTH_SESSION; User activation/session/progress thực hiện local. Xóa tài khoản vẫn TODO cho đến khi chốt contract xóa dữ liệu với Đạt. Shared read adapter `core/catalog.py` cung cấp LearningCatalogReader, không ghi nội dung của Sơn.
+
+Sau audit: Đạt sở hữu EssayReview/AIQuotaDay và REVIEWED_ESSAY/FOR_ESSAY. Bootstrap nối quyền Vũ vào facade AssessmentService; đây là shared integration, không chuyển quyền ghi assessment sang Vũ. Source/caller contracts mới và vấn đề import còn lại cần cả nhóm review theo báo cáo audit.

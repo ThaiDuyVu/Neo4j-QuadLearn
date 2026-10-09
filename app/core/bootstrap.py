@@ -22,7 +22,7 @@ def build_context(database, session_state=None, demo=False):
     policy = IdentityPolicy.load()
     identity = IdentityService(repository, session_state, policy, demo=demo)
     content = ContentService(ContentRepository(database))
-    assessment = AssessmentService(AssessmentRepository(database))
+    assessment = AssessmentService(AssessmentRepository(database), identity=identity)
     progress = LearningPathService(
         ProgressRepository(database),
         identity,

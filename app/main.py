@@ -19,7 +19,7 @@ from app.core.database import Database
 from app.core.bootstrap import build_context
 from app.core.navigation import discover_pages
 
-st.set_page_config(page_title="QuadLearn · Neo4j", page_icon="📐", layout="wide")
+st.set_page_config(page_title="QuadLearn", page_icon="📐", layout="wide")
 
 @st.cache_resource
 def get_database():
@@ -29,9 +29,8 @@ def get_database():
 
 def home():
     st.title("QuadLearn – Học Tứ giác lớp 6–9")
-    st.write("Đồ án NoSQL · Neo4j · Vũ, Sơn, Đạt")
-    st.warning("PROJECT SKELETON: tài khoản demo không phải đăng nhập; AI mock không phải LLM.")
-    st.write("Chọn một domain ở sidebar để xem dữ liệu graph mẫu.")
+    st.write("Khám phá tứ giác, luyện tập và theo dõi hành trình học của bạn từ lớp 6 đến lớp 9.")
+    st.markdown("Bắt đầu từ **Tài khoản** để đăng nhập, hoặc mở **Lộ trình học** và **Nội dung & Hình học** trong thanh bên.")
     if st.button("Kiểm tra kết nối Neo4j"):
         try:
             get_database().verify()
@@ -42,10 +41,12 @@ def home():
 def render_feature(spec):
     try:
         spec.render(build_context(get_database(), session_state=st.session_state))
-    except (ValueError, Neo4jError, DriverError, OSError):
+    except ValueError as exc:
+        st.error(str(exc))
+    except (Neo4jError, DriverError, OSError):
         st.error("Không đọc được dữ liệu Neo4j. Khởi động database và chạy seed; xem docs/RUN_PROJECT.md.")
 
-pages = [st.Page(home, title="Home", default=True)]
+pages = [st.Page(home, title="Trang chủ", default=True)]
 for spec in discover_pages():
     # Gắn spec qua default argument để không bị late-binding khi thêm page.
     def render(spec=spec):

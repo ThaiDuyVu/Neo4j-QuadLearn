@@ -9,16 +9,24 @@ def render(ctx: AppContext):
     st.title("📐 Tổng quan Nội dung & Mô phỏng Hình học")
     st.caption("Khám phá chương trình học lý thuyết và công cụ tương tác hình học trực quan.")
 
-    grade = st.selectbox("Chọn khối lớp:", [6, 7, 8, 9], index=2)
+    requested = st.query_params.get("lesson_id")
+    requested_lesson = ctx.content.get_lesson(requested) if requested and hasattr(ctx.content, "get_lesson") else None
+    if requested and requested_lesson is None:
+        st.warning("Bài nguồn không tồn tại hoặc chưa xuất bản.")
+    default_grade = requested_lesson.grade if requested_lesson else 8
+    grade = st.selectbox("Chọn khối lớp:", [6, 7, 8, 9], index=default_grade - 6)
+    user = ctx.identity.current_user()
+    if user and ctx.progress and not ctx.progress.access(user.id, grade):
+        st.warning("Cấp độ đang khóa. Vào Hồ sơ và cấp độ để xem điều kiện hoặc xác nhận học vượt.")
+        return
     lessons = ctx.content.lessons(grade)
 
     if lessons:
+        default_index = next((i for i, item in enumerate(lessons) if item.id == requested), 0)
         lesson = st.selectbox(
-            "Chọn bài học lý thuyết:",
-            lessons,
-            format_func=lambda x: getattr(x, "title", getattr(x, "title_vi", "Bài học"))
+            "Chọn bài học lý thuyết:", lessons, index=default_index,
+            format_func=lambda x: x.title,
         )
-
         st.subheader(f"📖 {getattr(lesson, 'title', getattr(lesson, 'title_vi', 'Chi tiết bài học'))}")
         st.markdown(getattr(lesson, "content", getattr(lesson, "content_vi", "Nội dung đang cập nhật...")))
 
@@ -103,7 +111,7 @@ def render(ctx: AppContext):
 
         else:  # Hình thang cân
             a = st.slider("Đáy nhỏ (a):", 1, 8, 3)
-            b = st.slider("Đáy lớn (b):", a + 1, 10, 7)
+            b = st.slider("Đáy lớn (b):", a + 1, 10, max(a + 1, 7))
             h = st.slider("Chiều cao (h):", 1, 8, 4)
             st.latex(r"S = \frac{(a + b) \times h}{2}")
             st.metric("Diện tích (S)", f"{((a + b) * h) / 2:.1f} unit²")

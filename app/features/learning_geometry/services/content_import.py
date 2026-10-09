@@ -19,7 +19,7 @@ class ContentImportService:
 
         lessons = payload.get("lessons", [])
         if not self.driver:
-            return True, {"imported_count": len(lessons), "status": "demo_success"}
+            raise ValueError("Chưa kết nối database; không có nội dung nào được nhập.")
 
         query = """
         UNWIND $lessons AS item

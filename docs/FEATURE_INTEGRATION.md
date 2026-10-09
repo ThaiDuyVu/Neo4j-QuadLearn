@@ -1,5 +1,7 @@
 # Tích hợp feature
 
+> Trạng thái sau merge 3 domain và audit 09/10/2026: xem [báo cáo đối chiếu 86 FR, lỗi tích hợp và kiểm chứng](POST_MERGE_AUDIT_2026-10-09.md). Các bảng skeleton bên dưới là baseline; không dùng TODO cũ để kết luận phần đã triển khai hiện tại.
+
 ## Contract đang chạy
 
 `app/shared/contracts/ports.py` định nghĩa Protocol; `app/shared/models/dto.py` có DTO bất biến. `app/core/context.py` gom readers. Composition root `app/core/bootstrap.py` là nơi duy nhất nối implementation.
@@ -55,3 +57,9 @@ Không dùng `st.session_state` như database history; chỉ trạng thái UI. M
 ## Cập nhật tích hợp Vũ
 
 `ctx.auth` và `ctx.progress` có implementation local; `ctx.identity` lấy session_state riêng browser, default guest, demo explicit chỉ đọc. ProgressWriter.start_lesson/complete_lesson/resume_lesson chạy và kiểm quyền. AuthSession/AuthToken mới thuộc Vũ. GraphLearningCatalog shared adapter chỉ đọc metadata chapter/topic; không sửa feature Sơn. Không thay signature readers cũ; AppContext fields mới optional. Xem tài liệu giải thích Vũ để biết status/TODO hiện tại; đề xuất TODO ở phần baseline phía trên được thay bởi implementation local này. Timestamps/detail answers/deletion/placement vẫn cần Đạt mở rộng contract.
+
+## Runtime sau audit 3 domain
+
+Bootstrap bind `AssessmentService(repository, identity=identity)`. Facade kiểm `IdentityActions.require_user` trước mọi thao tác ghi và require admin trước import/preview; readers user-specific kiểm current_user ID. Unbound facade không được ghi. Không gọi thẳng QuizService/ChatService/importer từ domain khác để bỏ guard. Các subservices/repository là implementation nội bộ, test riêng không tương đương authenticated runtime.
+
+Demo có thể đọc fixture; không lưu bài làm/chat/essay/feedback. Son lesson page dùng `ctx.progress.complete_lesson(...) -> None`: không exception nghĩa thành công, không kiểm bool. Identity/Content/Assessment contracts cũ vẫn dùng; history/placement/get_lesson đã có implementation nhưng port cần review mở rộng theo R3 audit. `Progress.average_score` là snapshot, `levels/access` tính live từ completed attempts; không để Đạt ghi Progress.

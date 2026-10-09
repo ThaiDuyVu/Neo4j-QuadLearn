@@ -74,7 +74,10 @@ class ImportTests(unittest.TestCase):
 
     def test_composed_service_exposes_admin_import_contract(self):
         repo = FakeRepository()
-        service = AssessmentService(repo)
+        class AdminIdentity:
+            def require_user(self, user_id=None, admin=False):
+                return object()  # Fake admin đã được xác thực trong test import riêng.
+        service = AssessmentService(repo, identity=AdminIdentity())
         result = service.import_assessment_batch("topic:8:x", 8,
                                                  {"questions": [QUESTION]})
         self.assertEqual(result, {"questions": 1, "essays": 0})

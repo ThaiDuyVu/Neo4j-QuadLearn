@@ -4,10 +4,10 @@ from .common import action
 
 
 def render(ctx):
-    st.title("Identity & Learning Path · Vũ")
+    st.title("Tiến độ học tập")
     user = ctx.identity.current_user()
     if user is None:
-        st.info("Vào Tài khoản · Vũ để đăng nhập hoặc bật demo chỉ đọc.")
+        st.info("Vào Tài khoản để đăng nhập hoặc bật demo chỉ đọc.")
         return
     st.write(
         f"{user.name} · Lớp {user.grade} · {user.role}"
@@ -20,7 +20,7 @@ def render(ctx):
                 {
                     "Lớp": x.grade,
                     "Bài đã xong": x.completed,
-                    "Bài published": x.total,
+                    "Bài đã xuất bản": x.total,
                     "% hoàn thành": round(x.completion, 2),
                     "Điểm TB": x.average_score,
                     "Đã mở": x.unlocked,
@@ -57,7 +57,7 @@ def render(ctx):
         st.table(
             [{"Bài": x.title, "ID": x.id} for x in ctx.content.lessons(user.grade)]
         )
-    st.subheader("Lịch sử từ AssessmentReader của Đạt")
+    st.subheader("Lịch sử bài làm")
     st.table(
         [
             {
@@ -70,5 +70,5 @@ def render(ctx):
         ]
     )
     st.caption(
-        "TODO: timestamps/thời lượng/đáp án chi tiết chưa có trong contract Đạt; chưa dựng biểu đồ thời gian bằng dữ liệu giả."
+        "Xem chi tiết và đáp án trong Bài tập và trợ lý học tập."
     )

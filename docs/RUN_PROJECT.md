@@ -57,3 +57,9 @@ Nếu không bật biến, test integration SKIP để không vô tình ghi DB. 
 Ctrl+C dừng Streamlit; `deactivate` thoát venv. `docker compose stop` dừng Neo4j, giữ dữ liệu; `docker compose start` bật lại; `docker compose down` gỡ container/network, giữ named volumes.
 
 **Xóa demo có chủ đích**: `python -m scripts.db reset --yes` ở APP_ENV=development xóa mọi node demo và cạnh nối rồi seed. Không dùng với dữ liệu thật nối fixture. **`docker compose down -v` xóa toàn bộ dữ liệu volumes**, không phải lệnh stop thường. Reset CLI không reset password/volume. Backup trước thao tác phá hủy; hướng dẫn production backup chưa thuộc skeleton.
+
+## Khi vừa pull/merge thay đổi Python core
+
+Nếu Streamlit đang chạy từ bản code cũ, dừng process bằng Ctrl+C rồi chạy lại `python -m streamlit run app/main.py`. Rerun/refresh trình duyệt không đảm bảo Python modules và đối tượng `st.cache_resource` đã được nạp lại. Lỗi `Database object has no attribute transaction` có thể do driver object từ phiên trước merge; source hiện tại có phương thức transaction. Restart ứng dụng không xóa database/volume.
+
+Giao diện dùng tên chức năng; tên thành viên chỉ nằm trong source comments và tài liệu phân công. Admin local đã được tạo trên máy hiện tại: `admin@quadlearn.local`. Tài khoản này không nằm trong seed chung; máy thành viên khác dùng CLI create-admin trong tài liệu Vũ để tạo riêng.

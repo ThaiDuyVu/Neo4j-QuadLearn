@@ -4,7 +4,7 @@ from ..models.errors import IdentityError
 
 
 def render(ctx):
-    st.title("Quản lý người dùng · Vũ")
+    st.title("Quản lý người dùng")
     try:
         ctx.identity.require_user(admin=True)
     except (IdentityError, AttributeError):
@@ -29,5 +29,5 @@ def render(ctx):
             if ok:
                 st.rerun()
     st.caption(
-        "Admin cấp bằng CLI local, không cho tự chọn role khi đăng ký. TODO: thống kê toàn hệ thống, bảo vệ admin nâng cao, cấu hình phiên qua UI."
+        "Quản trị viên có thể tìm kiếm, khóa hoặc mở khóa tài khoản."
     )

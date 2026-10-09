@@ -1,5 +1,7 @@
 # QuadLearn – Neo4j project skeleton
 
+> Trạng thái sau merge 3 domain và audit 09/10/2026: xem [báo cáo đối chiếu 86 FR, lỗi tích hợp và kiểm chứng](docs/POST_MERGE_AUDIT_2026-10-09.md). Các bảng skeleton bên dưới là baseline; không dùng TODO cũ để kết luận phần đã triển khai hiện tại.
+
 Phần Vũ đã phát triển nghiệp vụ local trên branch `feature/vu-identity-learning-path`: đăng ký/login/token thử nghiệm, hồ sơ, tiến độ/lộ trình, mở khóa và quản lý user. Đọc [tài liệu giải thích source Vũ](docs/VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md). Email/OAuth thật và các dependency còn thiếu vẫn TODO; phần skeleton bên dưới mô tả baseline ban đầu.
 
 Ứng dụng hỗ trợ học Tứ giác theo cấp độ lớp 6–9, dựng cho bài tập nhóm NoSQL. Mục tiêu hiện tại: nền chạy được, minh họa graph và chia domain để Vũ, Sơn, Đạt phát triển song song. **Không phải hệ thống SRS hoàn chỉnh**. Demo identity không phải AUTH; AI mock không phải LLM. Đã đọc toàn bộ SRS v1.1, ánh xạ 86 FR/56 PB trong docs.

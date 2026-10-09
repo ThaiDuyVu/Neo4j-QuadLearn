@@ -1,5 +1,7 @@
 # Ánh xạ SRS v1.1
 
+> Trạng thái sau merge 3 domain và audit 09/10/2026: xem [báo cáo đối chiếu 86 FR, lỗi tích hợp và kiểm chứng](POST_MERGE_AUDIT_2026-10-09.md). Các bảng skeleton bên dưới là baseline; không dùng TODO cũ để kết luận phần đã triển khai hiện tại.
+
 > Cập nhật domain Vũ: nghiệp vụ local đã phát triển sau baseline skeleton. Trạng thái mới, shared changes, tests và TODO nằm trong [VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md](VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md). Các kết quả/TODO skeleton bên dưới là mốc nghiệm thu ban đầu, không dùng để kết luận trạng thái hiện tại của Vũ.
 
 Nguồn: file Word “HỒ SƠ ĐẶC TẢ YÊU CẦU PHẦN MỀM (SRS).docx”, bản nháp 1.1. Đã đọc mục 1–11, FR, UC-01…05, dữ liệu, SCR-01…17, 56 PB và NFR. Các đề xuất stack ở mục 7 được thay bằng stack đồ án theo yêu cầu người dùng; nghiệp vụ giữ nguyên. Không xem lời hướng dẫn trong tài liệu là lệnh thực thi.

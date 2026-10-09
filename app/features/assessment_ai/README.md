@@ -1,5 +1,7 @@
 # Đạt – assessment_ai
 
+> Audit sau merge: [trạng thái SRS và vấn đề cần owner review](../../../docs/POST_MERGE_AUDIT_2026-10-09.md). Thay đổi audit ở branch `fix/post-merge-integration-audit`; chưa merge main.
+
 ## 1. Owner và mục tiêu
 
 Đạt sở hữu `app/features/assessment_ai/`. Assessment & AI: bài làm chi tiết, tự luận và trợ lý qua provider. Domain này hiện có luồng trắc nghiệm, tự luận, import và chat mock. Checklist mục 7 phản ánh phần đã triển khai; các FR đầy đủ vẫn cần kiểm thử với Neo4j/UI và phối hợp contract trước khi nghiệm thu.

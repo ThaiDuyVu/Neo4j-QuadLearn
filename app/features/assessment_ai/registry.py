@@ -6,4 +6,4 @@
 # ==================================================
 from app.shared.contracts.navigation import PageSpec
 from .pages.overview import render
-PAGES = [PageSpec("Assessment & AI", "assessment", render)]
+PAGES = [PageSpec("Bài tập và trợ lý học tập", "assessment", render)]
