@@ -3,7 +3,7 @@ from .common import signed_in, action
 
 
 def render(ctx):
-    st.title("Hồ sơ và cấp độ · Vũ")
+    st.title("Hồ sơ và cấp độ")
     user = signed_in(ctx)
     if not user:
         return
@@ -21,7 +21,7 @@ def render(ctx):
     if submit:
         action(lambda: ctx.identity.update_profile(name, language, avatar))
     st.caption(
-        "Lưu preference ngôn ngữ; chuyển toàn bộ UI Việt/Anh thuộc phần phối hợp với Sơn, chưa hoàn tất."
+        "Lựa chọn ngôn ngữ được lưu trong hồ sơ. Một số màn hình hiện chỉ có tiếng Việt."
     )
     if ctx.progress:
         levels = ctx.progress.levels(user.id)
@@ -62,5 +62,5 @@ def render(ctx):
         if ok:
             st.rerun()
     st.caption(
-        "TODO: xóa tài khoản cần contract xóa dữ liệu bài làm/chat của Đạt; không DETACH DELETE dữ liệu domain khác."
+        "Chức năng xóa tài khoản chưa khả dụng."
     )

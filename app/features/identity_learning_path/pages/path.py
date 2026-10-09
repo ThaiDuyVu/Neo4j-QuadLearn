@@ -4,7 +4,7 @@ from ..models.errors import IdentityError
 
 
 def render(ctx):
-    st.title("Lộ trình học · Vũ")
+    st.title("Lộ trình học")
     user = ctx.identity.current_user()
     if not user or not ctx.progress:
         st.info("Vào trang Tài khoản để đăng nhập hoặc chọn demo chỉ đọc.")
@@ -16,7 +16,7 @@ def render(ctx):
         st.warning(str(error))
         return
     if not catalog:
-        st.info("Chưa có bài published ở cấp độ này.")
+        st.info("Chưa có bài học được xuất bản ở cấp độ này.")
         return
     chapters = {}
     for row in catalog:
@@ -40,7 +40,7 @@ def render(ctx):
     prerequisites = ctx.content.prerequisites(lesson.id)
     st.table([{"Bài nền": p.title, "Lớp": p.grade, "ID": p.id} for p in prerequisites])
     st.caption(
-        "ID nguồn dùng liên kết kiến thức; không tự sửa REQUIRES của Sơn. Đây là trang lộ trình, nội dung đầy đủ ở Learning & Geometry."
+        "Mở Nội dung & Hình học để xem minh họa và bài học."
     )
     if user.demo:
         st.info("Demo chỉ đọc, không lưu tiến độ.")

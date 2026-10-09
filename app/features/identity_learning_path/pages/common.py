@@ -18,7 +18,7 @@ def signed_in(ctx):
     user = ctx.identity.current_user()
     if not user or user.demo:
         st.warning(
-            "Cần đăng nhập tài khoản local đã kích hoạt. Vào trang Tài khoản của Vũ."
+            "Vui lòng đăng nhập tài khoản đã kích hoạt tại trang Tài khoản."
         )
         return None
     return user

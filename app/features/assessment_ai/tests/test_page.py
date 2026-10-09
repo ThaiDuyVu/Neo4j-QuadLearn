@@ -142,7 +142,7 @@ render(draft_context())
     assert next(button for button in app.button
                 if button.label == "Nộp bài luyện tập").disabled
     assert next(button for button in app.button
-                if button.label == "Gọi mock").disabled
+                if button.label == "Gửi câu hỏi").disabled
     assert next(button for button in app.button
                 if button.label == "Bắt đầu bài kiểm tra").disabled
     assert not any(box.label == "Xem lại lần làm" for box in app.selectbox)
@@ -164,8 +164,8 @@ render(chat_context())
          if box.label == "Phiên hội thoại").set_value(
              {"id": "chat:existing", "lesson_id": "lesson:test",
               "lesson_title": "Rectangle"}).run()
-    next(box for box in app.text_input if box.label == "Câu hỏi thử contract").set_value(
+    next(box for box in app.text_input if box.label == "Câu hỏi của bạn").set_value(
         "Hình chữ nhật có tính chất gì?").run()
-    next(button for button in app.button if button.label == "Gọi mock").click().run()
+    next(button for button in app.button if button.label == "Gửi câu hỏi").click().run()
     assert not app.exception
     assert chat_assessment.followup_id == "chat:existing"

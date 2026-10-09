@@ -49,8 +49,8 @@ def test_registration_activation_login_forms_end_to_end_without_db():
     tokens = at.session_state["vu_dev_delivery"]
     for kind in ["verify", "guardian"]:
         element(at.selectbox, "Loại xác thực").set_value(kind)
-        element(at.text_input, "Token kích hoạt").set_value(tokens[kind])
-        element(at.button, "Xác nhận token local").click().run()
+        element(at.text_input, "Mã kích hoạt").set_value(tokens[kind])
+        element(at.button, "Kích hoạt").click().run()
         assert not at.exception
     element(at.text_input, "Email đăng nhập").set_value("student@example.invalid")
     element(at.text_input, "Mật khẩu đăng nhập").set_value("TestPass123")

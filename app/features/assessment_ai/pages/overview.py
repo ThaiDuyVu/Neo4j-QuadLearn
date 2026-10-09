@@ -15,8 +15,8 @@ def _source_links(source_ids) -> str:
     return " · ".join(links)
 
 def render(ctx: AppContext):
-    st.title("Assessment & AI · Đạt")
-    st.caption("Trắc nghiệm, tự luận và trợ lý mock cho đồ án hiện tại.")
+    st.title("Bài tập và trợ lý học tập")
+    st.caption("Luyện tập trắc nghiệm, khám phá lời giải từng bước và ôn lại kiến thức.")
     user = ctx.identity.current_user()
     readonly = bool(user and user.demo)
     if readonly:
@@ -29,13 +29,13 @@ def render(ctx: AppContext):
         else:
             st.table([{"Attempt": x.id, "Điểm": x.score, "Trạng thái": x.status}
                       for x in ctx.assessment.attempts(user.id)])
-    st.subheader("AIProvider demo · mock cố định")
+    st.subheader("Trợ lý học tập · bản mô phỏng")
     lessons = ctx.content.lessons(user.grade if user else 8)
     language = "vi"
     if lessons:
         lesson = st.selectbox("Ngữ cảnh bài học", lessons, format_func=lambda x: x.title)
-        language = st.selectbox("Ngôn ngữ mock", ["vi", "en"])
-        question = st.text_input("Câu hỏi thử contract")
+        language = st.selectbox("Ngôn ngữ trả lời", ["vi", "en"])
+        question = st.text_input("Câu hỏi của bạn")
         resume_session = None
         if user and not drafts and hasattr(ctx.assessment, "chat_sessions"):
             available = [item for item in ctx.assessment.chat_sessions(user.id)
@@ -44,8 +44,8 @@ def render(ctx: AppContext):
                 "Phiên hội thoại", [None] + available,
                 format_func=lambda item: "Phiên mới" if item is None else item["id"])
         if user and hasattr(ctx.assessment, "remaining_ai_questions"):
-            st.caption(f"Lượt hỏi mock còn lại hôm nay: {ctx.assessment.remaining_ai_questions(user.id)}")
-        if st.button("Gọi mock", disabled=bool(drafts) or readonly):
+            st.caption(f"Lượt hỏi còn lại hôm nay: {ctx.assessment.remaining_ai_questions(user.id)}")
+        if st.button("Gửi câu hỏi", disabled=bool(drafts) or readonly):
             context = tuple(ctx.content.ai_context(lesson.id))
             try:
                 request = AIRequest(question, user.grade if user else 8, language, context,
@@ -66,7 +66,7 @@ def render(ctx: AppContext):
                 source_links = _source_links(item.id for item in context)
                 if source_links:
                     st.markdown("Nguồn ngữ cảnh: " + source_links)
-    st.caption("AI hiện là mock cố định. Bộ lọc quy tắc chỉ là lớp bảo vệ ban đầu; chưa có LLM thật.")
+    st.caption("Trợ lý hiện dùng câu trả lời mô phỏng, chưa kết nối mô hình AI trực tuyến.")
     if user and not drafts and hasattr(ctx.assessment, "chat_sessions"):
         sessions = ctx.assessment.chat_sessions(user.id)
         if sessions:
