@@ -59,15 +59,16 @@ def test_dot_escapes_database_names_and_ids():
     assert 'Tên \\"hình\\"\\nxuống dòng' in dot
 
 
-def test_conditions_explain_reverse_direction_without_reversing_real_edge():
+def test_condition_arrow_points_from_general_shape_to_special_shape():
     graph = focus_graph(GRAPH, 'square', 'parents', 1)
     graph['edges'] = [dict(edge, condition_vi='Hai cạnh kề bằng nhau')
                       for edge in graph['edges']]
     dot = graph_dot(graph)
-    assert '"square" -> "rectangle"' in dot
+    assert '"rectangle" -> "square"' in dot
     assert 'Hình chữ nhật → Hình vuông: Hai cạnh kề bằng nhau' in dot
-    assert '+ Hai cạnh kề bằng nhau' in dot
-    assert '"rectangle" -> "square"' not in dot
+    assert 'label="Hai cạnh kề bằng nhau"' in dot
+    assert '"square" -> "rectangle"' not in dot
+    assert graph['edges'][0]['source'] == 'square'
     assert focus_graph(graph, 'square', 'parents', 1)['edges'] == graph['edges']
 
 

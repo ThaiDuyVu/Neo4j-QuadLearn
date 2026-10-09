@@ -44,7 +44,7 @@ def render(ctx: AppContext):
     count_col, edge_col = st.columns(2)
     count_col.metric("Loại hình đang hiển thị", len(visible["nodes"]))
     edge_col.metric("Quan hệ đang hiển thị", len(visible["edges"]))
-    st.caption("Mũi tên: hình cụ thể là một loại hình tổng quát. Dòng +: điều kiện đủ từ hình tổng quát thành hình cụ thể (đọc ngược mũi tên).")
+    st.caption("A → B: hình A thỏa điều kiện ghi trên đường nối thì trở thành hình B. Mũi tên đi từ hình tổng quát đến hình đặc biệt.")
     diagram, explanation = st.container(), st.container()
     dot = graph_dot(visible, selected, "BT" if layout == "Từ dưới lên" else "LR")
     with diagram:
@@ -56,9 +56,8 @@ def render(ctx: AppContext):
     with explanation:
         with st.expander("Cách đọc sơ đồ và điều kiện"):
             st.subheader("Cách đọc sơ đồ")
-            st.markdown("**A → B** nghĩa là **A là một loại B**. Mũi tên đi từ hình cụ thể đến hình tổng quát hơn.")
-            st.write("IS_A là tên quan hệ phân loại trong Neo4j.")
-            st.markdown("**Dòng có dấu +** là điều kiện đủ để hình tổng quát trở thành hình đặc biệt: đọc **ngược chiều mũi tên**.")
+            st.markdown("**A → B** nghĩa là **hình A thỏa điều kiện trên đường nối thì là hình B**. Đọc điều kiện cùng chiều mũi tên.")
+            st.write("Trong Neo4j, B IS_A A nghĩa là B thuộc loại A. Sơ đồ trình bày cùng liên kết theo chiều điều kiện A → B, đảo chiều hiển thị của quan hệ phân loại.")
             st.caption("Ví dụ: chữ nhật + hai cạnh kề bằng nhau → vuông. Các điều kiện áp dụng cho tứ giác lồi, không suy biến; đây không phải danh sách đầy đủ dấu hiệu nhận biết.")
             st.write("Một hình có thể thuộc nhiều loại; sơ đồ không bắt buộc là cây có một cha.")
             if selected:
@@ -68,15 +67,15 @@ def render(ctx: AppContext):
     with st.expander("Xem danh sách quan hệ đang hiển thị"):
         if visible["edges"]:
             st.dataframe([
-                {"Hình cụ thể": names[edge["source"]], "Quan hệ": edge["type"],
-                 "Loại tổng quát": names[edge["target"]],
-                 "Điều kiện đủ (tổng quát → cụ thể)": edge.get("condition_vi") or "Chưa có chú thích"}
+                {"Từ hình A": names[edge["target"]],
+                 "Điều kiện đủ": edge.get("condition_vi") or "Chưa có chú thích",
+                 "Thành hình B": names[edge["source"]]}
                 for edge in visible["edges"]
             ], hide_index=True, use_container_width=True)
         else:
             st.write("Chưa có quan hệ trong phạm vi này.")
     with st.expander("Đối chiếu trong Neo4j Browser"):
-        st.caption("Chạy truy vấn này trong Neo4j Browser để xem cùng các node và quan hệ, kể cả hình chưa có liên kết.")
+        st.caption("Browser hiển thị chiều phân loại B IS_A A. Trang này hiển thị chiều điều kiện A → B; các node và liên kết vẫn lấy từ cùng dữ liệu Neo4j.")
         st.code("""MATCH (q:Quadrilateral)
 OPTIONAL MATCH (q)-[r:IS_A]->(parent:Quadrilateral)
 RETURN q, r, parent;""", language="cypher")

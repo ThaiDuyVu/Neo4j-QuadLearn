@@ -61,7 +61,7 @@ ImportLog owner Sơn; quan hệ admin→log sẽ chốt khi import thực hiện
 
 ### Điều kiện trên quan hệ phân loại
 
-`(child)-[r:IS_A]->(parent)` có property `r.condition_vi`: một **điều kiện đủ** để parent trở thành child. Mũi tên vẫn biểu diễn child là một loại parent; dòng `+ điều kiện` trên sơ đồ được đọc ngược chiều mũi tên. Ví dụ chữ nhật + hai cạnh kề bằng nhau → vuông; thoi + một góc vuông → vuông. Áp dụng cho tứ giác lồi, không suy biến; không liệt kê mọi dấu hiệu nhận biết. Đặc biệt tứ giác nội tiếp cần **hai góc kề vuông** để thành chữ nhật, một góc vuông chưa đủ.
+`(child)-[r:IS_A]->(parent)` có property `r.condition_vi`: một **điều kiện đủ** để parent trở thành child. Neo4j giữ chiều child IS_A parent. Sơ đồ điều kiện hiển thị parent → child: đọc điều kiện cùng chiều mũi tên; đây là phép đảo chiều trình bày, không đổi dữ liệu phân loại. Ví dụ chữ nhật + hai cạnh kề bằng nhau → vuông; thoi + một góc vuông → vuông. Áp dụng cho tứ giác lồi, không suy biến; không liệt kê mọi dấu hiệu nhận biết. Đặc biệt tứ giác nội tiếp cần **hai góc kề vuông** để thành chữ nhật, một góc vuông chưa đủ.
 
 `database/taxonomy_conditions.cypher` là nguồn chú thích cho 9 cạnh demo; chỉ MATCH/SET trên cạnh hiện có, chạy lại an toàn. Điều kiện “chỉ một cặp cạnh đối song song” là ví dụ đủ để nhận biết hình thang theo cả hai quy ước; không chốt câu hỏi SGK về định nghĩa bao hàm.
 

@@ -46,10 +46,9 @@ def graph_dot(graph, selected=None, orientation="BT"):
     for edge in graph["edges"]:
         # condition_vi: điều kiện đủ từ target (tổng quát) thành source (đặc biệt).
         condition = edge.get("condition_vi")
-        label = edge["type"]
-        if condition:
-            label += "\n+ " + "\n".join(textwrap.wrap(condition, width=26))
+        label = "\n".join(textwrap.wrap(condition or "Chưa có chú thích điều kiện", width=26))
         tooltip = (f'{names[edge["target"]]} → {names[edge["source"]]}: '
                    f'{condition or "Chưa có chú thích điều kiện"}')
-        lines.append(f'{quote(edge["source"])} -> {quote(edge["target"])} [label={quote(label)}, tooltip={quote(tooltip)}];')
+        # Sơ đồ diễn tả điều kiện parent → child; dữ liệu IS_A vẫn child → parent.
+        lines.append(f'{quote(edge["target"])} -> {quote(edge["source"])} [label={quote(label)}, tooltip={quote(tooltip)}];')
     return "\n".join(lines + ["}"])
