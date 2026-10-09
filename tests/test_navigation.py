@@ -21,7 +21,8 @@ page.render(context())
     if path == "learning":
         at.slider[0].set_value(8).run()
         assert not at.exception
-        assert any("24" in item.value for item in at.markdown)
+        assert next(m for m in at.metric if m.label == "Diện tích (S)").value == "24 unit²"
+        assert next(m for m in at.metric if m.label == "Chu vi (P)").value == "22 unit"
     if path == "assessment":
         at.text_input[0].set_value("Giải thích hình chữ nhật")
         at.button[0].click().run()
