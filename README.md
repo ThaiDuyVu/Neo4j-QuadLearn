@@ -4,7 +4,7 @@
 
 Phần Vũ đã phát triển nghiệp vụ local trên branch `feature/vu-identity-learning-path`: đăng ký/login/token thử nghiệm, hồ sơ, tiến độ/lộ trình, mở khóa và quản lý user. Đọc [tài liệu giải thích source Vũ](docs/VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md). Email/OAuth thật và các dependency còn thiếu vẫn TODO; phần skeleton bên dưới mô tả baseline ban đầu.
 
-Ứng dụng hỗ trợ học Tứ giác theo cấp độ lớp 6–9, dựng cho bài tập nhóm NoSQL. Mục tiêu hiện tại: nền chạy được, minh họa graph và chia domain để Vũ, Sơn, Đạt phát triển song song. **Không phải hệ thống SRS hoàn chỉnh**. Demo identity không phải AUTH; AI mock không phải LLM. Đã đọc toàn bộ SRS v1.1, ánh xạ 86 FR/56 PB trong docs.
+Ứng dụng hỗ trợ học Tứ giác theo cấp độ lớp 6–9, dựng cho bài tập nhóm NoSQL. Mục tiêu hiện tại: nền chạy được, minh họa graph và chia domain để Vũ, Sơn, Đạt phát triển song song. **Không phải hệ thống SRS hoàn chỉnh**. Đã có AUTH local, nội dung, bài tập và tiến độ; AI mock không phải LLM. Đã đọc toàn bộ SRS v1.1, ánh xạ 86 FR/56 PB trong docs.
 
 ## Thành viên và stack
 
@@ -64,6 +64,7 @@ Copy-Item .env.example .env
 ```text
 docker compose up -d --wait
 python -m scripts.db init
+python -m scripts.demo_data
 python -m scripts.db check
 python -m streamlit run app/main.py
 ```
@@ -91,7 +92,9 @@ docker compose start
 - [Architecture](docs/ARCHITECTURE.md), [Graph schema](docs/GRAPH_SCHEMA.md), [Database scripts](database/README.md)
 - [Domain ownership](docs/DOMAIN_OWNERSHIP.md), [Feature integration](docs/FEATURE_INTEGRATION.md)
 - [SRS traceability – 86 FR](docs/SRS_TRACEABILITY.md), [Product backlog – 56 stories](docs/PRODUCT_BACKLOG.md)
-- [Open questions](docs/OPEN_QUESTIONS.md), [Demo guide](docs/DEMO_GUIDE.md), [Verification](docs/VERIFICATION.md)
+- [Open questions](docs/OPEN_QUESTIONS.md), [Demo guide](docs/DEMO_GUIDE.md), [Demo data & accounts](docs/DEMO_DATA.md), [Verification](docs/VERIFICATION.md)
 - [Vũ bắt đầu](app/features/identity_learning_path/README.md), [Sơn bắt đầu](app/features/learning_geometry/README.md), [Đạt bắt đầu](app/features/assessment_ai/README.md)
 
-Phạm vi TODO: AUTH/OAuth/email/consent, toàn bộ lesson lớp 6–9, canvas đầy đủ, quiz/essay workflows, progress/unlock ghi thật, import runtime, I18N đầy đủ, quota/chat persistence, provider LLM, cloud và NFR sản phẩm. Không đánh đồng smoke tests với nghiệm thu SRS.
+Phạm vi TODO: OAuth/email và xác minh consent thật, toàn bộ lesson lớp 6–9, canvas đầy đủ, chấm tự luận tự động, CMS/import hoàn chỉnh, I18N đầy đủ, provider LLM, cloud và NFR sản phẩm. Không đánh đồng smoke tests với nghiệm thu SRS.
+
+Bộ demo mở rộng: 16 bài học, 32 câu hỏi, 4 tự luận và 7 tài khoản đăng nhập. Xem [DEMO_DATA.md](docs/DEMO_DATA.md) để lấy tài khoản/mật khẩu thử nghiệm. Flow chính dùng `demo.path@quadlearn.local`: 50% → học xong Hình thoi → 75% → lớp 9. Reset **chỉ tài khoản fixture** bằng `python -m scripts.demo_data --reset-demo-users --yes`; lịch sử của chúng sẽ bị xóa, dữ liệu người dùng khác được giữ.

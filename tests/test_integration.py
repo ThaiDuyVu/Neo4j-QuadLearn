@@ -28,7 +28,9 @@ def test_domain_contracts_and_multihop(db):
     ctx = build_context(db, demo=True)
     user = ctx.identity.current_user()
     assert user.grade == 8
-    assert len(ctx.content.lessons(8)) == 2
+    assert {"lesson:8:parallelogram", "lesson:8:rectangle"} <= {
+        lesson.id for lesson in ctx.content.lessons(8)
+    }
     prereqs = ctx.content.prerequisites("lesson:9:cyclic")
     assert {item.grade for item in prereqs} == {6,7,8}
     assert ctx.assessment.attempts(user.id)[0].score == 10

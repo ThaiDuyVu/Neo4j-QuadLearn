@@ -131,6 +131,13 @@ def test_neo4j_progress_published_idempotent_unlock_and_admin_guard(env):
         path.complete_lesson(uid, "lesson:9:cyclic")
     path.complete_lesson(uid, "lesson:6:rectangle")
     path.complete_lesson(uid, "lesson:6:rectangle")
+    # Ghi cùng bài hai lần vẫn chỉ có một quan hệ COMPLETED.
+    assert db.read(
+        "MATCH (:User {id:$id})-[:COMPLETED]->() RETURN count(*) AS n", id=uid
+    )[0]["n"] == 1
+    lessons = base.content.lessons(6)
+    for lesson in lessons:
+        path.complete_lesson(uid, lesson.id)
     assert path.levels(uid)[0].completion == 100
     assert path.resume_lesson(uid) is None
     assert path.access(uid, 7)
@@ -140,7 +147,7 @@ def test_neo4j_progress_published_idempotent_unlock_and_admin_guard(env):
         db.read(
             "MATCH (:User {id:$id})-[r:COMPLETED]->() RETURN count(r) AS n", id=uid
         )[0]["n"]
-        == 1
+        == len(lessons)
     )
     assert (
         db.read(

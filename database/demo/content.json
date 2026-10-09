@@ -1,0 +1,1279 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "lesson:6:quadrilateral",
+      "topic_id": "topic:6:quadrilateral",
+      "grade": 6,
+      "title_vi": "Nhận biết tứ giác",
+      "title_en": "Recognizing quadrilaterals",
+      "content_vi": "## Nhận biết tứ giác\n\n### Kiến thức chính\nTứ giác có bốn cạnh và bốn đỉnh. Khi đọc tên ABCD, các đỉnh được viết theo thứ tự quanh hình.\n\n### Tự kiểm tra\nTứ giác có bao nhiêu cạnh?\n\n### Ghi nhớ\nTứ giác có bốn cạnh theo định nghĩa.",
+      "content_en": "Recognizing quadrilaterals: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [],
+      "order": 1,
+      "shape_id": "shape:quadrilateral"
+    },
+    {
+      "id": "lesson:6:rectangle",
+      "topic_id": "topic:6:rectangle",
+      "grade": 6,
+      "title_vi": "Hình chữ nhật trực quan",
+      "title_en": "Rectangle",
+      "content_vi": "## Hình chữ nhật trực quan\n\n### Kiến thức chính\nHình chữ nhật có bốn góc vuông. Hai cạnh đối bằng nhau. Với chiều dài a và chiều rộng b, diện tích S = a × b và chu vi P = 2(a + b).\n\n### Tự kiểm tra\nHình chữ nhật dài 4 cm, rộng 3 cm có diện tích bao nhiêu?\n\n### Ghi nhớ\nS = 4 × 3 = 12 cm².",
+      "content_en": "Rectangle: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:6:quadrilateral"
+      ],
+      "order": 2,
+      "shape_id": "shape:rectangle"
+    },
+    {
+      "id": "lesson:6:square",
+      "topic_id": "topic:6:square",
+      "grade": 6,
+      "title_vi": "Hình vuông và diện tích",
+      "title_en": "Square",
+      "content_vi": "## Hình vuông và diện tích\n\n### Kiến thức chính\nHình vuông có bốn cạnh bằng nhau và bốn góc vuông. Nếu cạnh là a thì diện tích S = a², chu vi P = 4a.\n\n### Tự kiểm tra\nHình vuông cạnh 5 cm có diện tích bao nhiêu?\n\n### Ghi nhớ\nS = 5² = 25 cm².",
+      "content_en": "Square: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:6:rectangle"
+      ],
+      "order": 3,
+      "shape_id": "shape:square"
+    },
+    {
+      "id": "lesson:6:perimeter",
+      "topic_id": "topic:6:perimeter",
+      "grade": 6,
+      "title_vi": "Chu vi và đơn vị đo",
+      "title_en": "Perimeter and units",
+      "content_vi": "## Chu vi và đơn vị đo\n\n### Kiến thức chính\nChu vi là tổng độ dài các cạnh. Độ dài dùng cm, m; diện tích dùng cm², m². Phải đổi về cùng đơn vị trước khi tính.\n\n### Tự kiểm tra\nĐơn vị nào dùng để đo diện tích?\n\n### Ghi nhớ\nDiện tích dùng đơn vị vuông.",
+      "content_en": "Perimeter and units: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:6:quadrilateral"
+      ],
+      "order": 4,
+      "shape_id": null
+    },
+    {
+      "id": "lesson:7:parallel",
+      "topic_id": "topic:7:parallel",
+      "grade": 7,
+      "title_vi": "Hai đường thẳng song song",
+      "title_en": "Parallel lines",
+      "content_vi": "## Hai đường thẳng song song\n\n### Kiến thức chính\nHai đường thẳng song song trong cùng mặt phẳng không có điểm chung. Khi một đường thẳng cắt hai đường song song, các góc so le trong bằng nhau.\n\n### Tự kiểm tra\nHai đường thẳng phân biệt song song có bao nhiêu điểm chung?\n\n### Ghi nhớ\nHai đường song song không cắt nhau.",
+      "content_en": "Parallel lines: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:6:rectangle"
+      ],
+      "order": 1,
+      "shape_id": null
+    },
+    {
+      "id": "lesson:7:angles",
+      "topic_id": "topic:7:angles",
+      "grade": 7,
+      "title_vi": "Góc kề bù và góc đối đỉnh",
+      "title_en": "Supplementary and vertical angles",
+      "content_vi": "## Góc kề bù và góc đối đỉnh\n\n### Kiến thức chính\nHai góc kề bù có tổng số đo 180°. Hai góc đối đỉnh bằng nhau. Phân biệt góc bằng nhau và góc bù nhau khi lập luận.\n\n### Tự kiểm tra\nMột góc của cặp kề bù bằng 65°. Góc còn lại bằng bao nhiêu?\n\n### Ghi nhớ\n180° − 65° = 115°.",
+      "content_en": "Supplementary and vertical angles: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:6:quadrilateral"
+      ],
+      "order": 2,
+      "shape_id": null
+    },
+    {
+      "id": "lesson:7:perpendicular",
+      "topic_id": "topic:7:perpendicular",
+      "grade": 7,
+      "title_vi": "Vuông góc và chiều cao",
+      "title_en": "Perpendicular lines and height",
+      "content_vi": "## Vuông góc và chiều cao\n\n### Kiến thức chính\nHai đường vuông góc tạo góc 90°. Chiều cao là khoảng cách vuông góc từ đỉnh đến đường thẳng chứa đáy; không thay bằng cạnh nghiêng.\n\n### Tự kiểm tra\nHai đường vuông góc tạo góc bao nhiêu độ?\n\n### Ghi nhớ\nGóc vuông có số đo 90°.",
+      "content_en": "Perpendicular lines and height: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:7:angles"
+      ],
+      "order": 3,
+      "shape_id": null
+    },
+    {
+      "id": "lesson:7:midpoint",
+      "topic_id": "topic:7:midpoint",
+      "grade": 7,
+      "title_vi": "Trung điểm của đoạn thẳng",
+      "title_en": "Midpoint",
+      "content_vi": "## Trung điểm của đoạn thẳng\n\n### Kiến thức chính\nM là trung điểm AB khi M nằm trên đoạn AB và MA = MB. Nếu AB = 10 cm thì MA = MB = 5 cm. Đây là nền tảng cho tính chất đường chéo hình bình hành.\n\n### Tự kiểm tra\nM là trung điểm AB và AB = 10 cm. AM bằng bao nhiêu?\n\n### Ghi nhớ\nAM = AB/2 = 5 cm.",
+      "content_en": "Midpoint: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:6:perimeter"
+      ],
+      "order": 4,
+      "shape_id": null
+    },
+    {
+      "id": "lesson:8:parallelogram",
+      "topic_id": "topic:8:parallelogram",
+      "grade": 8,
+      "title_vi": "Hình bình hành",
+      "title_en": "Parallelogram",
+      "content_vi": "## Hình bình hành\n\n### Kiến thức chính\nHình bình hành có hai cặp cạnh đối song song. Các cạnh đối và góc đối bằng nhau. Hai đường chéo cắt nhau tại trung điểm mỗi đường. Diện tích S = a × h, với h vuông góc đáy.\n\n### Tự kiểm tra\nHình bình hành có đáy 6 cm, chiều cao 4 cm. Diện tích bằng bao nhiêu?\n\n### Ghi nhớ\nS = a × h = 6 × 4 = 24 cm².",
+      "content_en": "Parallelogram: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:7:parallel",
+        "lesson:7:midpoint"
+      ],
+      "order": 1,
+      "shape_id": "shape:parallelogram"
+    },
+    {
+      "id": "lesson:8:rectangle",
+      "topic_id": "topic:8:rectangle",
+      "grade": 8,
+      "title_vi": "Hình chữ nhật và tính chất",
+      "title_en": "Rectangle properties",
+      "content_vi": "## Hình chữ nhật và tính chất\n\n### Kiến thức chính\nHình chữ nhật là hình bình hành có một góc vuông, nên cả bốn góc đều vuông. Hai đường chéo bằng nhau và cắt nhau tại trung điểm. Hình bình hành có hai đường chéo bằng nhau là hình chữ nhật.\n\n### Tự kiểm tra\nHình chữ nhật có bao nhiêu góc vuông?\n\n### Ghi nhớ\nCả bốn góc đều là góc vuông.",
+      "content_en": "Rectangle properties: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:8:parallelogram"
+      ],
+      "order": 2,
+      "shape_id": "shape:rectangle"
+    },
+    {
+      "id": "lesson:8:rhombus",
+      "topic_id": "topic:8:rhombus",
+      "grade": 8,
+      "title_vi": "Hình thoi và đường chéo",
+      "title_en": "Rhombus",
+      "content_vi": "## Hình thoi và đường chéo\n\n### Kiến thức chính\nHình thoi có bốn cạnh bằng nhau và là một hình bình hành. Hai đường chéo vuông góc và cắt nhau tại trung điểm. Diện tích S = d₁ × d₂ / 2; hai đường chéo không nhất thiết bằng nhau.\n\n### Tự kiểm tra\nHình thoi có đường chéo 6 cm và 4 cm. Diện tích bằng bao nhiêu?\n\n### Ghi nhớ\nS = 6 × 4 / 2 = 12 cm².",
+      "content_en": "Rhombus: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:8:parallelogram",
+        "lesson:7:perpendicular"
+      ],
+      "order": 3,
+      "shape_id": "shape:rhombus"
+    },
+    {
+      "id": "lesson:8:square",
+      "topic_id": "topic:8:square",
+      "grade": 8,
+      "title_vi": "Hình vuông: liên hệ chữ nhật và thoi",
+      "title_en": "Square classification",
+      "content_vi": "## Hình vuông: liên hệ chữ nhật và thoi\n\n### Kiến thức chính\nHình vuông có bốn cạnh bằng nhau và bốn góc vuông. Vì vậy nó vừa là hình chữ nhật vừa là hình thoi; thừa hưởng tính chất của cả hai. Hai đường chéo bằng nhau, vuông góc và cắt nhau tại trung điểm.\n\n### Tự kiểm tra\nHình vuông thuộc những loại nào?\n\n### Ghi nhớ\nHình vuông có cả bốn góc vuông và bốn cạnh bằng nhau.",
+      "content_en": "Square classification: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:8:rectangle",
+        "lesson:8:rhombus"
+      ],
+      "order": 4,
+      "shape_id": "shape:square"
+    },
+    {
+      "id": "lesson:9:cyclic",
+      "topic_id": "topic:9:cyclic",
+      "grade": 9,
+      "title_vi": "Tứ giác nội tiếp",
+      "title_en": "Cyclic quadrilateral",
+      "content_vi": "## Tứ giác nội tiếp\n\n### Kiến thức chính\nTứ giác nội tiếp có bốn đỉnh cùng nằm trên một đường tròn. Với tứ giác lồi nội tiếp, tổng hai góc đối bằng 180°. Hình chữ nhật là một ví dụ vì hai góc đối đều bằng 90°.\n\n### Tự kiểm tra\nTứ giác nội tiếp có góc A = 70°. Góc đối C bằng bao nhiêu?\n\n### Ghi nhớ\nA + C = 180° nên C = 110°.",
+      "content_en": "Cyclic quadrilateral: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:8:rectangle"
+      ],
+      "order": 1,
+      "shape_id": "shape:cyclic"
+    },
+    {
+      "id": "lesson:9:opposite-angles",
+      "topic_id": "topic:9:opposite-angles",
+      "grade": 9,
+      "title_vi": "Tính góc trong tứ giác nội tiếp",
+      "title_en": "Opposite angles in cyclic quadrilaterals",
+      "content_vi": "## Tính góc trong tứ giác nội tiếp\n\n### Kiến thức chính\nGọi ABCD là tứ giác lồi nội tiếp: A + C = 180° và B + D = 180°. Chọn đúng cặp góc đối; không dùng công thức này tùy ý cho hai góc kề.\n\n### Tự kiểm tra\nABCD nội tiếp, B = 100°. D bằng bao nhiêu?\n\n### Ghi nhớ\nB và D đối nhau: D = 180° − 100° = 80°.",
+      "content_en": "Opposite angles in cyclic quadrilaterals: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:9:cyclic",
+        "lesson:7:angles"
+      ],
+      "order": 2,
+      "shape_id": null
+    },
+    {
+      "id": "lesson:9:cyclic-test",
+      "topic_id": "topic:9:cyclic-test",
+      "grade": 9,
+      "title_vi": "Nhận biết tứ giác nội tiếp",
+      "title_en": "Recognizing a cyclic quadrilateral",
+      "content_vi": "## Nhận biết tứ giác nội tiếp\n\n### Kiến thức chính\nVới tứ giác lồi, nếu tổng hai góc đối bằng 180° thì tứ giác nội tiếp được một đường tròn. Khi chứng minh cần xác định đúng góc đối và nêu điều kiện tứ giác lồi.\n\n### Tự kiểm tra\nTứ giác lồi ABCD có A = 80°, C = 100°. Kết luận nào đúng?\n\n### Ghi nhớ\nA + C = 180° nên tứ giác lồi ABCD nội tiếp.",
+      "content_en": "Recognizing a cyclic quadrilateral: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:9:cyclic",
+        "lesson:9:opposite-angles"
+      ],
+      "order": 3,
+      "shape_id": null
+    },
+    {
+      "id": "lesson:9:review",
+      "topic_id": "topic:9:review",
+      "grade": 9,
+      "title_vi": "Ôn tập quan hệ các loại tứ giác",
+      "title_en": "Quadrilateral review",
+      "content_vi": "## Ôn tập quan hệ các loại tứ giác\n\n### Kiến thức chính\nHình vuông vừa là hình chữ nhật vừa là hình thoi. Hình chữ nhật là hình bình hành và là tứ giác nội tiếp. Hình thoi không nhất thiết nội tiếp; chỉ các hình thoi có góc vuông (hình vuông) mới nội tiếp.\n\n### Tự kiểm tra\nLoại hình nào luôn là tứ giác nội tiếp?\n\n### Ghi nhớ\nHình chữ nhật có tổng hai góc đối 180°.",
+      "content_en": "Quadrilateral review: This demo lesson illustrates the concept and its prerequisites. Full English translation is TODO.",
+      "prerequisites": [
+        "lesson:9:cyclic-test",
+        "lesson:8:square"
+      ],
+      "order": 4,
+      "shape_id": null
+    }
+  ],
+  "questions": [
+    {
+      "id": "question:demo:6:quadrilateral:1",
+      "topic_id": "topic:6:quadrilateral",
+      "grade": 6,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Tứ giác có bao nhiêu cạnh?",
+      "explanation_vi": "Tứ giác có bốn cạnh theo định nghĩa.",
+      "options": [
+        {
+          "id": "option:demo:6:quadrilateral:1:1",
+          "text_vi": "4",
+          "correct": true
+        },
+        {
+          "id": "option:demo:6:quadrilateral:1:2",
+          "text_vi": "3",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:quadrilateral:1:3",
+          "text_vi": "5",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:quadrilateral:1:4",
+          "text_vi": "6",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:6:quadrilateral:2",
+      "topic_id": "topic:6:quadrilateral",
+      "grade": 6,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Tứ giác ABCD có các đỉnh nào?",
+      "explanation_vi": "Tứ giác có bốn cạnh và bốn đỉnh. Khi đọc tên ABCD, các đỉnh được viết theo thứ tự quanh hình.",
+      "options": [
+        {
+          "id": "option:demo:6:quadrilateral:2:1",
+          "text_vi": "A, B, C, D",
+          "correct": true
+        },
+        {
+          "id": "option:demo:6:quadrilateral:2:2",
+          "text_vi": "A, B, C",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:quadrilateral:2:3",
+          "text_vi": "A, B, C, D, E",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:quadrilateral:2:4",
+          "text_vi": "Chỉ A và C",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:6:rectangle:1",
+      "topic_id": "topic:6:rectangle",
+      "grade": 6,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hình chữ nhật dài 4 cm, rộng 3 cm có diện tích bao nhiêu?",
+      "explanation_vi": "S = 4 × 3 = 12 cm².",
+      "options": [
+        {
+          "id": "option:demo:6:rectangle:1:1",
+          "text_vi": "12 cm²",
+          "correct": true
+        },
+        {
+          "id": "option:demo:6:rectangle:1:2",
+          "text_vi": "7 cm²",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:rectangle:1:3",
+          "text_vi": "14 cm²",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:rectangle:1:4",
+          "text_vi": "24 cm²",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:6:rectangle:2",
+      "topic_id": "topic:6:rectangle",
+      "grade": 6,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Chu vi của hình chữ nhật dài 4 cm, rộng 3 cm là bao nhiêu?",
+      "explanation_vi": "Hình chữ nhật có bốn góc vuông. Hai cạnh đối bằng nhau. Với chiều dài a và chiều rộng b, diện tích S = a × b và chu vi P = 2(a + b).",
+      "options": [
+        {
+          "id": "option:demo:6:rectangle:2:1",
+          "text_vi": "14 cm",
+          "correct": true
+        },
+        {
+          "id": "option:demo:6:rectangle:2:2",
+          "text_vi": "12 cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:rectangle:2:3",
+          "text_vi": "7 cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:rectangle:2:4",
+          "text_vi": "24 cm",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:6:square:1",
+      "topic_id": "topic:6:square",
+      "grade": 6,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hình vuông cạnh 5 cm có diện tích bao nhiêu?",
+      "explanation_vi": "S = 5² = 25 cm².",
+      "options": [
+        {
+          "id": "option:demo:6:square:1:1",
+          "text_vi": "25 cm²",
+          "correct": true
+        },
+        {
+          "id": "option:demo:6:square:1:2",
+          "text_vi": "20 cm²",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:square:1:3",
+          "text_vi": "10 cm²",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:square:1:4",
+          "text_vi": "5 cm²",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:6:square:2",
+      "topic_id": "topic:6:square",
+      "grade": 6,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Hình vuông cạnh 5 cm có chu vi bao nhiêu?",
+      "explanation_vi": "Hình vuông có bốn cạnh bằng nhau và bốn góc vuông. Nếu cạnh là a thì diện tích S = a², chu vi P = 4a.",
+      "options": [
+        {
+          "id": "option:demo:6:square:2:1",
+          "text_vi": "20 cm",
+          "correct": true
+        },
+        {
+          "id": "option:demo:6:square:2:2",
+          "text_vi": "25 cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:square:2:3",
+          "text_vi": "10 cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:square:2:4",
+          "text_vi": "15 cm",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:6:perimeter:1",
+      "topic_id": "topic:6:perimeter",
+      "grade": 6,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Đơn vị nào dùng để đo diện tích?",
+      "explanation_vi": "Diện tích dùng đơn vị vuông.",
+      "options": [
+        {
+          "id": "option:demo:6:perimeter:1:1",
+          "text_vi": "cm²",
+          "correct": true
+        },
+        {
+          "id": "option:demo:6:perimeter:1:2",
+          "text_vi": "cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:perimeter:1:3",
+          "text_vi": "kg",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:perimeter:1:4",
+          "text_vi": "giây",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:6:perimeter:2",
+      "topic_id": "topic:6:perimeter",
+      "grade": 6,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Tứ giác có các cạnh 2, 3, 4, 5 cm có chu vi bao nhiêu?",
+      "explanation_vi": "Chu vi là tổng độ dài các cạnh. Độ dài dùng cm, m; diện tích dùng cm², m². Phải đổi về cùng đơn vị trước khi tính.",
+      "options": [
+        {
+          "id": "option:demo:6:perimeter:2:1",
+          "text_vi": "14 cm",
+          "correct": true
+        },
+        {
+          "id": "option:demo:6:perimeter:2:2",
+          "text_vi": "10 cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:perimeter:2:3",
+          "text_vi": "24 cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:6:perimeter:2:4",
+          "text_vi": "7 cm",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:7:parallel:1",
+      "topic_id": "topic:7:parallel",
+      "grade": 7,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hai đường thẳng phân biệt song song có bao nhiêu điểm chung?",
+      "explanation_vi": "Hai đường song song không cắt nhau.",
+      "options": [
+        {
+          "id": "option:demo:7:parallel:1:1",
+          "text_vi": "0",
+          "correct": true
+        },
+        {
+          "id": "option:demo:7:parallel:1:2",
+          "text_vi": "1",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:parallel:1:3",
+          "text_vi": "2",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:parallel:1:4",
+          "text_vi": "Vô số",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:7:parallel:2",
+      "topic_id": "topic:7:parallel",
+      "grade": 7,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Khi một đường cắt hai đường song song, hai góc so le trong như thế nào?",
+      "explanation_vi": "Hai đường thẳng song song trong cùng mặt phẳng không có điểm chung. Khi một đường thẳng cắt hai đường song song, các góc so le trong bằng nhau.",
+      "options": [
+        {
+          "id": "option:demo:7:parallel:2:1",
+          "text_vi": "Bằng nhau",
+          "correct": true
+        },
+        {
+          "id": "option:demo:7:parallel:2:2",
+          "text_vi": "Luôn vuông",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:parallel:2:3",
+          "text_vi": "Luôn bù nhau",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:parallel:2:4",
+          "text_vi": "Không có liên hệ",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:7:angles:1",
+      "topic_id": "topic:7:angles",
+      "grade": 7,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Một góc của cặp kề bù bằng 65°. Góc còn lại bằng bao nhiêu?",
+      "explanation_vi": "180° − 65° = 115°.",
+      "options": [
+        {
+          "id": "option:demo:7:angles:1:1",
+          "text_vi": "115°",
+          "correct": true
+        },
+        {
+          "id": "option:demo:7:angles:1:2",
+          "text_vi": "65°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:angles:1:3",
+          "text_vi": "25°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:angles:1:4",
+          "text_vi": "180°",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:7:angles:2",
+      "topic_id": "topic:7:angles",
+      "grade": 7,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Hai góc đối đỉnh có tính chất nào?",
+      "explanation_vi": "Hai góc kề bù có tổng số đo 180°. Hai góc đối đỉnh bằng nhau. Phân biệt góc bằng nhau và góc bù nhau khi lập luận.",
+      "options": [
+        {
+          "id": "option:demo:7:angles:2:1",
+          "text_vi": "Bằng nhau",
+          "correct": true
+        },
+        {
+          "id": "option:demo:7:angles:2:2",
+          "text_vi": "Tổng luôn 90°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:angles:2:3",
+          "text_vi": "Luôn 180° mỗi góc",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:angles:2:4",
+          "text_vi": "Luôn khác nhau",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:7:perpendicular:1",
+      "topic_id": "topic:7:perpendicular",
+      "grade": 7,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hai đường vuông góc tạo góc bao nhiêu độ?",
+      "explanation_vi": "Góc vuông có số đo 90°.",
+      "options": [
+        {
+          "id": "option:demo:7:perpendicular:1:1",
+          "text_vi": "90°",
+          "correct": true
+        },
+        {
+          "id": "option:demo:7:perpendicular:1:2",
+          "text_vi": "45°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:perpendicular:1:3",
+          "text_vi": "60°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:perpendicular:1:4",
+          "text_vi": "180°",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:7:perpendicular:2",
+      "topic_id": "topic:7:perpendicular",
+      "grade": 7,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Chiều cao dùng trong công thức diện tích cần như thế nào với đáy?",
+      "explanation_vi": "Hai đường vuông góc tạo góc 90°. Chiều cao là khoảng cách vuông góc từ đỉnh đến đường thẳng chứa đáy; không thay bằng cạnh nghiêng.",
+      "options": [
+        {
+          "id": "option:demo:7:perpendicular:2:1",
+          "text_vi": "Vuông góc",
+          "correct": true
+        },
+        {
+          "id": "option:demo:7:perpendicular:2:2",
+          "text_vi": "Song song",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:perpendicular:2:3",
+          "text_vi": "Bằng đáy",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:perpendicular:2:4",
+          "text_vi": "Bất kỳ",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:7:midpoint:1",
+      "topic_id": "topic:7:midpoint",
+      "grade": 7,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "M là trung điểm AB và AB = 10 cm. AM bằng bao nhiêu?",
+      "explanation_vi": "AM = AB/2 = 5 cm.",
+      "options": [
+        {
+          "id": "option:demo:7:midpoint:1:1",
+          "text_vi": "5 cm",
+          "correct": true
+        },
+        {
+          "id": "option:demo:7:midpoint:1:2",
+          "text_vi": "10 cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:midpoint:1:3",
+          "text_vi": "20 cm",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:midpoint:1:4",
+          "text_vi": "2 cm",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:7:midpoint:2",
+      "topic_id": "topic:7:midpoint",
+      "grade": 7,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Điều kiện nào đủ để M là trung điểm AB?",
+      "explanation_vi": "M là trung điểm AB khi M nằm trên đoạn AB và MA = MB. Nếu AB = 10 cm thì MA = MB = 5 cm. Đây là nền tảng cho tính chất đường chéo hình bình hành.",
+      "options": [
+        {
+          "id": "option:demo:7:midpoint:2:1",
+          "text_vi": "M thuộc đoạn AB và MA = MB",
+          "correct": true
+        },
+        {
+          "id": "option:demo:7:midpoint:2:2",
+          "text_vi": "MA = MB nhưng M ở bất kỳ đâu",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:midpoint:2:3",
+          "text_vi": "M thuộc đường thẳng AB",
+          "correct": false
+        },
+        {
+          "id": "option:demo:7:midpoint:2:4",
+          "text_vi": "MA = 2MB",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:8:parallelogram:1",
+      "topic_id": "topic:8:parallelogram",
+      "grade": 8,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hình bình hành có đáy 6 cm, chiều cao 4 cm. Diện tích bằng bao nhiêu?",
+      "explanation_vi": "S = a × h = 6 × 4 = 24 cm².",
+      "options": [
+        {
+          "id": "option:demo:8:parallelogram:1:1",
+          "text_vi": "24 cm²",
+          "correct": true
+        },
+        {
+          "id": "option:demo:8:parallelogram:1:2",
+          "text_vi": "10 cm²",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:parallelogram:1:3",
+          "text_vi": "20 cm²",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:parallelogram:1:4",
+          "text_vi": "12 cm²",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:8:parallelogram:2",
+      "topic_id": "topic:8:parallelogram",
+      "grade": 8,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Hai đường chéo hình bình hành có tính chất nào?",
+      "explanation_vi": "Hình bình hành có hai cặp cạnh đối song song. Các cạnh đối và góc đối bằng nhau. Hai đường chéo cắt nhau tại trung điểm mỗi đường. Diện tích S = a × h, với h vuông góc đáy.",
+      "options": [
+        {
+          "id": "option:demo:8:parallelogram:2:1",
+          "text_vi": "Cắt nhau tại trung điểm mỗi đường",
+          "correct": true
+        },
+        {
+          "id": "option:demo:8:parallelogram:2:2",
+          "text_vi": "Luôn bằng nhau",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:parallelogram:2:3",
+          "text_vi": "Luôn vuông góc",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:parallelogram:2:4",
+          "text_vi": "Không cắt nhau",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:8:rectangle:1",
+      "topic_id": "topic:8:rectangle",
+      "grade": 8,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hình chữ nhật có bao nhiêu góc vuông?",
+      "explanation_vi": "Cả bốn góc đều là góc vuông.",
+      "options": [
+        {
+          "id": "option:rectangle:4",
+          "text_vi": "4",
+          "correct": true
+        },
+        {
+          "id": "option:rectangle:2",
+          "text_vi": "2",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:8:rectangle:2",
+      "topic_id": "topic:8:rectangle",
+      "grade": 8,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Hai đường chéo hình chữ nhật có tính chất nào?",
+      "explanation_vi": "Hình chữ nhật là hình bình hành có một góc vuông, nên cả bốn góc đều vuông. Hai đường chéo bằng nhau và cắt nhau tại trung điểm. Hình bình hành có hai đường chéo bằng nhau là hình chữ nhật.",
+      "options": [
+        {
+          "id": "option:demo:8:rectangle:2:1",
+          "text_vi": "Bằng nhau và cắt nhau tại trung điểm",
+          "correct": true
+        },
+        {
+          "id": "option:demo:8:rectangle:2:2",
+          "text_vi": "Luôn vuông góc",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:rectangle:2:3",
+          "text_vi": "Không bằng nhau",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:rectangle:2:4",
+          "text_vi": "Không cắt nhau",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:8:rhombus:1",
+      "topic_id": "topic:8:rhombus",
+      "grade": 8,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hình thoi có đường chéo 6 cm và 4 cm. Diện tích bằng bao nhiêu?",
+      "explanation_vi": "S = 6 × 4 / 2 = 12 cm².",
+      "options": [
+        {
+          "id": "option:demo:8:rhombus:1:1",
+          "text_vi": "12 cm²",
+          "correct": true
+        },
+        {
+          "id": "option:demo:8:rhombus:1:2",
+          "text_vi": "24 cm²",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:rhombus:1:3",
+          "text_vi": "10 cm²",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:rhombus:1:4",
+          "text_vi": "20 cm²",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:8:rhombus:2",
+      "topic_id": "topic:8:rhombus",
+      "grade": 8,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Hai đường chéo hình thoi luôn có tính chất nào?",
+      "explanation_vi": "Hình thoi có bốn cạnh bằng nhau và là một hình bình hành. Hai đường chéo vuông góc và cắt nhau tại trung điểm. Diện tích S = d₁ × d₂ / 2; hai đường chéo không nhất thiết bằng nhau.",
+      "options": [
+        {
+          "id": "option:demo:8:rhombus:2:1",
+          "text_vi": "Vuông góc",
+          "correct": true
+        },
+        {
+          "id": "option:demo:8:rhombus:2:2",
+          "text_vi": "Bằng nhau",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:rhombus:2:3",
+          "text_vi": "Song song",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:rhombus:2:4",
+          "text_vi": "Không cắt nhau",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:8:square:1",
+      "topic_id": "topic:8:square",
+      "grade": 8,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Hình vuông thuộc những loại nào?",
+      "explanation_vi": "Hình vuông có cả bốn góc vuông và bốn cạnh bằng nhau.",
+      "options": [
+        {
+          "id": "option:demo:8:square:1:1",
+          "text_vi": "Cả hình chữ nhật và hình thoi",
+          "correct": true
+        },
+        {
+          "id": "option:demo:8:square:1:2",
+          "text_vi": "Chỉ hình chữ nhật",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:square:1:3",
+          "text_vi": "Chỉ hình thoi",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:square:1:4",
+          "text_vi": "Không thuộc loại nào",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:8:square:2",
+      "topic_id": "topic:8:square",
+      "grade": 8,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Hình chữ nhật có thêm điều kiện nào thì là hình vuông?",
+      "explanation_vi": "Hình vuông có bốn cạnh bằng nhau và bốn góc vuông. Vì vậy nó vừa là hình chữ nhật vừa là hình thoi; thừa hưởng tính chất của cả hai. Hai đường chéo bằng nhau, vuông góc và cắt nhau tại trung điểm.",
+      "options": [
+        {
+          "id": "option:demo:8:square:2:1",
+          "text_vi": "Hai cạnh kề bằng nhau",
+          "correct": true
+        },
+        {
+          "id": "option:demo:8:square:2:2",
+          "text_vi": "Hai đường chéo bằng nhau",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:square:2:3",
+          "text_vi": "Có một góc vuông",
+          "correct": false
+        },
+        {
+          "id": "option:demo:8:square:2:4",
+          "text_vi": "Cạnh đối song song",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:9:cyclic:1",
+      "topic_id": "topic:9:cyclic",
+      "grade": 9,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Tứ giác nội tiếp có góc A = 70°. Góc đối C bằng bao nhiêu?",
+      "explanation_vi": "A + C = 180° nên C = 110°.",
+      "options": [
+        {
+          "id": "option:demo:9:cyclic:1:1",
+          "text_vi": "110°",
+          "correct": true
+        },
+        {
+          "id": "option:demo:9:cyclic:1:2",
+          "text_vi": "70°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:cyclic:1:3",
+          "text_vi": "90°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:cyclic:1:4",
+          "text_vi": "140°",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:9:cyclic:2",
+      "topic_id": "topic:9:cyclic",
+      "grade": 9,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Một tứ giác nội tiếp có bao nhiêu đỉnh nằm trên cùng đường tròn?",
+      "explanation_vi": "Tứ giác nội tiếp có bốn đỉnh cùng nằm trên một đường tròn. Với tứ giác lồi nội tiếp, tổng hai góc đối bằng 180°. Hình chữ nhật là một ví dụ vì hai góc đối đều bằng 90°.",
+      "options": [
+        {
+          "id": "option:demo:9:cyclic:2:1",
+          "text_vi": "4",
+          "correct": true
+        },
+        {
+          "id": "option:demo:9:cyclic:2:2",
+          "text_vi": "2",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:cyclic:2:3",
+          "text_vi": "3",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:cyclic:2:4",
+          "text_vi": "1",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:9:opposite-angles:1",
+      "topic_id": "topic:9:opposite-angles",
+      "grade": 9,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "ABCD nội tiếp, B = 100°. D bằng bao nhiêu?",
+      "explanation_vi": "B và D đối nhau: D = 180° − 100° = 80°.",
+      "options": [
+        {
+          "id": "option:demo:9:opposite-angles:1:1",
+          "text_vi": "80°",
+          "correct": true
+        },
+        {
+          "id": "option:demo:9:opposite-angles:1:2",
+          "text_vi": "100°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:opposite-angles:1:3",
+          "text_vi": "90°",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:opposite-angles:1:4",
+          "text_vi": "260°",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:9:opposite-angles:2",
+      "topic_id": "topic:9:opposite-angles",
+      "grade": 9,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Cặp nào là góc đối trong tứ giác ABCD?",
+      "explanation_vi": "Gọi ABCD là tứ giác lồi nội tiếp: A + C = 180° và B + D = 180°. Chọn đúng cặp góc đối; không dùng công thức này tùy ý cho hai góc kề.",
+      "options": [
+        {
+          "id": "option:demo:9:opposite-angles:2:1",
+          "text_vi": "A và C",
+          "correct": true
+        },
+        {
+          "id": "option:demo:9:opposite-angles:2:2",
+          "text_vi": "A và B",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:opposite-angles:2:3",
+          "text_vi": "B và C",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:opposite-angles:2:4",
+          "text_vi": "C và D",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:9:cyclic-test:1",
+      "topic_id": "topic:9:cyclic-test",
+      "grade": 9,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Tứ giác lồi ABCD có A = 80°, C = 100°. Kết luận nào đúng?",
+      "explanation_vi": "A + C = 180° nên tứ giác lồi ABCD nội tiếp.",
+      "options": [
+        {
+          "id": "option:demo:9:cyclic-test:1:1",
+          "text_vi": "ABCD nội tiếp",
+          "correct": true
+        },
+        {
+          "id": "option:demo:9:cyclic-test:1:2",
+          "text_vi": "ABCD luôn là hình vuông",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:cyclic-test:1:3",
+          "text_vi": "ABCD luôn là hình thoi",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:cyclic-test:1:4",
+          "text_vi": "Chưa đủ nhận biết nội tiếp",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:9:cyclic-test:2",
+      "topic_id": "topic:9:cyclic-test",
+      "grade": 9,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Điều kiện góc nào nhận biết tứ giác lồi nội tiếp?",
+      "explanation_vi": "Với tứ giác lồi, nếu tổng hai góc đối bằng 180° thì tứ giác nội tiếp được một đường tròn. Khi chứng minh cần xác định đúng góc đối và nêu điều kiện tứ giác lồi.",
+      "options": [
+        {
+          "id": "option:demo:9:cyclic-test:2:1",
+          "text_vi": "Hai góc đối bù nhau",
+          "correct": true
+        },
+        {
+          "id": "option:demo:9:cyclic-test:2:2",
+          "text_vi": "Hai góc kề bằng nhau",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:cyclic-test:2:3",
+          "text_vi": "Một góc vuông",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:cyclic-test:2:4",
+          "text_vi": "Hai góc bất kỳ bằng nhau",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:9:review:1",
+      "topic_id": "topic:9:review",
+      "grade": 9,
+      "type": "single",
+      "difficulty": "recognize",
+      "text_vi": "Loại hình nào luôn là tứ giác nội tiếp?",
+      "explanation_vi": "Hình chữ nhật có tổng hai góc đối 180°.",
+      "options": [
+        {
+          "id": "option:demo:9:review:1:1",
+          "text_vi": "Hình chữ nhật",
+          "correct": true
+        },
+        {
+          "id": "option:demo:9:review:1:2",
+          "text_vi": "Mọi hình thoi",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:review:1:3",
+          "text_vi": "Mọi hình bình hành",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:review:1:4",
+          "text_vi": "Mọi tứ giác",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "question:demo:9:review:2",
+      "topic_id": "topic:9:review",
+      "grade": 9,
+      "type": "single",
+      "difficulty": "understand",
+      "text_vi": "Một hình thoi nội tiếp phải là hình gì?",
+      "explanation_vi": "Hình vuông vừa là hình chữ nhật vừa là hình thoi. Hình chữ nhật là hình bình hành và là tứ giác nội tiếp. Hình thoi không nhất thiết nội tiếp; chỉ các hình thoi có góc vuông (hình vuông) mới nội tiếp.",
+      "options": [
+        {
+          "id": "option:demo:9:review:2:1",
+          "text_vi": "Hình vuông",
+          "correct": true
+        },
+        {
+          "id": "option:demo:9:review:2:2",
+          "text_vi": "Hình thang bất kỳ",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:review:2:3",
+          "text_vi": "Tứ giác không có góc vuông",
+          "correct": false
+        },
+        {
+          "id": "option:demo:9:review:2:4",
+          "text_vi": "Không thể tồn tại",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "essays": [
+    {
+      "id": "essay:demo:6:square",
+      "topic_id": "topic:6:square",
+      "grade": 6,
+      "kind": "calculation",
+      "prompt_vi": "Một sân hình vuông có cạnh 5 m. Tính diện tích và chu vi.",
+      "assumptions_vi": "Cạnh a = 5 m.",
+      "conclusion_vi": "Tính S và P.",
+      "solution_vi": "S = 5² = 25 m²; P = 4 × 5 = 20 m.",
+      "hints": [
+        "Xác định cạnh a và đơn vị đo.",
+        "Dùng S = a² và P = 4a.",
+        "Thay a = 5; ghi m² cho diện tích và m cho chu vi."
+      ]
+    },
+    {
+      "id": "essay:demo:7:angles",
+      "topic_id": "topic:7:angles",
+      "grade": 7,
+      "kind": "calculation",
+      "prompt_vi": "Hai góc kề bù, một góc bằng 65°. Tính góc còn lại.",
+      "assumptions_vi": "Hai góc kề bù; góc thứ nhất 65°.",
+      "conclusion_vi": "Tìm số đo góc thứ hai.",
+      "solution_vi": "Hai góc kề bù có tổng 180°. Góc còn lại = 180° − 65° = 115°.",
+      "hints": [
+        "Nhớ tổng số đo của hai góc kề bù.",
+        "Viết x + 65° = 180°.",
+        "Suy ra x = 115°."
+      ]
+    },
+    {
+      "id": "essay:8:rectangle:1",
+      "topic_id": "topic:8:rectangle",
+      "grade": 8,
+      "kind": "calculation",
+      "prompt_vi": "Tính diện tích hình chữ nhật có chiều dài 4 cm, chiều rộng 3 cm.",
+      "assumptions_vi": "a = 4 cm, b = 3 cm.",
+      "conclusion_vi": "Tính diện tích S.",
+      "solution_vi": "S = a × b = 4 × 3 = 12 cm².",
+      "hints": [
+        "Xác định chiều dài a và chiều rộng b.",
+        "Dùng công thức S = a × b.",
+        "Thay số và ghi đơn vị diện tích: S = 12 cm²."
+      ]
+    },
+    {
+      "id": "essay:demo:9:cyclic",
+      "topic_id": "topic:9:cyclic",
+      "grade": 9,
+      "kind": "calculation",
+      "prompt_vi": "Tứ giác lồi ABCD nội tiếp có góc A = 70°, góc B = 100°. Tính góc C và D.",
+      "assumptions_vi": "ABCD nội tiếp; A = 70°, B = 100°.",
+      "conclusion_vi": "Tính góc C và D.",
+      "solution_vi": "A + C = 180° nên C = 110°. B + D = 180° nên D = 80°.",
+      "hints": [
+        "Xác định hai cặp góc đối A–C và B–D.",
+        "Dùng tính chất tổng hai góc đối bằng 180°.",
+        "Tính C = 180° − 70°; D = 180° − 100°."
+      ]
+    }
+  ]
+}

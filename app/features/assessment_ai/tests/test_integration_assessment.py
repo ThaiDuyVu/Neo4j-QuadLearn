@@ -63,7 +63,12 @@ def test_practice_timed_test_and_essay_review_round_trip():
         test = quiz.start_test(user_id, 8, topic_id, 300)
         attempt_ids.append(test.id)
         assert not hasattr(test.questions[0].options[0], "correct")
-        quiz.save_test_draft(user_id, test, {question.id: (correct,)})
+        # Bộ demo mở rộng có nhiều câu: lưu đáp án đúng cho toàn bộ đề.
+        selections = {
+            item.id: tuple(option.id for option in item.options if option.correct)
+            for item in quiz.questions(8, topic_id)
+        }
+        quiz.save_test_draft(user_id, test, selections)
         assert quiz.resume_test(user_id, test.id).selections[question.id] == (correct,)
         _integration_context = AppContext(DemoIdentity(), FakeContent(),
                                           AssessmentService(repository, identity=DemoIdentity()))
@@ -80,7 +85,9 @@ render(integration_context())
         next(button for button in page.button
              if button.label == "Nộp bài kiểm tra").click().run(timeout=20)
         assert not page.exception
-        assert any("Điểm kiểm tra: 10.0/10" in item.value for item in page.success)
+        assert any("Điểm kiểm tra: 10.0/10" in item.value for item in page.success), (
+            [item.value for item in page.success], [item.value for item in page.error]
+        )
         assert repository.attempts(user_id)[0].score == 10
         assert all(item["id"] != test.id for item in repository.test_drafts(user_id))
 

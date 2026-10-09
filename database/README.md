@@ -17,3 +17,7 @@ Reset có chủ đích: `python -m scripts.db reset --yes` chỉ chạy ở APP_
 `docker compose stop`/`down` không xóa volume. **`docker compose down -v` xóa toàn bộ volume/data dự án**, không dùng khi dừng thường. Đổi mật khẩu `.env` không đổi password volume Neo4j đã khởi tạo; giữ mật khẩu cũ hoặc đổi bằng Neo4j Browser và cập nhật `.env`. Không reset volume để “sửa lỗi” trước khi sao lưu.
 
 Schema/owner/ID/cardinality: [GRAPH_SCHEMA](../docs/GRAPH_SCHEMA.md). Constraints uniqueness không tự validate grade/relationship. Chỉ tạo index phù hợp skeleton, chưa tối ưu tải sản phẩm.
+
+## Bộ demo mở rộng
+
+Sau graph nền, chạy `python -m scripts.demo_data` để thêm học liệu và tài khoản đăng nhập. Dữ liệu nguồn ở `demo/content.json`; [DEMO_DATA.md](../docs/DEMO_DATA.md) giải thích từng tài khoản, đáp án và phạm vi reset. Chạy lại giữ trạng thái các tài khoản đã tạo. `db init` cập nhật seed gốc nên chạy tiếp `demo_data` nếu muốn nội dung mở rộng.

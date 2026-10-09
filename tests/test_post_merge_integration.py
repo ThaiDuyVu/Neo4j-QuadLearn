@@ -30,7 +30,9 @@ def test_authenticated_learning_quiz_progress_chat_and_revocation():
         ctx.progress.start_lesson(uid,source.id)
         assert ctx.progress.resume_lesson(uid).id == source.id
         ctx.progress.complete_lesson(uid,source.id)
-        ctx.progress.complete_lesson(uid,'lesson:8:parallelogram')
+        # Hoàn thành catalog hiện tại; không giả định seed chỉ có hai bài.
+        for lesson in ctx.content.lessons(8):
+            ctx.progress.complete_lesson(uid,lesson.id)
         level8 = ctx.progress.levels(uid)[2]
         assert level8.completion == 100 and level8.average_score == 10
         assert ctx.progress.access(uid,9)
