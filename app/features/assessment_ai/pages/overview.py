@@ -119,7 +119,7 @@ def render(ctx: AppContext):
                     selections[question.id] = tuple(chosen)
                 else:
                     chosen = st.radio("Chọn đáp án", [""] + list(labels),
-                                      format_func=lambda key: labels.get(key, "Chưa chọn"),
+                                      format_func=lambda key, labels=labels: labels.get(key, "Chưa chọn"),
                                       key=f"q:{question.id}")
                     selections[question.id] = (chosen,) if chosen else ()
                 feedback_key = f"feedback:{user.id}:{question.id}"
@@ -225,7 +225,7 @@ def render(ctx: AppContext):
                 else:
                     chosen = st.radio("Chọn đáp án", [""] + list(labels),
                                       index=([""] + list(labels)).index(saved[0]) if saved else 0,
-                                      format_func=lambda key: labels.get(key, "Chưa chọn"),
+                                      format_func=lambda key, labels=labels: labels.get(key, "Chưa chọn"),
                                       key=f"test:{session.id}:{test_question.id}")
                     test_selections[test_question.id] = (chosen,) if chosen else ()
                 if st.button("Gợi mở AI", key=f"test-hint:{session.id}:{test_question.id}", disabled=readonly):

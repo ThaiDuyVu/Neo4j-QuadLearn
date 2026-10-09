@@ -1,241 +1,196 @@
-# QuadLearn — Hướng dẫn demo và kiến thức cần hiểu
+# QuadLearn — Flow demo với dữ liệu đầy đủ để trình bày
 
-Tài liệu dành cho người trực tiếp trình bày bài tập Neo4j. Flow chính mất khoảng **15–20 phút**, đi theo hành trình của một người học: đăng nhập → học lý thuyết → xem hình → làm bài → theo dõi tiến độ → chuyển cấp → hỏi trợ lý → xem graph.
+Hướng dẫn cho bộ **quadlearn-demo-v1**, cập nhật ngày **09/10/2026**. Flow chính 15–20 phút; bản rút gọn 5–7 phút ở cuối tài liệu. Học liệu là bộ minh họa phục vụ bài tập Neo4j, chưa phải giáo trình đầy đủ lớp 6–9.
 
-Đối chiếu với giao diện và dữ liệu demo trong repository ngày **09/10/2026**. Dữ liệu chỉ minh họa một số nội dung lớp 6–9; các kết quả dưới đây giả định đã chạy seed và dùng chính sách mặc định. Có thể đọc lời thuyết trình gợi ý rồi diễn đạt lại bằng lời của mình.
+**Đã tạo dữ liệu trên Neo4j local hiện tại.** Mở ứng dụng tại <http://localhost:8501>; Neo4j Browser tại <http://localhost:7474>. Danh sách bài, đáp án, trạng thái tài khoản và cơ chế tạo lại ở [DEMO_DATA.md](DEMO_DATA.md).
 
-## 1. Chuẩn bị trước khi trình bày
+## 1. Chuẩn bị và chọn tài khoản
 
-### 1.1. Mở ứng dụng và database
+### 1.1. Khởi động / tạo dữ liệu trên máy khác
 
-Nếu ứng dụng đã chạy, mở <http://localhost:8501>. Neo4j Browser ở <http://localhost:7474>.
+Nếu máy đã setup và có graph nền:
 
-**macOS**, mở Terminal tại thư mục project đã setup:
+**macOS Terminal:**
 
 ```bash
 source .venv/bin/activate
 docker compose up -d --wait
 python -m scripts.db check
+python -m scripts.demo_data
 python -m streamlit run app/main.py --server.address 127.0.0.1 --server.port 8501
 ```
 
-**Windows PowerShell**, tại thư mục project đã setup:
+**Windows PowerShell:**
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 docker compose up -d --wait
 python -m scripts.db check
+python -m scripts.demo_data
 python -m streamlit run app/main.py --server.address 127.0.0.1 --server.port 8501
 ```
 
-Máy mới cần làm theo [Windows](SETUP_WINDOWS.md) hoặc [macOS](SETUP_MACOS.md), tạo `.env` và cài dependencies trước. Nếu chưa có dữ liệu, chạy `python -m scripts.db init` trước lệnh Streamlit. Không cần chạy seed lại mỗi lần demo.
+Máy mới cần tạo `.env`, cài dependencies theo [Windows](SETUP_WINDOWS.md) hoặc [macOS](SETUP_MACOS.md). Chạy `python -m scripts.db init` **trước** `python -m scripts.demo_data` để tạo graph nền lần đầu. Nếu chạy `db init` lại sau đó, chạy tiếp `demo_data` để khôi phục nội dung demo mở rộng.
 
-Trong Neo4j Browser, kết nối `bolt://localhost:7687`, dùng `NEO4J_USER` và `NEO4J_PASSWORD` của `.env`. **Đăng nhập Neo4j khác đăng nhập QuadLearn**: một bên truy cập database, một bên là tài khoản ứng dụng. Không chiếu `.env`, mật khẩu hoặc dữ liệu xác thực lên màn hình.
+`demo_data` cập nhật bộ học liệu demo theo ID; tài khoản đã có thì giữ nguyên lịch sử và trạng thái. Không tự reset mỗi lần chạy ứng dụng.
 
-### 1.2. Chọn tài khoản đúng với flow
+### 1.2. Tài khoản đã chuẩn bị
 
-| Tài khoản | Dùng để làm gì | Điểm cần nhớ |
-|---|---|---|
-| Học sinh mới, khởi đầu lớp 8 | Flow chính từ 0% đến chuyển lớp 9 | Khuyến nghị chuẩn bị trước buổi demo để kết quả dễ dự đoán |
-| `admin@quadlearn.local` | Đăng nhập nhanh, demo quản lý người dùng | Đã tạo trên database local hiện tại; mật khẩu đã được cấp riêng. Không phải tài khoản có sẵn trong seed trên mọi máy |
-| `student@example.invalid` / nút **Dùng demo chỉ đọc** | Xem nội dung và dữ liệu minh họa | Không có mật khẩu đăng nhập seed; không dùng để lưu bài làm, chat hoặc tiến độ |
+Mật khẩu mặc định công khai của **bảy tài khoản thử nghiệm** dưới đây: **`Demo123456789`**. Đây là credential demo dùng local; không phải mật khẩu Neo4j. Nếu người setup dùng `QUADLEARN_DEMO_PASSWORD`, sử dụng mật khẩu họ đã đặt.
 
-**Tạo học sinh demo trước buổi trình bày:** vào **Tài khoản → Đăng ký**, dùng email mới, tên tùy chọn, mật khẩu có chữ và số từ 8 ký tự, chọn lớp 8. Có thể dùng người học thử nghiệm 18 tuổi để chỉ cần một mã kích hoạt. Vào **Kích hoạt tài khoản**, chọn `verify`, nhập mã hiển thị sau đăng ký rồi đăng nhập. Tài khoản mới luôn có vai trò `student`.
+| Email | Vai trò / cấp | Trạng thái ban đầu | Dùng ở đâu |
+|---|---|---|---|
+| `demo.path@quadlearn.local` | student / lớp 8 | 2/4 bài = 50%, điểm TB 10; đang học Hình thoi | **Flow chính**: thêm một bài → 75% → lớp 9 |
+| `demo.start@quadlearn.local` | student / lớp 8 | 0%, chưa có điểm | Demo học từ đầu hoặc làm bài tính giờ |
+| `demo.ready@quadlearn.local` | student / lớp 8 | 3/4 bài = 75%, điểm TB 10 | Chuyển cấp ngay nếu thời gian ngắn |
+| `demo.review@quadlearn.local` | student / lớp 8 | 0%, điểm TB 0 | Gợi ý ôn tập theo chủ đề yếu |
+| `demo.junior@quadlearn.local` | student / lớp 6 | 1/4 bài = 25%, điểm TB 10 | Minh họa nội dung trực quan lớp 6 |
+| `demo.senior@quadlearn.local` | student / lớp 9 | 1/4 bài = 25%, điểm TB 10 | Góc đối và bài tập tứ giác nội tiếp |
+| `demo.manager@quadlearn.local` | admin / lớp 8 | Tài khoản quản trị thử nghiệm | Tìm, khóa và mở khóa tài khoản |
 
-Nếu minh họa người học dưới 16 tuổi, nhập thêm email người giám hộ và thực hiện cả mã `verify` lẫn `guardian`. Đây là luồng xác thực **local**: mã hiển thị trong ứng dụng, chưa gửi email thật và chưa xác minh sự đồng ý thực tế của người giám hộ. Dùng dữ liệu thử nghiệm, không nhập thông tin trẻ em thật.
+Các tài khoản này đã kích hoạt, có mật khẩu băm và được đăng nhập/ghi dữ liệu. Chúng **khác tài khoản `student@example.invalid` chỉ đọc**. Tài khoản admin cũ `admin@quadlearn.local` và mật khẩu của nó vẫn giữ nguyên.
 
-Chuẩn bị thêm một cửa sổ riêng cho admin nếu muốn chuyển qua màn quản trị. Không đăng xuất học sinh giữa flow chính nếu chưa ghi nhớ thông tin đăng nhập.
+### 1.3. Checklist trước buổi trình bày
 
-### 1.3. Checklist chạy thử
+- [ ] Neo4j chạy; `python -m scripts.db check` báo kết nối OK.
+- [ ] Đăng nhập thử tài khoản `demo.path`, xem 50%, điểm 10, bài tiếp tục Hình thoi.
+- [ ] Lớp 8 có đúng bốn bài demo: Hình bình hành, Hình chữ nhật, Hình thoi, Hình vuông.
+- [ ] Chủ đề `topic:8:rectangle` có hai câu hỏi.
+- [ ] Không có bài kiểm tra tính giờ đang làm; còn lượt hỏi trợ lý.
+- [ ] Mở sẵn Neo4j Browser bằng credentials `.env`, không chiếu mật khẩu lên màn hình.
 
-- [ ] Neo4j đang chạy; lệnh `python -m scripts.db check` báo `Neo4j connection OK`.
-- [ ] Trang chủ và các mục menu mở được.
-- [ ] Học sinh demo đang ở lớp 8, chưa hoàn thành bài và chưa có điểm.
-- [ ] Lớp 8 có hai bài: **Hình bình hành** và **Hình chữ nhật và tính chất**.
-- [ ] Có câu hỏi **Hình chữ nhật có bao nhiêu góc vuông?**, đáp án **4**.
-- [ ] Không có bài kiểm tra tính giờ còn đang làm; nếu có, hoàn tất và nộp trước.
-- [ ] Trợ lý còn lượt hỏi; chuẩn bị câu hỏi về tứ giác.
-- [ ] Đã mở sẵn Neo4j Browser và thử các query ở mục 5.
+**Trạng thái bảng trên là sau lần tạo đầu hoặc reset có chủ ý.** Các thao tác trong buổi demo lưu thật và làm thay đổi trạng thái. Nếu đã chạy thử, xem [cách reset riêng fixture](DEMO_DATA.md#4-chạy-lại-và-reset) để phục hồi trước buổi trình bày. Reset xóa lịch sử của bảy tài khoản demo này, không xóa tài khoản người dùng khác hoặc học liệu.
 
-Các bước làm bài và đánh dấu hoàn thành **ghi dữ liệu thật vào database local**. Muốn diễn lại trạng thái 0%, tạo học sinh mới. Không xóa dữ liệu cả nhóm hoặc chạy reset chỉ để làm lại một flow.
+## 2. Flow chính: một người học từ lớp 8 lên lớp 9
 
-## 2. Flow chính: thao tác, kết quả và lời trình bày
-
-### Tổng quan thời gian
-
-| Bước | Màn hình | Thời gian | Điều cần chứng minh |
+| Bước | Màn hình | Thời gian | Chứng minh điều gì |
 |---|---|---:|---|
-| 1 | Trang chủ, Tài khoản | 1 phút | Mục tiêu hệ thống và danh tính người học |
-| 2 | Lộ trình học | 2 phút | Phân cấp chương/bài, kiến thức tiên quyết, tiếp tục học |
-| 3 | Nội dung & Hình học | 2 phút | Lý thuyết đi cùng mô phỏng và công thức |
-| 4 | Bài tập và trợ lý học tập | 2 phút | Chấm trắc nghiệm và lưu lịch sử |
-| 5 | Tiến độ học tập, Hồ sơ và cấp độ | 3 phút | Tổng hợp giữa domain, điều kiện chuyển cấp |
-| 6 | Bài tập và trợ lý học tập | 2 phút | Tự luận, gợi ý và tự đánh giá |
-| 7 | Bài tập và trợ lý học tập | 2 phút | Trợ lý mô phỏng dùng ngữ cảnh graph |
-| 8 | Neo4j Browser | 3 phút | Quan hệ nhiều cấp và dữ liệu đã lưu |
-| 9 | Quản lý người dùng, kết thúc | 1 phút | Vai trò admin và giới hạn hiện tại |
+| 1 | Trang chủ → Tài khoản | 1 phút | Danh tính người học |
+| 2 | Tiến độ → Lộ trình | 2 phút | Tiến độ 50%, tiếp tục Hình thoi, tiên quyết |
+| 3 | Nội dung & Hình học | 2 phút | Lý thuyết, mô phỏng, công thức |
+| 4 | Bài tập và trợ lý học tập | 2 phút | Chấm hai câu và lưu lịch sử |
+| 5 | Lộ trình → Hồ sơ | 3 phút | Hoàn thành thêm một bài, đạt 75%, chuyển cấp |
+| 6 | Bài tập lớp 9 | 2 phút | Nội dung và bài tập đổi theo cấp hiện tại |
+| 7 | Tự luận và trợ lý | 2 phút | Gợi ý ba bước, tự đánh giá, ngữ cảnh graph |
+| 8 | Neo4j Browser | 3 phút | Phân loại hình, tiên quyết, dữ liệu đã lưu |
+| 9 | Tài khoản cần ôn / admin | 2 phút | Các tình huống mở rộng tùy thời gian |
 
 ### Bước 1 — Giới thiệu và đăng nhập
 
-**Thao tác**
+Mở **Trang chủ**, giới thiệu mục tiêu học tứ giác lớp 6–9. Vào **Tài khoản → Đăng nhập**:
 
-1. Mở **Trang chủ**.
-2. Chỉ các mục học tập, lộ trình và bài tập trên menu.
-3. Vào **Tài khoản → Đăng nhập**, đăng nhập học sinh lớp 8 đã chuẩn bị.
-4. Chỉ dòng `Đang dùng: … · student`.
+```text
+Email: demo.path@quadlearn.local
+Mật khẩu: Demo123456789
+```
 
-**Kết quả mong đợi:** ứng dụng nhận đúng người dùng. Không chọn **Dùng demo chỉ đọc** cho flow có thao tác lưu.
+Chỉ dòng tên và vai trò `student`; không chọn **Dùng demo chỉ đọc**.
 
-**Lời trình bày gợi ý**
+> “QuadLearn liên kết nội dung học, bài tập và tiến độ bằng Neo4j. Tôi sẽ trình bày một người học đang ở lớp 8, hoàn thành thêm nội dung rồi chuyển sang lớp 9 theo điều kiện của hệ thống.”
 
-> “QuadLearn hỗ trợ học tứ giác theo cấp độ lớp 6 đến lớp 9. Người học xem lý thuyết, tương tác với hình, làm bài và theo dõi tiến độ. Dữ liệu được lưu trong Neo4j, đặc biệt là các quan hệ giữa bài học, kiến thức nền và các loại tứ giác.”
+### Bước 2 — Trạng thái 50% và tiếp tục bài đang học
 
-**Kiến thức phần mềm:** xác thực trả lời “bạn là ai”; phân quyền trả lời “bạn được phép làm gì”. Tài khoản ứng dụng có mật khẩu được băm và session lưu trong Neo4j. Quyền ghi được kiểm tra ở lớp nghiệp vụ, ngoài việc ẩn hoặc khóa nút trên giao diện.
+1. Mở **Tiến độ học tập**: lớp 8 có 4 bài, đã xong 2 bài, tỷ lệ 50%, điểm TB 10.
+2. Chỉ **Tiếp tục: Hình thoi và đường chéo**.
+3. Vào **Lộ trình học**, chọn lớp 8, chọn bài **Hình thoi và đường chéo**.
+4. Xem các bài nền: Hình bình hành, song song, trung điểm, vuông góc…
+5. Có thể chọn xem lớp 9 để thấy chưa đủ điều kiện, rồi quay lại lớp 8.
 
-### Bước 2 — Xem lộ trình và kiến thức tiên quyết
+> “Có điểm 10 chưa đủ để chuyển cấp vì người học mới hoàn thành một nửa nội dung. Bài học hiện tại được liên kết đến kiến thức nền qua nhiều tầng graph. Việc bắt đầu học và việc hoàn thành học được lưu riêng.”
 
-**Thao tác**
+Bảng tiên quyết hiện dùng để hướng dẫn và truy xuất kiến thức; hệ thống chưa bắt buộc hoàn thành tất cả bài nền trước khi cho đánh dấu học xong bài hiện tại.
 
-1. Vào **Lộ trình học**, chọn **Lớp xem lộ trình = 8**.
-2. Mở chương để xem chủ đề và hai bài học.
-3. Chọn **Hình chữ nhật và tính chất** ở **Bài học**.
-4. Chỉ bảng bài nền: hình bình hành, hai đường thẳng song song và hình chữ nhật trực quan.
-5. Nhấn **Bắt đầu / tiếp tục bài này**.
-6. Sang **Tiến độ học tập**, chỉ thông tin **Tiếp tục: Hình chữ nhật và tính chất**.
+### Bước 3 — Xem nội dung và điều chỉnh hình
 
-**Kết quả mong đợi:** bài đang học được ghi nhận; bắt đầu bài chưa làm tăng số bài hoàn thành. Người học có thể quay lại bài đó.
+1. Mở **Nội dung & Hình học**, chọn lớp 8 và bài **Hình thoi và đường chéo**.
+2. Chọn mô phỏng **Hình thoi**; đặt `d1 = 6`, `d2 = 4` → diện tích **12 unit²**.
+3. Giải thích `S = d1 × d2 / 2`, hai đường chéo hình thoi vuông góc và không nhất thiết bằng nhau.
+4. Chọn **Hình chữ nhật**, đặt `a = 4`, `b = 3` → diện tích **12**, chu vi **14**.
 
-**Lời trình bày gợi ý**
+> “Cùng diện tích 12 nhưng hai hình có dữ kiện và công thức khác nhau. Hình minh họa thay đổi theo slider để người học thấy quan hệ giữa kích thước và kết quả.”
 
-> “Hình chữ nhật ở lớp 8 có liên hệ với hình bình hành. Muốn hiểu hình bình hành thì cần hiểu các cặp cạnh song song. Hệ thống có thể đi qua nhiều quan hệ để tìm toàn bộ kiến thức nền, thay vì chỉ lấy một bài trước đó.”
+Giao diện hiện là SVG với slider cho năm loại hình, chưa phải công cụ dựng hình đầy đủ hoặc kéo thả đỉnh tự do. Đơn vị là `unit`, không tự coi là cm nếu bài không quy định.
 
-**Điểm cần phân biệt:** bảng tiên quyết giúp hướng dẫn học và truy xuất kiến thức. Hiện tại việc hoàn thành mọi bài tiên quyết chưa được dùng làm điều kiện bắt buộc cho nút **Tôi đã học xong bài này**. Điều kiện truy cập cấp độ là cơ chế riêng, minh họa ở bước 5.
+### Bước 4 — Làm hai câu hình chữ nhật và lưu kết quả
 
-### Bước 3 — Lý thuyết và mô phỏng hình học
-
-**Thao tác**
-
-1. Vào **Nội dung & Hình học**, chọn khối lớp 8.
-2. Chọn bài **Hình chữ nhật và tính chất**.
-3. Trong **Chọn hình tứ giác mô phỏng**, chọn **Hình chữ nhật**.
-4. Đặt chiều dài `a = 4`, chiều rộng `b = 3`.
-5. Chỉ hình, công thức và kết quả: diện tích **12 unit²**, chu vi **14 unit**.
-6. Tăng `a` từ 4 lên 6: diện tích thành **18**, chu vi thành **18**.
-7. Nếu còn thời gian, đổi sang hình bình hành: `a = 6`, `h = 4`, diện tích **24**.
-
-**Lời trình bày gợi ý**
-
-> “Hình chữ nhật có bốn góc vuông. Diện tích bằng chiều dài nhân chiều rộng; chu vi là hai lần tổng hai cạnh kề. Với hình bình hành, diện tích dùng chiều cao vuông góc với đáy, không dùng cạnh nghiêng.”
-
-**Giới hạn trình bày:** giao diện hiện có mô phỏng SVG điều chỉnh bằng slider cho năm loại hình. Không giới thiệu đây là công cụ dựng hình hoàn chỉnh hoặc giao diện kéo thả đỉnh tự do. Đơn vị trên màn hình là `unit`; chỉ quy đổi thành cm khi bài toán quy định đơn vị.
-
-### Bước 4 — Trắc nghiệm và lịch sử bài làm
-
-**Thao tác**
-
-1. Vào **Bài tập và trợ lý học tập**, kéo xuống **Luyện tập trắc nghiệm**.
+1. Mở **Bài tập và trợ lý học tập**, kéo đến **Luyện tập trắc nghiệm**.
 2. Chọn **Chủ đề = topic:8:rectangle**.
-3. Với câu **Hình chữ nhật có bao nhiêu góc vuông?**, chọn **4**.
-4. Nhấn **Kiểm tra câu** để xem phản hồi đúng và giải thích.
-5. Nhấn **Nộp bài luyện tập** để lưu lần làm.
-6. Xem điểm **10/10**, sau đó chọn lần làm ở **Xem lại lần làm**. Nếu danh sách chưa cập nhật ngay, mở lại trang.
+3. Chọn **4** cho câu “Hình chữ nhật có bao nhiêu góc vuông?”.
+4. Chọn **Bằng nhau và cắt nhau tại trung điểm** cho câu về hai đường chéo.
+5. Nhấn **Kiểm tra câu** nếu muốn xem giải thích từng câu.
+6. Nhấn **Nộp bài luyện tập** → **10/10**; mở lại trang để xem lịch sử và chi tiết lần làm.
 
-**Kết quả mong đợi:** một lần làm đã hoàn tất, có điểm và chi tiết đáp án được lưu. Với bộ seed hiện tại, chủ đề này có một câu nên trả lời đúng đạt 10/10. Đây là dữ liệu minh họa, không phải một đề kiểm tra đầy đủ.
+> “Kiểm tra câu là phản hồi tức thời; nộp bài mới lưu lần làm. Mỗi lần làm có các câu trả lời và option đã chọn. Hai câu đúng đều được tính điểm; với bộ này đúng một câu sẽ được 5/10.”
 
-**Lời trình bày gợi ý**
+Tài khoản path đã có một lần làm 10 điểm; lần mới 10 điểm giữ trung bình ở 10. Không chọn đáp án sai trong flow chính. Để minh họa điểm yếu, dùng tài khoản review riêng.
 
-> “Kiểm tra từng câu giúp học sinh nhận phản hồi ngay. Nộp bài mới lưu lịch sử làm bài. Một lần làm liên kết đến người học, chủ đề, câu hỏi và đáp án đã chọn. Phần tiến độ dùng kết quả này để tính điểm trung bình.”
+### Bước 5 — Hoàn thành bài thứ ba và chuyển lớp
 
-Không nộp thêm đáp án sai trong flow chính: chính sách mặc định tính trung bình tất cả các lần làm hoàn tất, nên lần làm mới có thể thay đổi điều kiện chuyển cấp.
-
-### Bước 5 — Từ tiến độ đến chuyển lớp 9
-
-Đây là bước thể hiện rõ sự tích hợp giữa nội dung, bài làm và lộ trình.
-
-**Thao tác**
-
-1. Vào **Lộ trình học**, lớp 8, chọn **Hình chữ nhật và tính chất**.
+1. Trở lại **Lộ trình học**, chọn bài **Hình thoi và đường chéo**.
 2. Nhấn **Tôi đã học xong bài này**.
-3. Vào **Tiến độ học tập**, nhấn **Tính lại và lưu tiến độ**.
-4. Chỉ lớp 8: **1/2 bài = 50%**, điểm trung bình **10**.
-5. Chọn xem lộ trình lớp 9: với học sinh mới, cấp này chưa đủ điều kiện truy cập.
-6. Quay lại lộ trình lớp 8, chọn **Hình bình hành**, đánh dấu học xong.
-7. Vào **Tiến độ học tập**, tính lại và lưu: **2/2 bài = 100%**, điểm trung bình **10**.
-8. Vào **Hồ sơ và cấp độ**, chọn **Chuyển sang lớp = 9**.
-9. Để checkbox học vượt ở trạng thái bỏ chọn; nhấn **Xác nhận đổi cấp độ**.
-10. Vào **Lộ trình học**, chọn lớp 9 và mở bài **Tứ giác nội tiếp**.
+3. Mở **Tiến độ học tập**, nhấn **Tính lại và lưu tiến độ**.
+4. Chỉ kết quả lớp 8: **3/4 bài = 75%**, điểm TB **10**.
+5. Mở **Hồ sơ và cấp độ**, chọn **Chuyển sang lớp = 9**.
+6. **Không bật checkbox học vượt**, nhấn **Xác nhận đổi cấp độ**.
+7. Mở lộ trình lớp 9; thấy bốn bài về nội tiếp, tính góc, nhận biết và ôn tập.
 
-**Giải thích điều kiện mặc định**
+> “Điều kiện mặc định là hoàn thành ít nhất 70% và điểm trung bình ít nhất 6. Ba trên bốn bài bằng 75%, nên người học đã đủ điều kiện. Điểm bài làm do domain đánh giá lưu; domain lộ trình tổng hợp qua contract để quyết định truy cập cấp độ.”
 
-- Hoàn thành ít nhất **70%** số bài đã xuất bản của cấp trước.
-- Điểm trung bình của các lần làm hoàn tất ở cấp trước ít nhất **6/10**.
-- Chỉ có điểm 10 nhưng mới hoàn thành 50% thì chưa đủ điều kiện.
-- Với hai bài seed lớp 8, tỷ lệ chỉ có thể là 0%, 50% hoặc 100%; phải xong cả hai mới đạt ngưỡng 70%.
-- Bài học hoàn thành và điểm bài làm là hai dữ liệu độc lập. Trả lời đúng trắc nghiệm không tự đánh dấu bài học hoàn thành.
+Hoàn thành bài và điểm quiz độc lập: trả lời đúng không tự đánh dấu bài hoàn thành. Mặc định điểm TB tính tất cả các lần làm hoàn tất. Đạt ngưỡng khiến quyền truy cập được tính là hợp lệ; thao tác đổi cấp ghi nhận lớp hiện tại và cấp đã mở. Cột **Đã mở** có thể chưa đổi trước thao tác xác nhận.
 
-**Lời trình bày gợi ý**
+### Bước 6 — Bài tập lớp 9 sau khi chuyển cấp
 
-> “Tiến độ không chỉ là điểm kiểm tra. Người học cần vừa học đủ nội dung vừa đạt điểm tối thiểu. Kết quả bài làm được module đánh giá lưu; module lộ trình đọc kết quả và nội dung qua contract để tổng hợp, tránh hai module cùng ghi một nghiệp vụ.”
+1. Vào **Nội dung & Hình học**, chọn lớp 9 → **Tứ giác nội tiếp**.
+2. Giải thích bốn đỉnh cùng nằm trên một đường tròn; hai góc đối có tổng 180°.
+3. Mở **Bài tập và trợ lý học tập**, chọn `topic:9:cyclic`.
+4. Câu góc A = 70° → chọn **110°** cho góc C.
+5. Câu số đỉnh trên cùng đường tròn → chọn **4**.
+6. Nộp bài → **10/10** lớp 9. Mở Tiến độ và tính lại nếu muốn xem điểm cấp mới.
 
-**Lưu ý trạng thái:** khi đạt ngưỡng, quyền truy cập lớp 9 có thể được tính là hợp lệ trước khi đổi lớp. Cột **Đã mở** phản ánh cấp đã mở/đã ghi nhận; thao tác **Xác nhận đổi cấp độ** cập nhật lớp hiện tại và ghi nhận việc mở cấp. Đừng lấy riêng cột này để kết luận việc tính điều kiện sai.
+> “Bài tập đi theo lớp hiện tại của người dùng. Sau khi chuyển lớp, câu hỏi thay đổi từ tính chất hình chữ nhật sang tính chất nội tiếp. Hệ thống hiện có nội dung mẫu cho tất cả bốn cấp.”
 
-Chính sách có thể được thay đổi qua biến `VU_UNLOCK_COMPLETION`, `VU_UNLOCK_SCORE`, `VU_AVERAGE_POLICY`, `VU_ALLOW_SKIP`; tài liệu dùng mặc định 70%, 6, `all`, cho phép học vượt có xác nhận. Học vượt là luồng có cảnh báo và xác nhận riêng, không dùng ở bước này để chứng minh đạt ngưỡng.
+### Bước 7 — Tự luận ba gợi ý và trợ lý mô phỏng
 
-### Bước 6 — Tự luận và gợi ý từng bước
+**Tự luận lớp 9:**
 
-**Thao tác**
+1. Ở **Bài tự luận**, chọn đề ABCD nội tiếp, A = 70°, B = 100°.
+2. Nhấn **Mở gợi ý tiếp** lần lượt để xem: cặp góc đối → công thức → thay số.
+3. Nhập `C = 180° − 70° = 110°; D = 180° − 100° = 80°`.
+4. Nhấn **Xem lời giải đầy đủ**, chọn **Đã hiểu**, nhấn **Lưu tự đánh giá**.
 
-1. Trong **Hồ sơ và cấp độ**, đổi về lớp 8. Cấp thấp hơn đã có quyền truy cập.
-2. Mở **Bài tập và trợ lý học tập**, kéo xuống **Bài tự luận**.
-3. Chọn đề **Tính diện tích hình chữ nhật có chiều dài 4 cm, chiều rộng 3 cm.**
-4. Nhấn **Mở gợi ý tiếp**, chỉ gợi ý `S = a × b`.
-5. Nhập bài làm: `S = 4 × 3 = 12 cm²`.
-6. Nhấn **Xem lời giải đầy đủ**, so sánh bài làm với lời giải mẫu.
-7. Chọn **Đã hiểu** ở **Tự đánh giá**, nhấn **Lưu tự đánh giá**.
+Đây là lời giải mẫu và tự đánh giá, chưa tự chấm bài tự luận như giáo viên.
 
-**Lời trình bày gợi ý**
+**Trợ lý:**
 
-> “Bài tự luận cho người học xem giả thiết, kết luận và mở gợi ý khi cần. Sau khi đối chiếu lời giải, người học tự đánh giá mức hiểu. Hệ thống lưu bài làm, số gợi ý đã dùng và kết quả tự đánh giá.”
+1. Chọn ngữ cảnh **Tứ giác nội tiếp**, ngôn ngữ `vi`.
+2. Hỏi **“Tứ giác nội tiếp có những kiến thức tiên quyết nào?”** rồi nhấn **Gửi câu hỏi**.
+3. Chỉ phản hồi, **Mở nguồn …**, lịch sử và lượt hỏi còn lại.
 
-Bộ seed này có **một gợi ý**. Không nói đã có nhiều bước cho mọi đề. Phần này chưa tự chấm bài tự luận như giáo viên và không tự chuyển kết quả tự đánh giá thành điểm trắc nghiệm.
+> “Hệ thống duyệt graph để lấy bài hiện tại và kiến thức nền. Provider hiện dùng mock, ghép tên nguồn, nội dung và hướng dẫn theo cấp. Đây là luồng truy xuất và lưu hội thoại đang hoạt động, chưa phải LLM có khả năng suy luận.”
 
-### Bước 7 — Trợ lý mô phỏng và nguồn kiến thức
+Mock không thực sự phân tích câu hỏi, có thể dùng nội dung nguồn đầu tiên được trả về thay vì bài đang chọn. Hai câu khác nhau cùng ngữ cảnh có thể cho phản hồi giống nhau. Đừng dùng phản hồi mock để khẳng định một chứng minh mới là đúng. Quota mặc định 10 lượt/ngày; không cần API key.
 
-**Thao tác**
+### Bước 8 — Neo4j Browser
 
-1. Trong **Bài tập và trợ lý học tập**, tìm **Trợ lý học tập · bản mô phỏng**.
-2. Chọn **Ngữ cảnh bài học = Hình chữ nhật và tính chất**, ngôn ngữ `vi`.
-3. Nhập: **Vì sao hình chữ nhật là hình bình hành?**
-4. Nhấn **Gửi câu hỏi**.
-5. Chỉ câu trả lời, các liên kết **Mở nguồn …** và số lượt còn lại.
-6. Mở một nguồn để xem bài học được liên kết. Quay lại trang bài tập.
-7. Xem **Lịch sử chat**; có thể chọn **Hữu ích** và nhấn **Lưu đánh giá**.
+Chạy các query mục 5, dùng chế độ **Graph** cho đường đi và **Table** cho thống kê.
 
-**Lời trình bày gợi ý**
+Ở query người học, đặt parameter:
 
-> “Ứng dụng truy xuất bài học hiện tại và kiến thức liên quan trong graph để tạo ngữ cảnh. Mỗi câu trả lời có thể dẫn về bài nguồn. Nhà cung cấp trả lời hiện là mock để demo không cần API key; nhóm đã có điểm tích hợp để thay bằng provider thật sau này.”
+```text
+:param email => 'demo.path@quadlearn.local'
+```
 
-**Phải nói đúng:** câu trả lời mô phỏng không có năng lực suy luận của LLM và có thể không giải thích đầy đủ câu hỏi cụ thể. Phần có thể chứng minh ở đây là truy xuất ngữ cảnh, liên kết nguồn, lưu hội thoại và giới hạn lượt hỏi. Mặc định quota là 10 lượt/ngày, có thể khác nếu cấu hình thay đổi; không cố hỏi hết quota trong flow chính.
+> “Hình vuông có hai hướng phân loại: chữ nhật và thoi. Một bài lớp 9 có nhiều lớp kiến thức nền. Neo4j lưu các quan hệ trực tiếp, giúp diễn đạt truy vấn đường đi tự nhiên. Riêng đăng nhập chủ yếu là lưu tài khoản/session; lợi thế graph rõ hơn ở quan hệ kiến thức và lộ trình.”
 
-### Bước 8 — Cho thấy dữ liệu graph thực tế
+Không trả về toàn bộ node User khi chiếu màn hình vì nó có thuộc tính xác thực. Các query dưới chỉ trả thông tin cần trình bày.
 
-Chuyển sang Neo4j Browser, chạy query 1–4 ở mục 5. Mỗi query chỉ giải thích một ý: phân loại hình, kiến thức nền nhiều cấp, lịch sử bài làm và tiến độ.
+### Bước 9 — Đổi tài khoản để xem tình huống khác
 
-**Lời trình bày gợi ý**
+**Ôn tập:** đăng xuất path, đăng nhập `demo.review@quadlearn.local`, mở **Tiến độ học tập**. Chủ đề hình chữ nhật có TB 0; **Bài nền nên ôn** dẫn đến các tiên quyết chưa hoàn thành.
 
-> “Ở đây các quan hệ có ý nghĩa nghiệp vụ. Hình vuông vừa là hình chữ nhật vừa là hình thoi. Một bài lớp 9 có thể cần kiến thức lớp 8, lớp 7 và lớp 6. Neo4j cho phép duyệt các đường đi đó trực tiếp bằng Cypher.”
+**Quản trị:** đăng nhập `demo.manager@quadlearn.local`, mở **Quản lý người dùng**, tìm `demo.start`. Nếu cần demo khóa/mở khóa, chỉ dùng tài khoản này; mở khóa lại sau thao tác. Khóa vô hiệu session cũ; người dùng phải đăng nhập lại sau mở khóa. Không khóa tài khoản đang trình bày hoặc admin hiện tại.
 
-Dùng chế độ Graph cho query trả về đường đi; dùng Table cho query thống kê. Không trả về toàn bộ node `User` khi chiếu màn hình, vì thuộc tính người dùng có thể chứa dữ liệu xác thực.
-
-### Bước 9 — Vai trò admin và kết thúc
-
-Nếu có thời gian, chuyển sang cửa sổ admin đã đăng nhập, vào **Quản lý người dùng**, nhập tên/email học sinh demo tại **Tìm theo tên/email**.
-
-Chỉ danh sách và điều khiển **Khóa tài khoản được chọn → Áp dụng khóa / mở khóa**. Nếu thực sự demo thao tác khóa, dùng tài khoản thử nghiệm khác, sau đó mở khóa lại. Khóa tài khoản vô hiệu session cũ; cần đăng nhập lại sau khi được mở khóa. Không khóa học sinh đang dùng trong flow hoặc tài khoản admin hiện tại.
-
-**Lời kết gợi ý**
-
-> “Qua một hành trình học, nhóm đã kết nối nội dung, đánh giá và tiến độ trong cùng graph. Neo4j hỗ trợ mô hình quan hệ kiến thức; ứng dụng dùng các domain riêng để phát triển song song. Phiên bản hiện tại có nội dung mẫu và AI mô phỏng; bộ chương trình đầy đủ, email thật và LLM thật là các phần cần phát triển tiếp.”
+> “Các tài khoản được chuẩn bị ở những trạng thái khác nhau để thể hiện đủ tình huống, không phải thay đổi trạng thái bằng dữ liệu giả trên giao diện. Mỗi tình huống được đọc từ graph thật trên Neo4j local.”
 
 ## 3. Các flow mở rộng nếu giảng viên yêu cầu
 
@@ -377,7 +332,7 @@ RETURN l.grade AS lop, p.completion AS phan_tram,
 ORDER BY lop;
 ```
 
-**Kỳ vọng:** lớp 8 có 100%, điểm trung bình 10 khi đi đúng flow trên. `Progress` là dữ liệu tổng hợp đã lưu; nguồn tính là các quan hệ hoàn thành và các lần làm. Sau khi có điểm mới, snapshot có thể cần cập nhật, dù một số bảng giao diện tính trực tiếp từ nguồn.
+**Kỳ vọng:** lớp 8 có 75%, điểm trung bình 10 khi đi đúng flow trên. `Progress` là dữ liệu tổng hợp đã lưu; nguồn tính là các quan hệ hoàn thành và các lần làm. Sau khi có điểm mới, snapshot có thể cần cập nhật, dù một số bảng giao diện tính trực tiếp từ nguồn.
 
 ### Query 5 — Bài liên quan làm ngữ cảnh cho trợ lý
 
@@ -417,7 +372,9 @@ Luồng chung: **page → service/contract → repository → Database → Neo4j
 | `assessment_ai/services/quiz.py` | Chấm đáp án trắc nghiệm | Tính điểm dựa trên câu hỏi và option, không dựa trên trạng thái nút UI |
 | `assessment_ai/services/mock_ai.py` | Provider trả lời mô phỏng | Điểm thay thế provider, không phải API LLM thật |
 | `assessment_ai/repositories/` | Lưu lần làm, câu trả lời, hội thoại, tự đánh giá | Sở hữu dữ liệu chi tiết đánh giá và AI |
-| `database/seed.cypher` | Bộ nội dung và quan hệ demo | Không phải toàn bộ chương trình lớp 6–9 |
+| `database/demo/content.json` | Nguồn học liệu, đáp án và tiên quyết của bộ demo mở rộng | 16 bài, 32 câu hỏi, 4 tự luận; chưa phải chương trình đầy đủ |
+| `scripts/demo_data.py` | Import và tạo tài khoản/trạng thái demo | Tái dùng service để chấm bài và tính tiến độ; reset có phạm vi riêng |
+| `database/seed.cypher` | Graph nền và taxonomy | Cần chạy trước trên database mới |
 | `database/constraints.cypher` | Các constraint ID và ràng buộc dữ liệu | Giúp tránh trùng định danh; service vẫn phải kiểm tra nghiệp vụ |
 
 Các đường dẫn feature ở bảng nằm dưới `app/features/`. Nếu cần giải thích sâu phần lộ trình, đọc [VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md](VU_NGHIEP_VU_VA_GIAI_THICH_CODE.md). Thiết kế chung ở [ARCHITECTURE.md](ARCHITECTURE.md), [GRAPH_SCHEMA.md](GRAPH_SCHEMA.md), [FEATURE_INTEGRATION.md](FEATURE_INTEGRATION.md).
@@ -444,7 +401,7 @@ Chưa. Demo local hiển thị mã trong ứng dụng. Email/OAuth và xác th�
 
 **“Có đủ bài lớp 6–9 chưa?”**
 
-Chưa. Có các cấp và dữ liệu đại diện để chứng minh liên kết. Seed có một bài ở lớp 6, một bài ở lớp 7, hai bài ở lớp 8 và một bài ở lớp 9. Bộ trắc nghiệm/tự luận seed tập trung lớp 8.
+Chưa. Có các cấp và dữ liệu đại diện để chứng minh liên kết. Bộ demo mở rộng có 16 bài học, 32 câu trắc nghiệm và 4 bài tự luận, phủ cả bốn cấp. Mỗi cấp có 4 bài học, 8 câu hỏi và 1 bài tự luận; chưa phải chương trình đầy đủ.
 
 **“Điểm có mất sau khi tắt ứng dụng không?”**
 
@@ -463,8 +420,8 @@ Vũ phụ trách danh tính, lộ trình và tiến độ; Sơn phụ trách n�
 | Lỗi thiếu method sau khi cập nhật code, ví dụ `Database.transaction` | Dừng tiến trình Streamlit cũ bằng Ctrl+C rồi khởi động lại để nạp class mới |
 | Không lưu được / nút bị khóa | Kiểm tra đang dùng demo chỉ đọc, chưa đăng nhập, hoặc có bài kiểm tra đang làm |
 | Đăng nhập tài khoản mới thất bại | Kiểm tra trạng thái pending, mã kích hoạt và xác nhận người giám hộ nếu cần |
-| Không thấy trắc nghiệm sau khi đổi lớp 9 | Seed trắc nghiệm chỉ ở lớp 8; đổi lớp hiện tại về 8 trong Hồ sơ |
-| Không đủ điều kiện lớp 9 | Kiểm tra 2/2 bài lớp 8, điểm trung bình ≥6, đã nộp bài; không bật học vượt để che việc chưa đạt |
+| Không thấy trắc nghiệm sau khi đổi lớp 9 | Bộ demo mở rộng có câu hỏi lớp 6–9; kiểm tra đã chạy scripts.demo_data và đang chọn đúng lớp/chủ đề |
+| Không đủ điều kiện lớp 9 | Kiểm tra ít nhất 3/4 bài lớp 8 (75%), điểm trung bình ≥6, đã nộp bài; không bật học vượt để che việc chưa đạt |
 | Query người học trả rỗng | Thay `$email` bằng đúng email đã demo; kiểm tra thao tác đã được lưu |
 | Chat không gửi được | Kiểm tra quota, câu hỏi thuộc hình học và không có bài kiểm tra đang làm |
 | Gợi ý ôn tập rỗng | Kiểm tra điểm trung bình chủ đề có dưới 5 và còn bài tiên quyết chưa hoàn thành hay không |
@@ -479,7 +436,9 @@ Kết thúc buổi demo: Ctrl+C ở Terminal để dừng Streamlit; có thể d
 
 - **PASS:** sáu khối Cypher trong mục 5 (gồm bản graph và bản bảng của query tiên quyết) đã thực thi thành công trên Neo4j local ngày 09/10/2026, chỉ đọc dữ liệu.
 - **PASS:** các liên kết tài liệu local tồn tại; kiểm tra định dạng diff không có lỗi whitespace.
-- **Đã đối chiếu source:** tên màn hình/nút, dữ liệu seed, công thức và chính sách chuyển cấp mặc định.
-- **CHƯA KIỂM CHỨNG trong lần viết tài liệu này:** chạy lại trọn flow bằng một học sinh mới và chạy các lệnh trên Windows. Người trình bày cần chạy thử checklist trước buổi demo.
+- **PASS:** 191 tests (179 unit/UI + 12 integration), bảy tài khoản và luồng service 50% → 75% → lớp 9 trên DB thật.
+- **PASS:** năm trang Streamlit render bằng AppTest với DB thật; fixture đã phục hồi về trạng thái ban đầu.
+- **Đã đối chiếu source:** tên màn hình/nút, dữ liệu, công thức và chính sách chuyển cấp mặc định.
+- **CHƯA KIỂM CHỨNG trong lần viết tài liệu này:** thao tác trực tiếp toàn bộ flow bằng trình duyệt và chạy các lệnh trên Windows. Người trình bày cần chạy thử checklist trước buổi demo.
 
 Query lịch sử/tiến độ có thể trả rỗng nếu tài khoản được chọn chưa có dữ liệu tương ứng. Việc query chạy thành công xác nhận cú pháp và schema hiện tại; không thay thế việc kiểm tra kết quả sau từng thao tác UI của flow.

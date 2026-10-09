@@ -63,3 +63,7 @@ Ctrl+C dừng Streamlit; `deactivate` thoát venv. `docker compose stop` dừng 
 Nếu Streamlit đang chạy từ bản code cũ, dừng process bằng Ctrl+C rồi chạy lại `python -m streamlit run app/main.py`. Rerun/refresh trình duyệt không đảm bảo Python modules và đối tượng `st.cache_resource` đã được nạp lại. Lỗi `Database object has no attribute transaction` có thể do driver object từ phiên trước merge; source hiện tại có phương thức transaction. Restart ứng dụng không xóa database/volume.
 
 Giao diện dùng tên chức năng; tên thành viên chỉ nằm trong source comments và tài liệu phân công. Admin local đã được tạo trên máy hiện tại: `admin@quadlearn.local`. Tài khoản này không nằm trong seed chung; máy thành viên khác dùng CLI create-admin trong tài liệu Vũ để tạo riêng.
+
+## Chuẩn bị dữ liệu để demo
+
+Chạy `python -m scripts.demo_data` sau lần `db init` đầu tiên. Xem [DEMO_DATA.md](DEMO_DATA.md) để lấy bảy tài khoản thử nghiệm và [DEMO_GUIDE.md](DEMO_GUIDE.md) để thao tác. Lệnh `python -m scripts.demo_data --reset-demo-users --yes` xóa và tạo lại **chỉ tài khoản fixture và lịch sử riêng của chúng**; không cần xóa volume/database.
