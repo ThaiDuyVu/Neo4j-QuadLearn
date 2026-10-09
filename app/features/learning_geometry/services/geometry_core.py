@@ -10,9 +10,9 @@ class GeometryCoreEngine:
 
     @staticmethod
     def update_parallelogram_vertex(
-        vertices: Dict[str, GeometryPoint], 
-        dragged_vertex: str, 
-        new_x: float, 
+        vertices: Dict[str, GeometryPoint],
+        dragged_vertex: str,
+        new_x: float,
         new_y: float
     ) -> GeometryShapeModel:
         updated = {k: GeometryPoint(x=v.x, y=v.y) for k, v in vertices.items()}

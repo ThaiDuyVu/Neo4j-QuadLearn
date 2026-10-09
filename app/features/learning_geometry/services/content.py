@@ -53,7 +53,7 @@ class ContentService:
         """Map raw dict/object data to shared LessonSummary dataclass."""
         if isinstance(data, LessonSummary):
             return data
-            
+
         if isinstance(data, dict):
             return LessonSummary(
                 id=data.get("id", ""),

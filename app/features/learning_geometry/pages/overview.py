@@ -14,11 +14,11 @@ def render(ctx: AppContext):
 
     if lessons:
         lesson = st.selectbox(
-            "Chọn bài học lý thuyết:", 
-            lessons, 
+            "Chọn bài học lý thuyết:",
+            lessons,
             format_func=lambda x: getattr(x, "title", getattr(x, "title_vi", "Bài học"))
         )
-        
+
         st.subheader(f"📖 {getattr(lesson, 'title', getattr(lesson, 'title_vi', 'Chi tiết bài học'))}")
         st.markdown(getattr(lesson, "content", getattr(lesson, "content_vi", "Nội dung đang cập nhật...")))
 
@@ -27,10 +27,10 @@ def render(ctx: AppContext):
         if prereqs:
             st.table([
                 {
-                    "Mã bài học": x.id, 
-                    "Tên bài học": getattr(x, "title", getattr(x, "title_vi", "")), 
+                    "Mã bài học": x.id,
+                    "Tên bài học": getattr(x, "title", getattr(x, "title_vi", "")),
                     "Khối lớp": getattr(x, "grade", grade)
-                } 
+                }
                 for x in prereqs
             ])
         else:
@@ -41,11 +41,11 @@ def render(ctx: AppContext):
     st.divider()
 
     st.subheader("📐 Mô phỏng Tứ giác Động Tương tác (Lớp 6 - 9)")
-    
+
     # Chọn loại tứ giác phù hợp chương trình Lớp 6 - 9
     shape_type = st.radio(
-        "Chọn hình tứ giác mô phỏng:", 
-        ["Hình chữ nhật", "Hình vuông", "Hình bình hành", "Hình thoi", "Hình thang cân"], 
+        "Chọn hình tứ giác mô phỏng:",
+        ["Hình chữ nhật", "Hình vuông", "Hình bình hành", "Hình thoi", "Hình thang cân"],
         horizontal=True
     )
 
@@ -122,7 +122,7 @@ def render(ctx: AppContext):
             <svg viewBox="0 0 500 250" style="background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0;">
                 {svg_content}
             </svg>
-            ''', 
+            ''',
             height=260
         )
 

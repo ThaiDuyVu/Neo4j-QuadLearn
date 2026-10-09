@@ -33,7 +33,7 @@ class ImportValidationService:
             # 1. Validation tiêu đề & nội dung tiếng Việt bắt buộc
             title = lesson.get("title", {})
             content = lesson.get("content", {})
-            
+
             if isinstance(title, str):
                 title = {"vi": title}
             if isinstance(content, str):
@@ -43,7 +43,7 @@ class ImportValidationService:
                 errors.append(f"Bài [{lesson_id}] (Dòng {idx}): Thiếu tiêu đề tiếng Việt ('title.vi').")
             if not content.get("vi"):
                 errors.append(f"Bài [{lesson_id}] (Dòng {idx}): Thiếu nội dung tiếng Việt ('content.vi').")
-            
+
             if not title.get("en") or not content.get("en"):
                 warnings.append(f"Bài [{lesson_id}] (Dòng {idx}): Thiếu bản dịch tiếng Anh (sẽ dùng Fallback tiếng Việt).")
 
