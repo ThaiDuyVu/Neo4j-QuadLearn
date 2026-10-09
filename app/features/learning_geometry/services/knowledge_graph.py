@@ -1,5 +1,6 @@
 """Read-only graph filtering and DOT rendering; no fixed list of shapes."""
 import json
+import textwrap
 
 
 def focus_graph(graph, shape_id=None, direction="both", depth=2):
@@ -37,10 +38,18 @@ def graph_dot(graph, selected=None, orientation="BT"):
     lines = ["digraph Geometry {", f"rankdir={orientation};",
              'graph [bgcolor="transparent", nodesep="0.45", ranksep="0.65"];',
              'node [shape=box, style="rounded,filled", fontname="Arial", fontsize=16, margin="0.20,0.12", color="#94a3b8", fillcolor="#f1f5f9", fontcolor="#0f172a"];',
-             'edge [fontname="Arial", fontsize=11, color="#64748b", fontcolor="#475569", arrowsize=0.8];']
+             'edge [fontname="Arial", fontsize=14, color="#64748b", fontcolor="#64748b", arrowsize=0.8];']
     for node in graph["nodes"]:
         emphasis = ', fillcolor="#2563eb", color="#1d4ed8", fontcolor="white"' if node["id"] == selected else ""
         lines.append(f'{quote(node["id"])} [label={quote(node["name"])}, tooltip={quote(node["id"])}{emphasis}];')
+    names = {node["id"]: node["name"] for node in graph["nodes"]}
     for edge in graph["edges"]:
-        lines.append(f'{quote(edge["source"])} -> {quote(edge["target"])} [label={quote(edge["type"])}];')
+        # condition_vi: điều kiện đủ từ target (tổng quát) thành source (đặc biệt).
+        condition = edge.get("condition_vi")
+        label = edge["type"]
+        if condition:
+            label += "\n+ " + "\n".join(textwrap.wrap(condition, width=26))
+        tooltip = (f'{names[edge["target"]]} → {names[edge["source"]]}: '
+                   f'{condition or "Chưa có chú thích điều kiện"}')
+        lines.append(f'{quote(edge["source"])} -> {quote(edge["target"])} [label={quote(label)}, tooltip={quote(tooltip)}];')
     return "\n".join(lines + ["}"])

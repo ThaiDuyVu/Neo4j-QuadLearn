@@ -59,6 +59,24 @@ def test_dot_escapes_database_names_and_ids():
     assert 'Tên \\"hình\\"\\nxuống dòng' in dot
 
 
+def test_conditions_explain_reverse_direction_without_reversing_real_edge():
+    graph = focus_graph(GRAPH, 'square', 'parents', 1)
+    graph['edges'] = [dict(edge, condition_vi='Hai cạnh kề bằng nhau')
+                      for edge in graph['edges']]
+    dot = graph_dot(graph)
+    assert '"square" -> "rectangle"' in dot
+    assert 'Hình chữ nhật → Hình vuông: Hai cạnh kề bằng nhau' in dot
+    assert '+ Hai cạnh kề bằng nhau' in dot
+    assert '"rectangle" -> "square"' not in dot
+    assert focus_graph(graph, 'square', 'parents', 1)['edges'] == graph['edges']
+
+
+def test_missing_condition_keeps_edge_without_inventing_a_rule():
+    dot = graph_dot(GRAPH)
+    assert 'Chưa có chú thích điều kiện' in dot
+    assert '+ Hai cạnh' not in dot
+
+
 def test_database_failure_is_not_an_empty_mock_graph():
     class Broken:
         def read(self,*args,**kwargs): raise RuntimeError('Neo4j unavailable')

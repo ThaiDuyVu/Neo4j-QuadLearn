@@ -448,3 +448,6 @@ Kết thúc buổi demo: Ctrl+C ở Terminal để dừng Streamlit; có thể d
 - **CHƯA KIỂM CHỨNG trong lần viết tài liệu này:** thao tác trực tiếp toàn bộ flow bằng trình duyệt và chạy các lệnh trên Windows. Người trình bày cần chạy thử checklist trước buổi demo.
 
 Query lịch sử/tiến độ có thể trả rỗng nếu tài khoản được chọn chưa có dữ liệu tương ứng. Việc query chạy thành công xác nhận cú pháp và schema hiện tại; không thay thế việc kiểm tra kết quả sau từng thao tác UI của flow.
+### Giải thích điều kiện trên sơ đồ hình học
+
+Trong trang **Sơ đồ tri thức hình học**, đọc dòng có dấu `+` ngược chiều mũi tên: **chữ nhật + hai cạnh kề bằng nhau → vuông**, **thoi + một góc vuông → vuông**. Mũi tên vẫn chỉ “hình vuông là một loại hình chữ nhật/hình thoi”. Mở bảng quan hệ để xem rõ hình đầu, hình đích và điều kiện đủ. Dữ liệu chú thích nằm trên quan hệ `IS_A.condition_vi` trong Neo4j. Nếu máy khác đã setup trước khi cập nhật code, chạy `python -m scripts.db annotate`, sau đó làm mới trang; không reset tiến độ demo.

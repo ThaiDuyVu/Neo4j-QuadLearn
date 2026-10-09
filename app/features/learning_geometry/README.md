@@ -131,3 +131,6 @@ Mở `/geometry-knowledge` từ menu. `pages/knowledge_graph.py` tổ chức gia
 Chế độ toàn bộ giữ cả node cô lập. Chế độ một hình có hướng lên loại tổng quát, xuống các hình cụ thể hoặc cả hai. Một số bước theo cả hai hướng có thể đưa vào các hình cùng chung loại tổng quát; đây là vùng liên quan, không khẳng định tất cả đều là cha/con của hình đang chọn. Mũi tên luôn giữ hướng nguồn → đích của DB. Có thể tải DOT hoặc đối chiếu bằng Cypher trong expander. Streamlit dựng sơ đồ từ chuỗi DOT; không thêm dependency hoặc cần cài Graphviz binary trên host.
 
 Test riêng: `python -m pytest -q app/features/learning_geometry/tests/test_knowledge_graph.py`.
+### Chú thích điều kiện trên sơ đồ
+
+`TaxonomyRepository.geometry_graph()` đọc `IS_A.condition_vi`; `services/knowledge_graph.py` đưa chú thích lên đường nối và tooltip; `pages/knowledge_graph.py` giải thích chiều đọc và hiển thị bảng điều kiện. Dấu `+` là điều kiện đủ để hình tổng quát trở thành hình đặc biệt, ngược chiều mũi tên IS_A. Điều kiện thuộc dữ liệu Neo4j, không hardcode trong giao diện. Nguồn demo: `database/taxonomy_conditions.cypher`; cập nhật database cũ bằng `python -m scripts.db annotate`. Khi bổ sung quan hệ mới, lưu chú thích cùng cạnh.

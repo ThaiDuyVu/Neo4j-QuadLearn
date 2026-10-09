@@ -10,6 +10,8 @@ python -m scripts.db queries
 
 `init`: verify connection → constraints → indexes → seed. Mỗi file seed một transaction; DDL riêng. Chạy lại không tăng bản ghi/cạnh nhưng SET lại dữ liệu demo. Không dùng seed để migrate dữ liệu thật. `examples.cypher`: mỗi câu kết thúc bằng **dòng riêng `;`**; helper chỉ hỗ trợ quy ước này, không parser Cypher tổng quát. Không đặt dòng chỉ `;` bên trong string literal.
 
+Sau seed, `init` cũng chạy `taxonomy_conditions.cypher` để ghi điều kiện đủ vào `IS_A.condition_vi`. Với database đã có dữ liệu, dùng `python -m scripts.db annotate` để chỉ cập nhật chú thích 9 cạnh mẫu, giữ nguyên bài học/tài khoản/tiến độ; không cần seed hoặc reset lại.
+
 Browser: http://localhost:7474, Bolt bolt://localhost:7687, username neo4j, mật khẩu do bạn đặt trong `.env`. `NEO4J_DATABASE` mặc định neo4j; giữ tên mặc định cho nhóm. Community một database ứng dụng, không multi-tenant từ xa.
 
 Reset có chủ đích: `python -m scripts.db reset --yes` chỉ chạy ở APP_ENV=development, **xóa node demo=true và mọi cạnh nối**, sau đó seed lại. Nó không xóa node khác, nhưng cạnh dữ liệu thật nối demo cũng mất; không trộn dữ liệu thật với demo. `reset_dev.cypher` paste trực tiếp không có guard CLI, cẩn thận.

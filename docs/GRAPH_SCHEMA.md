@@ -59,6 +59,14 @@ ImportLog owner Sơn; quan hệ admin→log sẽ chốt khi import thực hiện
 - Seed chạy lại an toàn, **ghi đè giá trị demo cố định**, không migration dữ liệu thật. Tất cả node seed có `demo=true`; không nhập bài thật vào node demo. Seed tạo 4 level, 4 chapter, 5 topic/lesson, taxonomy 8 shape, một attempt/answer, essay/hint và chat mock.
 - Taxonomy cố ý chưa nối bình hành→hình thang vì định nghĩa bao hàm hình thang chưa được SGK xác nhận. Hình chữ nhật→nội tiếp là tính chất đúng; hình vuông có hai đường IS_A riêng, không diễn giải mọi hình thoi là chữ nhật.
 
+### Điều kiện trên quan hệ phân loại
+
+`(child)-[r:IS_A]->(parent)` có property `r.condition_vi`: một **điều kiện đủ** để parent trở thành child. Mũi tên vẫn biểu diễn child là một loại parent; dòng `+ điều kiện` trên sơ đồ được đọc ngược chiều mũi tên. Ví dụ chữ nhật + hai cạnh kề bằng nhau → vuông; thoi + một góc vuông → vuông. Áp dụng cho tứ giác lồi, không suy biến; không liệt kê mọi dấu hiệu nhận biết. Đặc biệt tứ giác nội tiếp cần **hai góc kề vuông** để thành chữ nhật, một góc vuông chưa đủ.
+
+`database/taxonomy_conditions.cypher` là nguồn chú thích cho 9 cạnh demo; chỉ MATCH/SET trên cạnh hiện có, chạy lại an toàn. Điều kiện “chỉ một cặp cạnh đối song song” là ví dụ đủ để nhận biết hình thang theo cả hai quy ước; không chốt câu hỏi SGK về định nghĩa bao hàm.
+
+Thêm một cạnh mới: Sơn cần ghi `condition_vi` cùng cạnh; nếu thiếu, bảng sẽ báo “Chưa có chú thích”, giao diện không tự suy diễn điều kiện.
+
 ## Truy vấn graph có thể chạy
 
 Xem `database/examples.cypher`; chạy `python -m scripts.db queries` hoặc paste từng câu vào Neo4j Browser. Có tiên quyết 8 bước, taxonomy 5 bước, bài cùng loại hình, ôn tiên quyết từ điểm thấp, ngữ cảnh AI 3 bước và tiếp tục bài dở. Bounds là giới hạn demo, không tuyên bố traversal đầy đủ mọi graph. Query ôn tập trả rỗng với seed điểm 10 là đúng.

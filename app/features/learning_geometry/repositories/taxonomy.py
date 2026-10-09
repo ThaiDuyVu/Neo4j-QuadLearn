@@ -26,7 +26,8 @@ class TaxonomyRepository:
             WHERE parent.id IS NOT NULL
             RETURN collect(DISTINCT {id:q.id,name:coalesce(q.name_vi,q.id)}) AS nodes,
                    collect(DISTINCT CASE WHEN r IS NOT NULL THEN {
-                       id:elementId(r),source:q.id,target:parent.id,type:type(r)
+                       id:elementId(r),source:q.id,target:parent.id,type:type(r),
+                       condition_vi:r.condition_vi
                    } END) AS edges
         """)
         return rows[0] if rows else {"nodes": [], "edges": []}
